@@ -29,7 +29,7 @@ PRE = ["Gm7", "Am7", "Bbmaj7", ("Bbm6", "C7sus4")]
 # bridge slides down by half steps (Db-C, Bbm-Am), climbs Db-Eb, then Abm7 Db7 = ii V of Gb
 BRIDGE = ["Dbmaj7", "C", "Bbm6", "Am7", "Dbmaj7", "Ebmaj7", "Abm7", ("Db7sus4", "Db7")]
 TAG = ["Gm7", "C/E", ("Fmaj7", "Dbmaj7"), ("Gm7", "C7sus4")]
-OUTRO = ["Bbmaj7", "C", "F", "F"]
+OUTRO = ["Bbmaj7", "C", "Am7", ("Dm7", "C7sus4"), "F"]
 
 FORM = [  # (name, progression, transpose); the last chorus goes up to Gb
     ("intro", LOOP * 2, 0),
@@ -142,8 +142,16 @@ PRE_2 = [
     ("Db5", "あ", .5), ("C5", "さ", .25), ("Bb4", "が", .75), ("F4", "く", .5), ("G4", "る", .5), ("Bb4", "ま", .5),
     ("C5", "で", 1.0),
 ]
-CALL = [("A4", "ろ", .5), ("A4", "ん", .25), ("C5", "り", .75), ("D5", "な", .5), ("C5", "い", .25),
-        ("A4", "と", .75), ("r", "", 1.0)]
+# post-chorus hook over the riff: ロンリーナイト ひとりでダンス / ロンリーナイト ねえ 気づいてよ
+POST_HOOK = [
+    ("A4", "ろ", .5), ("A4", "ん", .25), ("C5", "り", .75), ("D5", "な", .5), ("C5", "い", .25),
+    ("A4", "と", .75), R, ("G4", "ひ", .5),
+    ("A4", "と", .5), ("G4", "り", .25), ("G4", "で", .5), ("C5", "だ", .75), ("C5", "ん", .5), ("G4", "す", .5),
+    ("r", "", 1.0),
+    ("C5", "ろ", .5), ("C5", "ん", .25), ("E5", "り", .75), ("E5", "な", .5), ("D5", "い", .25),
+    ("C5", "と", .75), R, ("D5", "ね", .5),
+    ("C5", "え", .75), ("A4", "き", .25), ("A4", "づ", .5), ("C5", "い", .5), ("D5", "て", .5), ("D5", "よ", 1.5),
+]
 # I'm fine, I'm fine - 言い聞かせて踊るの / Good night, city light - まだ消えないで / 朝が来るまで ねえ
 BRIDGE_MEL = [
     R, ("Ab4", "あ", .5), ("Ab4", "い", .25), ("F4", "む", .25), ("Ab4", "ふぁ", .5), ("C5", "い", .5), ("C5", "ん", 1.0), R,
@@ -182,6 +190,25 @@ def root_of(name: str, tr: int = 0) -> int:
     return n
 
 
+F_MAJOR = [0, 2, 4, 5, 7, 9, 10]   # pitch classes relative to F
+
+
+def harmony_note(pitch: int, chord: str, tr: int) -> int:
+    """Third above: the diatonic third if it is a chord tone, else the nearest chord tone
+    3-5 semitones up (borrowed chords included)."""
+    pcs = {(p + tr) % 12 for p in chord_notes(chord.split("/")[0], 4)}
+    rel = (pitch - 5 - tr) % 12
+    if rel in F_MAJOR:
+        k = F_MAJOR.index(rel)
+        up = (F_MAJOR[(k + 2) % 7] - rel) % 12
+        if (pitch + up) % 12 in pcs:
+            return pitch + up
+    for d in (3, 4, 5):
+        if (pitch + d) % 12 in pcs:
+            return pitch + d
+    return pitch + 3
+
+
 def voicing(name: str, top: int, n: int = 3, tr: int = 0) -> list[int]:
     """Top note plus the n nearest chord tones below it (closed position, no semitone
     rubs between neighbours)."""
@@ -211,6 +238,11 @@ class Arranger:
         self.bass = s.track("bass", BASS)
         self.vox = s.track("vocal", VOX)
         self.vox.opts.update(VOX_OPTS)
+        self.harm = [s.track("harmony L", VOX), s.track("harmony R", VOX)]
+        self.harm[0].opts.update({**VOX_OPTS, "vibrato_cents": 18, "breathy": 0.15, "breath_db": None})
+        self.harm[1].opts.update({**VOX_OPTS, "vibrato_cents": 22, "breathy": 0.2, "formant": 0.4,
+                                  "breath_db": None, "port_pre": 0.04})
+        self.fx = s.track("fx", KIT)
         self.sec, self.timeline, bar = {}, [], 0
         for name, prog, tr in form:
             self.sec[name] = (bar, len(prog), tr)
@@ -457,42 +489,69 @@ class Arranger:
         self.cym.hit("crash", beat, 120)
 
     # -- vocal ------------------------------------------------------------------------
-    def sing(self, b0, melody, tr=0, x=None):
+    def sing(self, b0, melody, tr=0, x=None, harmony=False):
         b = b0
         for p, lyr, d in melody:
             if p != "r":
-                self.vox.note(note_number(p) + tr, b, d, 100, lyric=lyr, x=dict(x) if x else None)
+                n = note_number(p) + tr
+                self.vox.note(n, b, d, 100, lyric=lyr, x=dict(x) if x else None)
+                if harmony:
+                    h = harmony_note(n, self.chord_at(b)[2], tr)
+                    if h > note_number("F5") + tr:     # too high for the bank: go under instead
+                        pcs = {(q + tr) % 12 for q in chord_notes(self.chord_at(b)[2].split("/")[0], 4)}
+                        h = next((n - d for d in (3, 4, 5) if (n - d) % 12 in pcs), n - 3)
+                    for i, t in enumerate(self.harm):
+                        t.note(h, b + 0.012 * i, d, 92, lyric=lyr)
             b += d
         return b
+
+    def lift(self, b0):
+        """Riser over the 2 bars before b0, impact on b0."""
+        self.fx.hit("riser", b0 - 8, 100)
+        self.fx.hit("impact", b0, 110)
+
+    def piano_end(self, beat):
+        st, en, name, tr = self.chord_at(beat)
+        notes = voicing(name, note_number("A4") + tr, 3, tr)   # Fmaj9-ish under the third
+        self.piano.notes_at([root_of(name, tr) + 12, root_of(name, tr) + 24] + notes, beat, 8, 84)
+        self.piano.sustain(beat + 0.02, beat + 9)
 
     # -- mix --------------------------------------------------------------------------
     def mix(self):
         self.s.mix = {
             "tracks": {
-                "kick": {"gain": -6.5, "eq": [("hpf", 30), ("bell", 3500, 2, 1.0)]},
+                "kick": {"gain": -6.5, "eq": [("hpf", 30), ("bell", 55, 2, 1.2), ("bell", 3500, 2, 1.0)]},
                 "clap": {"gain": -9, "eq": [("hpf", 160), ("bell", 1200, 1.5, 1.0)], "sends": {"room": -10}},
-                "hats": {"gain": -15, "eq": [("hpf", 450)], "pan": 0.18},
+                "hats": {"gain": -13, "eq": [("hpf", 450)], "pan": 0.18},
                 "perc": {"gain": -20, "eq": [("hpf", 120)], "pan": -0.25, "sends": {"room": -12}},
                 "cymbals": {"gain": -16, "eq": [("hpf", 600)], "width": 1.2},
-                "piano": {"gain": -5.5, "eq": [("hpf", 160), ("bell", 320, -3, 1.0), ("hshelf", 6000, 2)],
+                "piano": {"gain": -5.5, "eq": [("hpf", 160), ("bell", 320, -3, 1.0), ("bell", 700, -1.5, 1.0),
+                                          ("hshelf", 6000, 2.5)],
                           "comp": {"threshold": -20, "ratio": 3, "attack": 8, "release": 90},
                           "width": 0.6, "mono_below": 200, "sends": {"plate": -16}},
                 "saw": {"gain": -8.5, "eq": [("hpf", 220), ("bell", 450, -2, 1.0)], "width": 1.0,
                         "duck": {"by": "kick", "depth": 5, "release_ms": 140}, "sends": {"plate": -18}},
-                "bass": {"gain": -5.5, "eq": [("hpf", 32), ("bell", 90, 1.5, 1.0)],
+                "bass": {"gain": -5.5, "eq": [("hpf", 35), ("bell", 55, -2.5, 1.2), ("bell", 110, 2, 1.0)],
                          "comp": {"threshold": -20, "ratio": 4, "attack": 6, "release": 80},
                          "duck": {"by": "kick", "depth": 3}, "mono": True},
-                "vocal": {"gain": 0.5, "eq": [("hpf", 140), ("bell", 280, -2.5, 1.0), ("bell", 3200, 2, 1.0),
-                                             ("hshelf", 9000, 1.5)],
+                "vocal": {"gain": 0.5, "eq": [("hpf", 150), ("bell", 280, -2.5, 1.0), ("bell", 750, -2.5, 1.0),
+                                             ("bell", 3200, 2.5, 1.0), ("hshelf", 9000, 2.5)],
                           "comp": {"threshold": -22, "ratio": 3.5, "attack": 4, "release": 70},
                           "sends": {"plate": -11, "dly": -18}},
+                "harmony L": {"gain": -10, "eq": [("hpf", 250), ("bell", 750, -3, 1.0), ("hshelf", 8000, 2)],
+                              "comp": {"threshold": -24, "ratio": 4, "attack": 5, "release": 80},
+                              "pan": -0.45, "sends": {"plate": -6}},
+                "harmony R": {"gain": -10, "eq": [("hpf", 250), ("bell", 750, -3, 1.0), ("hshelf", 8000, 2)],
+                              "comp": {"threshold": -24, "ratio": 4, "attack": 5, "release": 80},
+                              "pan": 0.45, "sends": {"plate": -6}},
+                "fx": {"gain": -12, "eq": [("hpf", 30)], "width": 1.3, "sends": {"plate": -14}},
             },
             "fx": {
                 "plate": {"type": "reverb", "kind": "plate", "decay": 1.7, "predelay": 25, "hpf": 300, "lpf": 9000},
                 "room": {"type": "reverb", "kind": "room", "decay": 0.7, "predelay": 5, "hpf": 250, "lpf": 8000},
                 "dly": {"type": "delay", "beats": 0.75, "feedback": 0.32, "hpf": 600, "lpf": 5000},
             },
-            "master": {"glue": {"threshold": -16, "ratio": 2, "attack": 20, "release": 200}, "target_lufs": -14},
+            "master": {"eq": [("hshelf", 9000, 1.5, 0.7)], "glue": {"threshold": -16, "ratio": 2, "attack": 20, "release": 200}, "target_lufs": -14},
         }
 
 
@@ -508,9 +567,12 @@ def compose() -> Song:
             a.bass_house(b0 + 16, 4)
             a.riff(b0 + 16, 4)
         elif name.startswith("verse"):
-            a.drums_dance(b0, n, vel=0.9)
+            a.drums_dance(b0, n, vel=0.85)
             a.bass_funk(b0, n)
-            a.piano_funk(b0, n, vel=0.8)
+            if name == "verse 1":       # piano joins halfway: room for the chorus to grow
+                a.piano_funk(b0 + 16, 4, vel=0.75)
+            else:
+                a.piano_funk(b0, n, vel=0.75)
             a.sing(b0, VERSE_1 if name == "verse 1" else VERSE_2, tr)
         elif name.startswith("pre"):
             a.drums_dance(b0, n - 2, fill=False, crash=False)
@@ -523,18 +585,18 @@ def compose() -> Song:
             a.riff(b0 + 8, 2, saw=False, pickups=False, vel=0.9)
             a.sing(b0, PRE_1 if name == "pre 1" else PRE_2, tr)
         elif name.startswith("chorus"):
+            a.lift(b0)
             a.drums_house(b0, n)
+            a.cym.hit("crash", b0 + 16, 98)
             a.bass_sync(b0, n)
             a.saw_pump(b0, n)
-            step = 1 if name == "chorus 3" else 2
-            for bar in range(0, n, step):
-                a.riff(b0 + bar * 4, 1, saw=False, pickups=False, vel=0.9)
-            a.sing(b0, HOOK, tr)
+            a.riff(b0, n, saw=False, pickups=False, vel=0.9)
+            a.sing(b0, HOOK, tr, harmony=True)
         elif name in ("post", "drop"):
             a.drums_house(b0, n)
             a.bass_house(b0, n)
-            a.riff(b0, n)
-            a.sing(b0, CALL, tr)
+            a.riff(b0, n, vel=0.9)
+            a.sing(b0, POST_HOOK, tr)
         elif name == "bridge":
             a.drums_half(b0, 6, vel=0.85)
             a.build(b0 + 24, 2)
@@ -547,14 +609,12 @@ def compose() -> Song:
             a.bass_sync(b0, n)
             a.saw_pump(b0, n)
             a.riff(b0, n, saw=False, pickups=False, vel=0.9)
-            a.sing(b0, TAG_MEL, tr)
-        elif name == "outro":
-            a.drums_house(b0, 3, fill=True)
-            a.bass_house(b0, 3)
-            a.riff(b0, 3)
-            a.final_hit(b0 + 12)
+            a.sing(b0, TAG_MEL, tr, harmony=True)
+        elif name == "outro":            # everyone leaves; the piano riff closes on Gb
+            a.riff(b0, 4, saw=False, vel=0.8)
+            a.piano_end(b0 + 16)
     a.mix()
-    s.length_beats = s.bar(a.total_bars)
+    s.length_beats = s.bar(a.total_bars) + 2
     return s
 
 

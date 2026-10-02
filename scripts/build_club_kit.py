@@ -134,6 +134,29 @@ def snap():
     return norm(bp(noise(len(t)), 1800, 7000) * env(t, 0.0003, 0.022) + 0.3 * np.sin(2 * np.pi * 2100 * t) * env(t, 0.0002, 0.01))
 
 
+def riser(bars=2, bpm=132):
+    """Noise sweep that ends exactly `bars` later (lands on the next downbeat)."""
+    dur = bars * 240 / bpm
+    t = t_(dur)
+    x = noise(len(t))
+    out = np.zeros(len(t))
+    blk = 1024
+    for i in range(0, len(t), blk):
+        u = i / len(t)
+        f = 300 * (9000 / 300) ** (u ** 1.5)
+        seg = bp(x[max(0, i - 4096):i + blk], f * 0.7, f * 1.4)[-min(blk, len(t) - i):]
+        out[i:i + len(seg)] = seg
+    amp = (t / dur) ** 2.2
+    return norm(out * amp * (1 - np.exp(-(dur - t) / 0.004)))
+
+
+def impact():
+    t = t_(2.5)
+    sub = sweep_sine(t, 36, 40, 0.15) * env(t, 0.001, 0.9, 1.2)
+    nz = lp(noise(len(t)), 2500) * env(t, 0.001, 0.35)
+    return norm(np.tanh(1.5 * (sub + 0.5 * nz)))
+
+
 def main():
     voices = {
         "kick": Voice(36, kick_house()), "kick_808": Voice(35, kick_808()), "kick_punch": Voice(34, kick_punch()),
@@ -141,6 +164,7 @@ def main():
         "hh_closed": Voice(42, hat(0.035), sfz="group=1"), "hh_pedal": Voice(44, hat(0.02, 0.4), sfz="group=1"),
         "hh_open": Voice(46, hat(0.32), sfz="group=2 off_by=1"),
         "shaker": Voice(70, shaker()), "crash": Voice(49, crash()),
+        "riser": Voice(60, riser()), "impact": Voice(61, impact()),
         "tom_low": Voice(41, tom(98)), "tom_mid": Voice(45, tom(130)), "tom_high": Voice(48, tom(175)),
     }
     sfz, drum_map = Kit("drums.club", "Clean electronic kit synthesised from scratch (self-made, releasable).",
