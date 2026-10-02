@@ -1,0 +1,6 @@
+libs/
+songs/*/out/stems/
+songs/*/out/*.wav
+__pycache__/
+*.pyc
+songs/_*/out/
