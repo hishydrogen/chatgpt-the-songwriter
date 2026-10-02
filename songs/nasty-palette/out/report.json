@@ -1,0 +1,159 @@
+{
+  "master": {
+    "integrated_lufs": -14.06,
+    "short_term_max_lufs": -12.86,
+    "loudness_range_lu": 1.59,
+    "true_peak_dbtp": -1.01,
+    "sample_peak_db": -1.09,
+    "plr_db": 13.05,
+    "crest_db": 15.14,
+    "stereo_correlation": 0.938,
+    "side_to_mid_db": -14.93,
+    "tonal_slope_db_per_oct": -0.87,
+    "bands_db": {
+      "sub": -27.7,
+      "bass": -16.6,
+      "low-mid": -24.0,
+      "mid": -24.4,
+      "hi-mid": -27.6,
+      "presence": -31.0,
+      "air": -32.0
+    }
+  },
+  "masking": [
+    "sub: bass C: finger bass, 8-bit, bass E: FM slap (clean), bass A: FM bass, 8-bit Mirage, bass B: OB-8 brass played low, 8-bit (car-horn trick), bass D dx, kick, bass D ob within 3 dB of each other"
+  ],
+  "master_chain": {
+    "lufs": -14.06,
+    "true_peak": -1.01,
+    "limiter_drive_db": 4.97
+  },
+  "tracks": {
+    "kick": {
+      "lufs": -23.6,
+      "peak_db": -11.4,
+      "stereo_correlation": 1.0
+    },
+    "snare": {
+      "lufs": -22.8,
+      "peak_db": -10.0,
+      "stereo_correlation": 1.0
+    },
+    "hats": {
+      "lufs": -31.0,
+      "peak_db": -16.2,
+      "stereo_correlation": 1.0
+    },
+    "dry kick": {
+      "lufs": -20.0,
+      "peak_db": -6.5,
+      "stereo_correlation": 1.0
+    },
+    "dry snare": {
+      "lufs": -22.0,
+      "peak_db": -4.0,
+      "stereo_correlation": 1.0
+    },
+    "dry hats": {
+      "lufs": -28.0,
+      "peak_db": -9.2,
+      "stereo_correlation": 1.0
+    },
+    "bass A: FM bass, 8-bit Mirage": {
+      "lufs": -26.0,
+      "peak_db": -11.6,
+      "stereo_correlation": 1.0
+    },
+    "bass B: OB-8 brass played low, 8-bit (car-horn trick)": {
+      "lufs": -26.1,
+      "peak_db": -12.7,
+      "stereo_correlation": 1.0
+    },
+    "bass C: finger bass, 8-bit": {
+      "lufs": -26.2,
+      "peak_db": -13.9,
+      "stereo_correlation": 1.0
+    },
+    "bass D dx": {
+      "lufs": -25.5,
+      "peak_db": -13.2,
+      "stereo_correlation": 1.0
+    },
+    "bass D ob": {
+      "lufs": -30.4,
+      "peak_db": -14.2,
+      "stereo_correlation": 1.0
+    },
+    "bass E: FM slap (clean)": {
+      "lufs": -25.5,
+      "peak_db": -14.6,
+      "stereo_correlation": 1.0
+    },
+    "timpani (Mirage)": {
+      "lufs": -26.0,
+      "peak_db": -8.6,
+      "stereo_correlation": 1.0
+    },
+    "metal (Mirage)": {
+      "lufs": -26.0,
+      "peak_db": -13.0,
+      "stereo_correlation": 1.0
+    },
+    "orch hit major": {
+      "lufs": -26.0,
+      "peak_db": -12.6,
+      "stereo_correlation": 1.0
+    },
+    "orch hit minor": {
+      "lufs": -26.0,
+      "peak_db": -12.1,
+      "stereo_correlation": 1.0
+    },
+    "stab A: JX-10 Double Brass": {
+      "lufs": -30.8,
+      "peak_db": -15.0,
+      "stereo_correlation": 0.41
+    },
+    "stab B: OB-8 Jump": {
+      "lufs": -33.7,
+      "peak_db": -18.3,
+      "stereo_correlation": 0.42
+    },
+    "stab C: Toto Brass": {
+      "lufs": -32.9,
+      "peak_db": -17.5,
+      "stereo_correlation": 0.36
+    },
+    "stab D: Retro minor stab": {
+      "lufs": -29.1,
+      "peak_db": -12.7,
+      "stereo_correlation": 0.7
+    },
+    "bell A: DX Tonez": {
+      "lufs": -26.0,
+      "peak_db": -12.9,
+      "stereo_correlation": 0.2
+    },
+    "bell B: The 1980s": {
+      "lufs": -26.0,
+      "peak_db": -14.6,
+      "stereo_correlation": 0.64
+    },
+    "bell C: FM Bell 2": {
+      "lufs": -26.0,
+      "peak_db": -12.7,
+      "stereo_correlation": 0.99
+    },
+    "fx:gate": {
+      "lufs": -31.7,
+      "peak_db": -18.5,
+      "stereo_correlation": -0.16
+    },
+    "fx:plate": {
+      "lufs": -39.1,
+      "peak_db": -22.1,
+      "stereo_correlation": 0.25
+    }
+  },
+  "warnings": []
+}
