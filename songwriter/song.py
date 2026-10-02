@@ -8,6 +8,7 @@
 """
 from __future__ import annotations
 
+import math
 import random
 import re
 import zlib
@@ -129,6 +130,30 @@ class Track:
         self.bends.append((beat, int(max(-8192, min(8191, value)))))
         return self
 
+    def cc_ramp(self, number: int, beat0: float, beat1: float, v0: int, v1: int,
+                step: float = 0.125, curve: float = 1.0):
+        """Linear (curve=1) or shaped CC sweep, e.g. a brass swell on CC11."""
+        n = max(1, int(round((beat1 - beat0) / step)))
+        for i in range(n + 1):
+            f = (i / n) ** curve
+            self.cc(number, round(v0 + (v1 - v0) * f), beat0 + i * (beat1 - beat0) / n)
+        return self
+
+    def vibrato(self, beat0: float, beat1: float, rate_hz: float = 5.5, cents: float = 20.0,
+                bend_range: float = 2.0, fade: float = 0.4, step_s: float = 0.02):
+        """Pitch-bend vibrato between two beats that fades in over `fade` of the span and
+        returns to centre at beat1 (for synths/samples without their own vibrato)."""
+        span = max(1e-6, beat1 - beat0)
+        b, t = beat0, 0.0
+        while b < beat1:
+            env = min(1.0, (b - beat0) / (span * fade + 1e-9))
+            val = cents / (bend_range * 100) * 8191 * env * math.sin(2 * math.pi * rate_hz * t)
+            self.bend(int(round(val)), b)
+            b += step_s * self.song.bpm_at(b) / 60.0
+            t += step_s
+        self.bend(0, beat1)
+        return self
+
     # -- feel ----------------------------------------------------------------
     def humanize(self, timing_ms: float = 8.0, vel: int = 6, seed: int | None = None,
                  skip_downbeats: bool = False):
@@ -236,7 +261,7 @@ class Song:
         ev = []  # (tick, order, msg) - offs before ons at equal tick
         ch = track.channel
         for n in track.notes:
-            on = round(n.start * self.TPB)
+            on = max(0, round(n.start * self.TPB))  # humanized notes may start a hair before 0
             off = max(on + 1, round((n.start + n.dur) * self.TPB))
             ev.append((on, 2, mido.Message("note_on", note=n.pitch, velocity=n.vel, channel=ch)))
             ev.append((off, 0, mido.Message("note_off", note=n.pitch, velocity=0, channel=ch)))

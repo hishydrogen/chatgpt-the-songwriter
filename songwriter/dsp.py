@@ -332,6 +332,18 @@ def chorus(x, rate_hz=0.6, depth_ms=2.2, delay_ms=7.0, mix=0.5, stereo=True):
     return out.astype(np.float32)
 
 
+def tremolo(x, rate_hz=4.5, depth=0.35, stereo=True, phase=0.0, start=0.0):
+    """Rhodes Suitcase "vibrato": amplitude modulation, left and right in anti-phase when
+    stereo (an auto-pan), in phase otherwise. depth 0-1. `start` (s) aligns the LFO."""
+    t = (np.arange(x.shape[1]) / SR) - start
+    lfo = np.sin(2 * np.pi * rate_hz * t + phase)
+    g_l = 1 - depth * (0.5 + 0.5 * lfo)
+    g_r = 1 - depth * (0.5 - 0.5 * lfo) if stereo else g_l
+    y = np.stack([x[0] * g_l, x[1] * g_r])
+    rms_in = np.sqrt(np.mean(x ** 2)) + 1e-12
+    return (y * (rms_in / (np.sqrt(np.mean(y ** 2)) + 1e-12))).astype(np.float32)
+
+
 def _biquad(kind, f0, gain_db=0.0, q=0.707):
     """RBJ cookbook biquad -> (b, a)."""
     A = 10 ** (gain_db / 40)

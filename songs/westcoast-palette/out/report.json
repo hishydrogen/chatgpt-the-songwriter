@@ -1,0 +1,589 @@
+{
+  "master": {
+    "integrated_lufs": -14.03,
+    "short_term_max_lufs": -11.94,
+    "loudness_range_lu": 3.74,
+    "true_peak_dbtp": -1.0,
+    "sample_peak_db": -1.36,
+    "plr_db": 13.03,
+    "crest_db": 14.68,
+    "stereo_correlation": 0.87,
+    "side_to_mid_db": -11.53,
+    "tonal_slope_db_per_oct": -2.38,
+    "bands_db": {
+      "sub": -28.7,
+      "bass": -17.4,
+      "low-mid": -21.6,
+      "mid": -21.6,
+      "hi-mid": -31.1,
+      "presence": -34.1,
+      "air": -36.1
+    }
+  },
+  "masking": [
+    "hi-mid: lead E (bonus): alto sax, lead C: tenor sax, brass C: harmon trumpets + horns (soft) | harmon tpts, snare, brass B: trumpets + trombones (full) | trumpets, hats within 3 dB of each other"
+  ],
+  "master_chain": {
+    "lufs": -14.03,
+    "true_peak": -1.0,
+    "limiter_drive_db": 6.35
+  },
+  "sections": [
+    {
+      "label": "drums A: dry 1978 (damped kick, close mics)",
+      "start_s": 0.0,
+      "end_s": 8.07,
+      "master_lufs": -16.8,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.8,
+        "toms": -22.5,
+        "fx:plate": -39.2,
+        "fx:room": -45.6
+      }
+    },
+    {
+      "label": "drums B: open studio room",
+      "start_s": 8.07,
+      "end_s": 16.13,
+      "master_lufs": -16.5,
+      "tracks": {
+        "snare": -64.9,
+        "toms": -39.8,
+        "kick B": -22.4,
+        "snare B": -25.3,
+        "hats B": -30.5,
+        "toms B": -22.8,
+        "fx:plate": -38.6,
+        "fx:room": -36.7
+      }
+    },
+    {
+      "label": "bass A: finger, warm (darkblack)",
+      "start_s": 16.13,
+      "end_s": 24.2,
+      "master_lufs": -15.9,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -22.5,
+        "kick B": -57.2,
+        "snare B": -62.8,
+        "toms B": -43.6,
+        "bass A: finger, warm (darkblack)": -24.9,
+        "fx:plate": -39.3,
+        "fx:room": -45.3
+      }
+    },
+    {
+      "label": "bass B: finger, bright (darkblack)",
+      "start_s": 24.2,
+      "end_s": 32.27,
+      "master_lufs": -15.9,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -24.8,
+        "bass B: finger, bright (darkblack)": -24.8,
+        "fx:plate": -39.3,
+        "fx:room": -45.7
+      }
+    },
+    {
+      "label": "bass C: short-scale (babyblue)",
+      "start_s": 32.27,
+      "end_s": 40.34,
+      "master_lufs": -15.1,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -24.7,
+        "bass C: short-scale (babyblue)": -24.4,
+        "fx:plate": -39.3,
+        "fx:room": -45.6
+      }
+    },
+    {
+      "label": "piano A: Yamaha C5 (Salamander)",
+      "start_s": 40.34,
+      "end_s": 48.4,
+      "master_lufs": -14.3,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -24.8,
+        "bass": -24.9,
+        "bass C: short-scale (babyblue)": -42.2,
+        "piano A: Yamaha C5 (Salamander)": -23.8,
+        "fx:plate": -37.2,
+        "fx:room": -45.8
+      }
+    },
+    {
+      "label": "piano B: Steinway (Splendid)",
+      "start_s": 48.4,
+      "end_s": 56.47,
+      "master_lufs": -14.4,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -24.8,
+        "bass": -24.9,
+        "piano A: Yamaha C5 (Salamander)": -30.7,
+        "piano B: Steinway (Splendid)": -24.0,
+        "fx:plate": -36.7,
+        "fx:room": -45.7
+      }
+    },
+    {
+      "label": "piano C: Steinway + OB-8 synth double",
+      "start_s": 56.47,
+      "end_s": 64.54,
+      "master_lufs": -14.5,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -24.7,
+        "bass": -24.9,
+        "piano B: Steinway (Splendid)": -35.6,
+        "piano C: Steinway + OB-8 synth double": -24.6,
+        "piano C: Steinway + OB-8 synth double | OB-8": -36.0,
+        "fx:plate": -37.0,
+        "fx:room": -45.7
+      }
+    },
+    {
+      "label": "rhodes A: dry",
+      "start_s": 64.54,
+      "end_s": 72.61,
+      "master_lufs": -14.0,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -24.7,
+        "bass": -25.0,
+        "piano C: Steinway + OB-8 synth double": -36.1,
+        "piano C: Steinway + OB-8 synth double | OB-8": -45.1,
+        "rhodes A: dry": -22.7,
+        "fx:plate": -36.7,
+        "fx:room": -45.6
+      }
+    },
+    {
+      "label": "rhodes B: Suitcase tremolo",
+      "start_s": 72.61,
+      "end_s": 80.67,
+      "master_lufs": -13.9,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -24.8,
+        "bass": -24.9,
+        "rhodes A: dry": -27.5,
+        "rhodes B: Suitcase tremolo": -22.7,
+        "fx:plate": -36.7,
+        "fx:room": -45.7
+      }
+    },
+    {
+      "label": "guitar A: single-coil clean (green)",
+      "start_s": 80.67,
+      "end_s": 88.74,
+      "master_lufs": -14.9,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -24.8,
+        "bass": -24.9,
+        "piano": -28.2,
+        "rhodes B: Suitcase tremolo": -27.5,
+        "guitar A: single-coil clean (green)": -30.1,
+        "fx:plate": -38.1,
+        "fx:room": -45.7
+      }
+    },
+    {
+      "label": "guitar B: humbucker clean (black)",
+      "start_s": 88.74,
+      "end_s": 96.81,
+      "master_lufs": -14.9,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -24.8,
+        "bass": -24.9,
+        "piano": -28.2,
+        "guitar A: single-coil clean (green)": -43.9,
+        "guitar B: humbucker clean (black)": -30.1,
+        "fx:plate": -38.0,
+        "fx:room": -45.7
+      }
+    },
+    {
+      "label": "guitar C: muted chops (green stac)",
+      "start_s": 96.81,
+      "end_s": 104.87,
+      "master_lufs": -15.0,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -24.8,
+        "bass": -25.0,
+        "piano": -28.2,
+        "guitar B: humbucker clean (black)": -42.9,
+        "guitar C: muted chops (green stac)": -30.7,
+        "fx:plate": -38.1,
+        "fx:room": -45.7
+      }
+    },
+    {
+      "label": "brass A: horns + trombones (warm)",
+      "start_s": 104.87,
+      "end_s": 112.94,
+      "master_lufs": -13.1,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -24.8,
+        "bass": -24.9,
+        "piano": -28.2,
+        "guitar C: muted chops (green stac)": -59.8,
+        "brass A: horns + trombones (warm) | trombones": -24.1,
+        "brass A: horns + trombones (warm) | horns": -24.9,
+        "fx:plate": -31.2,
+        "fx:room": -45.5
+      }
+    },
+    {
+      "label": "brass B: trumpets + trombones (full)",
+      "start_s": 112.94,
+      "end_s": 121.01,
+      "master_lufs": -13.0,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -24.7,
+        "bass": -24.9,
+        "piano": -28.2,
+        "brass A: horns + trombones (warm) | trombones": -40.2,
+        "brass A: horns + trombones (warm) | horns": -42.6,
+        "brass B: trumpets + trombones (full) | trombones": -24.2,
+        "brass B: trumpets + trombones (full) | trumpets": -24.0,
+        "fx:plate": -30.7,
+        "fx:room": -45.8
+      }
+    },
+    {
+      "label": "brass C: harmon trumpets + horns (soft)",
+      "start_s": 121.01,
+      "end_s": 129.08,
+      "master_lufs": -12.8,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -24.7,
+        "bass": -24.9,
+        "piano": -28.2,
+        "brass B: trumpets + trombones (full) | trombones": -40.3,
+        "brass B: trumpets + trombones (full) | trumpets": -39.4,
+        "brass C: harmon trumpets + horns (soft) | horns": -24.6,
+        "brass C: harmon trumpets + horns (soft) | harmon tpts": -23.6,
+        "fx:plate": -31.3,
+        "fx:room": -45.6
+      }
+    },
+    {
+      "label": "lead A: synth, Minimoog-like (glide)",
+      "start_s": 129.08,
+      "end_s": 137.14,
+      "master_lufs": -13.8,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -24.8,
+        "bass": -25.0,
+        "piano": -28.2,
+        "brass C: harmon trumpets + horns (soft) | horns": -41.6,
+        "brass C: harmon trumpets + horns (soft) | harmon tpts": -40.4,
+        "lead A: synth, Minimoog-like (glide)": -20.8,
+        "fx:plate": -32.2,
+        "fx:room": -45.8,
+        "fx:dly": -42.6
+      }
+    },
+    {
+      "label": "lead B: synth, soft retro (glide)",
+      "start_s": 137.14,
+      "end_s": 145.21,
+      "master_lufs": -12.6,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -24.7,
+        "bass": -24.9,
+        "piano": -28.2,
+        "lead B: synth, soft retro (glide)": -20.7,
+        "fx:plate": -30.6,
+        "fx:room": -45.7,
+        "fx:dly": -42.9
+      }
+    },
+    {
+      "label": "lead C: tenor sax",
+      "start_s": 145.21,
+      "end_s": 153.28,
+      "master_lufs": -12.7,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -24.8,
+        "bass": -24.9,
+        "piano": -28.2,
+        "lead B: synth, soft retro (glide)": -35.3,
+        "lead C: tenor sax": -20.8,
+        "fx:plate": -31.4,
+        "fx:room": -45.7,
+        "fx:dly": -42.8
+      }
+    },
+    {
+      "label": "lead D: Rhodes melody (octaves)",
+      "start_s": 153.28,
+      "end_s": 161.34,
+      "master_lufs": -12.8,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.6,
+        "hats": -30.5,
+        "toms": -24.8,
+        "bass": -24.9,
+        "piano": -28.2,
+        "lead C: tenor sax": -30.1,
+        "lead D: Rhodes melody (octaves)": -21.1,
+        "fx:plate": -31.0,
+        "fx:room": -45.7,
+        "fx:dly": -43.8
+      }
+    },
+    {
+      "label": "lead E (bonus): alto sax",
+      "start_s": 161.34,
+      "end_s": 171.43,
+      "master_lufs": -12.8,
+      "tracks": {
+        "kick": -22.3,
+        "snare": -25.9,
+        "hats": -30.5,
+        "toms": -25.9,
+        "bass": -25.0,
+        "piano": -28.2,
+        "lead D: Rhodes melody (octaves)": -38.9,
+        "lead E (bonus): alto sax": -20.9,
+        "fx:plate": -31.3,
+        "fx:room": -45.6,
+        "fx:dly": -43.0
+      }
+    }
+  ],
+  "tracks": {
+    "kick": {
+      "lufs": -22.1,
+      "peak_db": -8.4,
+      "stereo_correlation": 1.0
+    },
+    "snare": {
+      "lufs": -25.7,
+      "peak_db": -6.0,
+      "stereo_correlation": 0.95
+    },
+    "hats": {
+      "lufs": -30.6,
+      "peak_db": -12.2,
+      "stereo_correlation": 0.49
+    },
+    "toms": {
+      "lufs": -24.6,
+      "peak_db": -12.0,
+      "stereo_correlation": 0.97
+    },
+    "kick B": {
+      "lufs": -22.3,
+      "peak_db": -7.8,
+      "stereo_correlation": 1.0
+    },
+    "snare B": {
+      "lufs": -25.5,
+      "peak_db": -6.4,
+      "stereo_correlation": 0.84
+    },
+    "hats B": {
+      "lufs": -30.7,
+      "peak_db": -13.1,
+      "stereo_correlation": 0.38
+    },
+    "toms B": {
+      "lufs": -24.5,
+      "peak_db": -10.8,
+      "stereo_correlation": 0.93
+    },
+    "bass": {
+      "lufs": -24.9,
+      "peak_db": -12.7,
+      "stereo_correlation": 1.0
+    },
+    "piano": {
+      "lufs": -28.1,
+      "peak_db": -14.9,
+      "stereo_correlation": 0.58
+    },
+    "bass A: finger, warm (darkblack)": {
+      "lufs": -25.0,
+      "peak_db": -13.2,
+      "stereo_correlation": 1.0
+    },
+    "bass B: finger, bright (darkblack)": {
+      "lufs": -24.8,
+      "peak_db": -13.9,
+      "stereo_correlation": 1.0
+    },
+    "bass C: short-scale (babyblue)": {
+      "lufs": -24.5,
+      "peak_db": -14.0,
+      "stereo_correlation": 1.0
+    },
+    "piano A: Yamaha C5 (Salamander)": {
+      "lufs": -23.9,
+      "peak_db": -9.9,
+      "stereo_correlation": 0.59
+    },
+    "piano B: Steinway (Splendid)": {
+      "lufs": -24.2,
+      "peak_db": -11.0,
+      "stereo_correlation": 0.41
+    },
+    "piano C: Steinway + OB-8 synth double": {
+      "lufs": -24.7,
+      "peak_db": -11.5,
+      "stereo_correlation": 0.41
+    },
+    "piano C: Steinway + OB-8 synth double | OB-8": {
+      "lufs": -36.1,
+      "peak_db": -22.2,
+      "stereo_correlation": 0.48
+    },
+    "rhodes A: dry": {
+      "lufs": -22.8,
+      "peak_db": -10.4,
+      "stereo_correlation": 0.89
+    },
+    "rhodes B: Suitcase tremolo": {
+      "lufs": -22.8,
+      "peak_db": -9.9,
+      "stereo_correlation": 0.82
+    },
+    "guitar A: single-coil clean (green)": {
+      "lufs": -30.2,
+      "peak_db": -12.9,
+      "stereo_correlation": 0.64
+    },
+    "guitar B: humbucker clean (black)": {
+      "lufs": -30.3,
+      "peak_db": -13.4,
+      "stereo_correlation": 0.75
+    },
+    "guitar C: muted chops (green stac)": {
+      "lufs": -30.9,
+      "peak_db": -13.8,
+      "stereo_correlation": 0.75
+    },
+    "brass A: horns + trombones (warm) | trombones": {
+      "lufs": -24.2,
+      "peak_db": -9.4,
+      "stereo_correlation": 0.45
+    },
+    "brass A: horns + trombones (warm) | horns": {
+      "lufs": -24.8,
+      "peak_db": -13.0,
+      "stereo_correlation": 0.68
+    },
+    "brass B: trumpets + trombones (full) | trombones": {
+      "lufs": -24.1,
+      "peak_db": -9.5,
+      "stereo_correlation": 0.45
+    },
+    "brass B: trumpets + trombones (full) | trumpets": {
+      "lufs": -23.9,
+      "peak_db": -12.8,
+      "stereo_correlation": 0.69
+    },
+    "brass C: harmon trumpets + horns (soft) | horns": {
+      "lufs": -24.6,
+      "peak_db": -11.4,
+      "stereo_correlation": 0.66
+    },
+    "brass C: harmon trumpets + horns (soft) | harmon tpts": {
+      "lufs": -23.7,
+      "peak_db": -11.8,
+      "stereo_correlation": 0.66
+    },
+    "lead A: synth, Minimoog-like (glide)": {
+      "lufs": -20.8,
+      "peak_db": -8.2,
+      "stereo_correlation": 1.0
+    },
+    "lead B: synth, soft retro (glide)": {
+      "lufs": -20.9,
+      "peak_db": -12.3,
+      "stereo_correlation": 0.81
+    },
+    "lead C: tenor sax": {
+      "lufs": -20.9,
+      "peak_db": -14.1,
+      "stereo_correlation": 1.0
+    },
+    "lead D: Rhodes melody (octaves)": {
+      "lufs": -21.1,
+      "peak_db": -9.5,
+      "stereo_correlation": 0.81
+    },
+    "lead E (bonus): alto sax": {
+      "lufs": -20.9,
+      "peak_db": -14.4,
+      "stereo_correlation": 1.0
+    },
+    "fx:plate": {
+      "lufs": -33.7,
+      "peak_db": -17.3,
+      "stereo_correlation": 0.21
+    },
+    "fx:room": {
+      "lufs": -43.6,
+      "peak_db": -19.8,
+      "stereo_correlation": -0.27
+    },
+    "fx:dly": {
+      "lufs": -43.1,
+      "peak_db": -29.5,
+      "stereo_correlation": -0.01
+    }
+  },
+  "warnings": []
+}

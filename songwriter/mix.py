@@ -16,7 +16,7 @@
     }
 
 Strip order: gain staging -> eq -> comp -> crush/tape/tube/saturate -> duck -> chorus ->
-mono/width/pan -> fader
+tremolo -> mono/width/pan -> fader
 -> (post-fader sends) -> bus. Every stem is first normalised to STEM_LUFS so "gain"
 values are true relative balances.
 """
@@ -46,10 +46,31 @@ def true_peak_db(x: np.ndarray) -> float:
     return float(20 * np.log10(np.max(np.abs(up)) + 1e-12))
 
 
+def active_span(x: np.ndarray, pre_s: float = 0.5, post_s: float = 1.5, thr: float = 1e-6):
+    """(start, end) samples around the non-silent part of x, or None if silent. Heavy
+    processing only needs this span: silence in gives silence out for every insert."""
+    idx = np.flatnonzero(np.abs(x).max(axis=0) > thr)
+    if not len(idx):
+        return None
+    sr = config.SAMPLE_RATE
+    return max(0, idx[0] - int(pre_s * sr)), min(x.shape[1], idx[-1] + int(post_s * sr))
+
+
+def span_lufs(x: np.ndarray) -> float:
+    sp = active_span(x, 0.0, 0.0)
+    return -120.0 if sp is None else lufs(x[:, sp[0]:sp[1] + 1])
+
+
 def strip(x: np.ndarray, cfg: dict, song: Song, stems: dict[str, np.ndarray]) -> np.ndarray:
-    """Insert chain of one channel or bus."""
+    """Insert chain of one channel or bus. The heavy inserts (eq, comp, colour) run only
+    over the active span of the signal; modulation, ducking and imaging over all of it."""
     if cfg.get("mute"):
         return np.zeros_like(x)
+    sp = active_span(x)
+    if sp is None:
+        return np.zeros_like(x)
+    full = x
+    x = x[:, sp[0]:sp[1]]
     bands = list(cfg.get("eq", []))
     if "hpf" in cfg:
         bands.insert(0, ("hpf", cfg["hpf"]))
@@ -71,12 +92,17 @@ def strip(x: np.ndarray, cfg: dict, song: Song, stems: dict[str, np.ndarray]) ->
         x = dsp.saturate(x, **cfg["saturate"])
     if "eq_post" in cfg:
         x = dsp.eq(x, cfg["eq_post"])
+    y = np.zeros_like(full)
+    y[:, sp[0]:sp[1]] = x
+    x = y
     if "duck" in cfg:
         d = dict(cfg["duck"])
         trig = stems[d.pop("by")]
         x = dsp.duck(x, trig, **{"depth_db": d.pop("depth", 6), **d})
     if "chorus" in cfg:           # JX/Juno-style: {"rate_hz": 0.6, "depth_ms": 2, "mix": 0.5}
         x = dsp.chorus(x, **cfg["chorus"])
+    if "tremolo" in cfg:          # Rhodes Suitcase auto-pan: {"rate_hz": 4.5, "depth": 0.35}
+        x = dsp.tremolo(x, **cfg["tremolo"])
     if "mono_below" in cfg:
         x = dsp.mono_bass(x, cfg["mono_below"])
     if cfg.get("mono"):
@@ -113,7 +139,7 @@ def mix(song: Song, stems: dict[str, np.ndarray], log=print) -> tuple[np.ndarray
     # 1. gain staging: normalise every raw stem to the same loudness
     staged = {}
     for name, x in stems.items():
-        lv = lufs(x)
+        lv = span_lufs(x)
         staged[name] = x * dsp.db(STEM_LUFS - lv) if lv > -90 else x
     # 2. channel strips
     processed, buses, sends = {}, {}, {}
@@ -125,7 +151,7 @@ def mix(song: Song, stems: dict[str, np.ndarray], log=print) -> tuple[np.ndarray
         buses[bus] = buses.get(bus, 0) + y
         for fx, level in cfg.get("sends", {}).items():
             sends[fx] = sends.get(fx, 0) + y * dsp.db(level)
-        log(f"  strip {name:<12} raw {lufs(x):6.1f} LUFS -> {lufs(y):6.1f} LUFS  -> {bus}")
+        log(f"  strip {name:<12} raw {span_lufs(x):6.1f} LUFS -> {span_lufs(y):6.1f} LUFS  -> {bus}")
     # 3. buses (may also send to fx)
     out = buses.pop("master", np.zeros((2, n), np.float32))
     for bus, x in buses.items():
