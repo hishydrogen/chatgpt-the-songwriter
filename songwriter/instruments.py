@@ -162,9 +162,18 @@ def surge(patch: str, **params) -> str:
     """Instrument id for a Surge XT patch, e.g. surge('Pads/Pad - Silky Strings').
 
     `patch` is relative to the Surge data dir (patches_factory / patches_3rdparty are
-    searched) and may omit the .fxp extension.
+    searched) and may omit the .fxp extension. Optional overrides (applied to both scenes):
+        portamento_ms=60          glide time (0 = off)
+        play_mode="mono_st_fp"    poly | mono | mono_st | mono_fp | mono_st_fp | latch
+                                  (mono_st_fp: glide and no retrigger only on legato notes)
+        bend_range=2              pitch bend range in semitones
+        **{"Osc Drift": 0.3}      any other Surge parameter by name, raw value
+    Overrides become part of the id, so changing them re-renders the stem.
     """
+    tail = params.pop("tail", 4.0)
     iid = f"surge.{patch}"
+    if params:
+        iid += "#" + ",".join(f"{k}={params[k]}" for k in sorted(params))
     if iid not in _BY_ID:
         p = patch if patch.endswith(".fxp") else patch + ".fxp"
         for base in ("patches_factory", "patches_3rdparty", ""):
@@ -172,13 +181,26 @@ def surge(patch: str, **params) -> str:
             if cand.exists():
                 p = str(cand)
                 break
-        register(Instrument(iid, "surge", p, f"Surge XT patch {patch}", tail=params.pop("tail", 4.0), params=params))
+        register(Instrument(iid, "surge", p, f"Surge XT patch {patch}", tail=tail, params=params))
     return iid
+
+
+def _parse_surge_id(rest: str) -> tuple[str, dict]:
+    patch, _, opts = rest.partition("#")
+    params = {}
+    for kv in filter(None, opts.split(",")):
+        k, _, v = kv.partition("=")
+        try:
+            params[k] = float(v) if "." in v else int(v)
+        except ValueError:
+            params[k] = v
+    return patch, params
 
 
 def get_instrument(iid: str) -> Instrument:
     if iid.startswith("surge.") and iid not in _BY_ID:
-        surge(iid[len("surge."):])
+        patch, params = _parse_surge_id(iid[len("surge."):])
+        surge(patch, **params)
     try:
         return _BY_ID[iid]
     except KeyError:
