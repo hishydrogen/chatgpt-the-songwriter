@@ -3,8 +3,8 @@
 (a flat grey-and-dark-red drawing inside an old desktop window), redrawn as a classic
 Mac OS 8/9 "Platinum" window: pinstriped title bar, close / zoom / collapse boxes, lavender
 scroll thumb, a menu bar whose clock reads 2:00 AM (the song's first line).
-Inside: an original character, upper body only - a sleepy night-owl girl in a cat-ear
-hoodie (lavender hair, star clip, neon gradient eyes). Renders cover.html -> cover.png (3000x3000) with headless Chromium -> cover.jpg.
+Inside: one flat stencil silhouette of an original character - a girl in a cat-ear hoodie,
+upper body (the detailed drawing is kept as drawing_detailed() for reference). Renders cover.html -> cover.png (3000x3000) with headless Chromium -> cover.jpg.
 No logos: the Apple menu is a plain note glyph.
 """
 import random
@@ -98,7 +98,7 @@ SKIN_SH = "#f7c9b6"
 BG = "#f1ecfd"
 
 
-def drawing():
+def drawing_detailed():
     """Original character: a sleepy night-owl girl in a cat-ear hoodie, upper body only."""
     cx = (CX0 + CX1) / 2
     s = [f'<rect x="{CX0}" y="{CY0}" width="{CX1 - CX0}" height="{CY1 - CY0}" fill="{BG}"/>']
@@ -194,6 +194,26 @@ def drawing():
                  f'stroke="#ffc6df" stroke-width="7" fill="none" stroke-linecap="round"/>')
         s.append(f'<rect x="{cx + side * 56 - 7}" y="{866}" width="14" height="24" rx="5" fill="#ffffff" stroke="{LINE}" stroke-width="2.5"/>')
     s.append(sparkle(cx - 170, 820, 18, "#ffe36e"))
+    return "".join(s)
+
+
+SIL = "#2b2147"
+
+
+def drawing():
+    """Stencil: the cat-hoodie girl as one flat silhouette (hood with ears + shoulders)."""
+    cx = (CX0 + CX1) / 2
+    s = [f'<rect x="{CX0}" y="{CY0}" width="{CX1 - CX0}" height="{CY1 - CY0}" fill="{BG}"/>']
+    for y in range(int(CY0) + 12, int(CY1), 26):
+        for x in range(int(CX0) + 12 + (13 if (y // 26) % 2 else 0), int(CX1), 26):
+            s.append(f'<circle cx="{x}" cy="{y}" r="2.2" fill="#e2daf7"/>')
+    g = f'fill="{SIL}" stroke="{SIL}" stroke-width="4" stroke-linejoin="round"'
+    s.append(f'<path d="M{cx - 360},{CY1 + 5} C{cx - 340},{760} {cx - 270},{700} {cx - 150},{680} L{cx + 150},{680} '
+             f'C{cx + 270},{700} {cx + 340},{760} {cx + 360},{CY1 + 5}Z" {g}/>')
+    # hood and ears as one outline, so there are no seams
+    s.append(f'<path d="M{cx - 250},{700} C{cx - 278},{560} {cx - 266},{420} {cx - 220},{330} '
+             f'L{cx - 192},{118} L{cx - 72},{232} Q{cx},{206} {cx + 72},{232} L{cx + 192},{118} '
+             f'L{cx + 220},{330} C{cx + 266},{420} {cx + 278},{560} {cx + 250},{700} Q{cx},{740} {cx - 250},{700}Z" {g}/>')
     return "".join(s)
 
 
