@@ -24,6 +24,28 @@ VOX_OPTS = {"vibrato_cents": 28, "port_pre": 0.03, "port_post": 0.045, "consonan
 # -- harmony ------------------------------------------------------------------
 LOOP = ["Bbmaj7", "C", "Am7", "Dm7"]
 CHORUS = ["Bbmaj7", "C", "Am7", "Dm7", "Gm7", "C/E", ("Fmaj7", "Dbmaj7"), ("Gm7", "C7sus4")]
+VERSE = ["Dm7", "Bbmaj7", "F", "C", "Dm7", "Bbmaj7", "Gm7", "C7sus4"]
+PRE = ["Gm7", "Am7", "Bbmaj7", ("Bbm6", "C7sus4")]
+# bridge slides down by half steps (Db-C, Bbm-Am), climbs Db-Eb, then Abm7 Db7 = ii V of Gb
+BRIDGE = ["Dbmaj7", "C", "Bbm6", "Am7", "Dbmaj7", "Ebmaj7", "Abm7", ("Db7sus4", "Db7")]
+TAG = ["Gm7", "C/E", ("Fmaj7", "Dbmaj7"), ("Gm7", "C7sus4")]
+OUTRO = ["Bbmaj7", "C", "F", "F"]
+
+FORM = [  # (name, progression, transpose); the last chorus goes up to Gb
+    ("intro", LOOP * 2, 0),
+    ("verse 1", VERSE, 0),
+    ("pre 1", PRE, 0),
+    ("chorus 1", CHORUS, 0),
+    ("post", LOOP, 0),
+    ("verse 2", VERSE, 0),
+    ("pre 2", PRE, 0),
+    ("chorus 2", CHORUS, 0),
+    ("drop", LOOP, 0),
+    ("bridge", BRIDGE, 0),
+    ("chorus 3", CHORUS, 1),
+    ("tag", TAG, 1),
+    ("outro", OUTRO, 1),
+]
 
 # Riff: one rhythm, a top voice chosen per chord (index = hit), voiced downward from it.
 RIFF_RHYTHM = [(0.0, 0.5), (0.75, 0.25), (1.5, 0.5), (2.5, 0.25), (3.0, 0.5)]
@@ -40,6 +62,9 @@ TOPS = {
     "C7sus4": ["F5", "C5", "F5", "C5", "Bb4"],
     "Bbm6": ["Db5", "C5", "Db5", "F5", "Db5"],
     "Ebmaj7": ["D5", "Bb4", "D5", "G5", "D5"],
+    "Abm7": ["Eb5", "Db5", "Eb5", "Gb5", "Eb5"],
+    "Db7sus4": ["Eb5", "Db5", "Eb5", "Gb5", "Eb5"],
+    "Db7": ["F5", "Eb5", "F5", "Cb5", "F5"],
 }
 
 # -- melody -------------------------------------------------------------------
@@ -62,6 +87,84 @@ HOOK = [
     ("A4", "だ", .5), ("A4", "れ", .25), ("G4", "か", .5), ("F4", "き", .75),
     ("F4", "づ", .5), ("Ab4", "い", .5), ("F4", "て", 1.0),
     ("G4", "よ", 2.0), ("r", "", 2.0),
+]
+
+R = ("r", "", 0.5)
+
+# 午前二時のコンビニの光 / レシートだけ ポケットで鳴る / 既読つかない吹き出しを / 親指で何度もなぞる
+VERSE_1 = [
+    R, ("D4", "ご", .25), ("D4", "ぜ", .25), ("F4", "ん", .5), ("F4", "に", .25), ("E4", "じ", .25),
+    ("D4", "の", .5), ("A4", "こ", .25), ("A4", "ん", .25), ("G4", "び", .25), ("F4", "に", .25), ("E4", "の", .5),
+    ("F4", "ひ", .5), ("D4", "か", .5), ("D4", "り", 1.5), ("r", "", 1.5),
+    R, ("C4", "れ", .25), ("F4", "し", .5), ("F4", "と", .25), ("G4", "だ", .25), ("A4", "け", .5), ("r", "", .25),
+    ("A4", "ぽ", .25), ("G4", "け", .25), ("r", "", .25), ("F4", "と", .25), ("G4", "で", .5),
+    ("E4", "な", .5), ("C4", "る", 1.5), ("r", "", 2.0),
+    R, ("A4", "き", .25), ("A4", "ど", .25), ("G4", "く", .5), ("F4", "つ", .25), ("G4", "か", .25),
+    ("A4", "な", .5), ("C5", "い", .5), R, ("A4", "ふ", .25), ("G4", "き", .25),
+    ("F4", "だ", .5), ("D4", "し", .5), ("F4", "を", 1.5), ("r", "", 1.5),
+    R, ("D4", "お", .25), ("F4", "や", .25), ("G4", "ゆ", .5), ("A4", "び", .25), ("G4", "で", .5), ("r", "", .25),
+    ("F4", "な", .25), ("G4", "ん", .25), ("A4", "ど", .5), ("Bb4", "も", .5),
+    ("Bb4", "な", .5), ("G4", "ぞ", .5), ("F4", "る", 1.5), ("r", "", 1.5),
+]
+# 交差点 青に変わっても / どこにも行く場所がなくて / スクロールの先 知らない誰か / 幸せそうで ちょっと眩しい
+VERSE_2 = [
+    R, ("D4", "こ", .25), ("D4", "う", .25), ("F4", "さ", .5), ("F4", "て", .25), ("E4", "ん", .75),
+    ("A4", "あ", .25), ("A4", "お", .25), ("G4", "に", .25), ("F4", "か", .25), ("E4", "わ", .25), ("r", "", .25),
+    ("F4", "て", .5), ("D4", "も", 1.5), ("r", "", 2.0),
+    R, ("C4", "ど", .25), ("F4", "こ", .25), ("F4", "に", .5), ("G4", "も", .75), ("r", "", .25),
+    ("A4", "い", .25), ("G4", "く", .25), ("F4", "ば", .25), ("F4", "しょ", .25), ("G4", "が", .5),
+    ("E4", "な", .5), ("D4", "く", .5), ("C4", "て", 1.0), ("r", "", 2.0),
+    R, ("A4", "す", .25), ("A4", "く", .25), ("G4", "ろ", .5), ("F4", "る", .25), ("G4", "の", .25),
+    ("A4", "さ", .5), ("C5", "き", .5), R, ("A4", "し", .25), ("G4", "ら", .25),
+    ("F4", "な", .5), ("D4", "い", .25), ("F4", "だ", .25), ("G4", "れ", .5), ("F4", "か", 1.0), ("r", "", 1.5),
+    R, ("D4", "し", .25), ("F4", "あ", .25), ("G4", "わ", .5), ("A4", "せ", .25), ("G4", "そ", .25),
+    ("G4", "う", .25), ("F4", "で", .25), ("A4", "ちょ", .25), ("r", "", .25), ("Bb4", "と", .5), ("A4", "ま", .5),
+    ("G4", "ぶ", .5), ("G4", "し", .5), ("F4", "い", 1.5), ("r", "", 1.5),
+]
+_PRE_HORA = [("D5", "ほ", .75), ("C5", "ら", .75), ("D5", "ま", .5), ("F5", "た", 1.5), R]
+# 誰も悪くない 夜のせいにして / ほら また ひとり 笑ってる
+PRE_1 = [
+    ("Bb4", "だ", .5), ("A4", "れ", .5), ("G4", "も", .75), ("F4", "わ", .25), ("G4", "る", .5), ("A4", "く", .5),
+    ("Bb4", "な", .5), ("A4", "い", .5),
+    ("C5", "よ", .75), ("C5", "る", .25), ("A4", "の", .5), ("C5", "せ", .5), ("E5", "い", .5), ("D5", "に", .5),
+    ("C5", "し", .5), ("A4", "て", .5),
+    *_PRE_HORA,
+    ("Db5", "ひ", .5), ("C5", "と", .25), ("Bb4", "り", .75), ("F4", "わ", .5), ("G4", "ら", .5), ("r", "", .25),
+    ("Bb4", "て", .25), ("C5", "る", 1.0),
+]
+# 画面の向こう 届かない声 / ほら また 朝が来るまで
+PRE_2 = [
+    ("Bb4", "が", .5), ("A4", "め", .5), ("G4", "ん", .75), ("F4", "の", .25), ("G4", "む", .5), ("A4", "こ", .5),
+    ("Bb4", "う", .5), R,
+    ("C5", "と", .75), ("C5", "ど", .25), ("A4", "か", .5), ("C5", "な", .5), ("E5", "い", .5), ("D5", "こ", .5),
+    ("C5", "え", 1.0),
+    *_PRE_HORA,
+    ("Db5", "あ", .5), ("C5", "さ", .25), ("Bb4", "が", .75), ("F4", "く", .5), ("G4", "る", .5), ("Bb4", "ま", .5),
+    ("C5", "で", 1.0),
+]
+CALL = [("A4", "ろ", .5), ("A4", "ん", .25), ("C5", "り", .75), ("D5", "な", .5), ("C5", "い", .25),
+        ("A4", "と", .75), ("r", "", 1.0)]
+# I'm fine, I'm fine - 言い聞かせて踊るの / Good night, city light - まだ消えないで / 朝が来るまで ねえ
+BRIDGE_MEL = [
+    R, ("Ab4", "あ", .5), ("Ab4", "い", .25), ("F4", "む", .25), ("Ab4", "ふぁ", .5), ("C5", "い", .5), ("C5", "ん", 1.0), R,
+    R, ("G4", "あ", .5), ("G4", "い", .25), ("E4", "む", .25), ("G4", "ふぁ", .5), ("C5", "い", .5), ("C5", "ん", 1.0), R,
+    R, ("Db5", "い", .5), ("C5", "い", .25), ("Bb4", "き", .25), ("Bb4", "か", .5), ("Db5", "せ", .5), ("F5", "て", 1.0), R,
+    ("E5", "お", .5), ("D5", "ど", .5), ("C5", "る", .5), ("A4", "の", 1.5), ("r", "", 1.0),
+    ("C5", "ぐ", .25), ("r", "", .25), ("C5", "な", .5), ("Ab4", "い", 1.0), ("Eb5", "し", .25), ("Eb5", "てぃ", .25),
+    ("F5", "ら", .5), ("Eb5", "い", .5), ("C5", "と", .5),
+    ("Bb4", "ま", .5), ("G4", "だ", .5), R, ("Bb4", "き", .25), ("Bb4", "え", .25), ("C5", "な", .5), ("D5", "い", .5),
+    ("Eb5", "で", 1.0),
+    ("Eb5", "あ", .5), ("Eb5", "さ", .25), ("Db5", "が", .75), ("Cb5", "く", .5), ("Bb4", "る", .5), ("Ab4", "ま", .5),
+    ("Bb4", "で", 1.0),
+    ("Ab4", "ね", 2.0), ("F4", "え", 1.5), R,
+]
+# ねえ ねえ ... 誰か 気づいてよ (held into the outro)
+TAG_MEL = [
+    ("r", "", 1.0), ("D5", "ね", .5), ("C5", "え", 1.0), R, ("A4", "ね", .5), ("G4", "え", .5),
+    ("r", "", 2.0), ("D5", "ね", .5), ("E5", "え", 1.5),
+    ("A4", "だ", .5), ("A4", "れ", .25), ("G4", "か", .5), ("F4", "き", .75), ("F4", "づ", .5), ("Ab4", "い", .5),
+    ("F4", "て", 1.0),
+    ("G4", "よ", 1.5), ("F4", "ー", 4.5),
 ]
 
 BASS_ROOT_OCT = 1   # roots in octave 1-2 (E1-D#2)
@@ -195,6 +298,10 @@ class Arranger:
         if crash:
             self.cym.hit("crash", b0, 104)
 
+    def hats_8ths(self, b0, bars, vel=1.0):
+        for i in range(bars * 8):
+            self.hats.hit("hh_closed", b0 + i * 0.5, self.V((88, 64)[i % 2] * vel))
+
     def fill(self, b, toms=False):
         """One-beat fill into the next section (different each call)."""
         k = self.rng.randint(0, 2)
@@ -299,6 +406,56 @@ class Arranger:
                 notes = voicing(name, note_number(tops[3]) + tr, 3, tr)
                 self.saw.notes_at(notes, b + p, d, self.V(104 * vel))
 
+    # -- bridge / transitions -----------------------------------------------------------
+    def drums_half(self, b0, bars, vel=1.0):
+        """Half-time: kick on 1 and the & of 3, clap on 3, soft 8th hats."""
+        for bar in range(bars):
+            b = b0 + bar * 4
+            for k in (0, 2.5):
+                self.kick.hit("kick", b + k, self.V(108 * vel))
+            self.clap.hit("clap", b + 2, self.V(108 * vel))
+            for i in range(8):
+                self.hats.hit("hh_closed", b + i * 0.5, self.V((80, 56)[i % 2] * vel))
+        self.cym.hit("crash", b0, 92)
+
+    def build(self, b0, bars=2):
+        """Snare 8ths then 16ths, rising, over the last bars before a chorus."""
+        n = int(bars * 4 / 0.25)
+        for i in range(n):
+            p = i * 0.25
+            if p < bars * 2 and i % 2:
+                continue
+            self.clap.hit("snare", b0 + p, self.V(50 + int(70 * i / n), 2))
+        self.kick.hit("kick", b0 + bars * 4 - 0.5, 100)
+
+    def bass_long(self, b0, bars):
+        for st, en, name, tr in self.timeline:
+            if b0 - 1e-6 <= st < b0 + bars * 4 - 1e-6:
+                r = root_of(name, tr)
+                self.bass.note(r, st, (en - st) * 0.6, 100)
+                self.bass.note(r + 12, st + (en - st) * 0.75, 0.25, 84)
+
+    def pads(self, b0, bars, piano=True, vel=1.0):
+        """Held saw chords (and soft piano) on every chord change."""
+        for st, en, name, tr in self.timeline:
+            if b0 - 1e-6 <= st < b0 + bars * 4 - 1e-6:
+                tops = TOPS.get(name, TOPS[name.split("/")[0]])
+                notes = voicing(name, note_number(tops[0]) + tr, 3, tr)
+                self.saw.notes_at(notes, st + 0.02, en - st - 0.1, self.V(76 * vel))
+                if piano:
+                    self.piano.notes_at([n - 12 for n in notes[:2]] + notes, self.T(st, 4), en - st - 0.1,
+                                        self.V(70 * vel))
+
+    def final_hit(self, beat):
+        st, en, name, tr = self.chord_at(beat)
+        notes = voicing(name, note_number(TOPS[name][3]) + tr, 3, tr)
+        self.piano.notes_at([root_of(name, tr) + 12] + notes, beat, 6, 112)
+        self.saw.notes_at(notes, beat, 4, 100)
+        self.bass.note(root_of(name, tr), beat, 3, 116)
+        self.kick.hit("kick", beat, 124)
+        self.clap.hit("clap", beat, 110)
+        self.cym.hit("crash", beat, 120)
+
     # -- vocal ------------------------------------------------------------------------
     def sing(self, b0, melody, tr=0, x=None):
         b = b0
@@ -340,4 +497,70 @@ class Arranger:
 
 
 def compose() -> Song:
-    raise NotImplementedError("full arrangement comes after the groove sketch (songs/neon-groove)")
+    """Checkpoint 2 picks: chorus = B (pump), verses = C (dance funk, lighter)."""
+    a = Arranger(FORM)
+    s = a.s
+    for name, prog, tr in FORM:
+        b0, n, tr = a.span(name)
+        if name == "intro":
+            a.riff(b0, 4, saw=False, vel=0.85)
+            a.drums_house(b0 + 16, 4)
+            a.bass_house(b0 + 16, 4)
+            a.riff(b0 + 16, 4)
+        elif name.startswith("verse"):
+            a.drums_dance(b0, n, vel=0.9)
+            a.bass_funk(b0, n)
+            a.piano_funk(b0, n, vel=0.8)
+            a.sing(b0, VERSE_1 if name == "verse 1" else VERSE_2, tr)
+        elif name.startswith("pre"):
+            a.drums_dance(b0, n - 2, fill=False, crash=False)
+            a.build(b0 + 8, 2)
+            a.hats_8ths(b0 + 8, 2)
+            a.bass_sync(b0, n)
+            a.piano_funk(b0, 2, vel=0.85)
+            a.saw_pump(b0 + 8, 2, vel=0.75)
+            a.pads(b0, 2, piano=False, vel=0.8)
+            a.riff(b0 + 8, 2, saw=False, pickups=False, vel=0.9)
+            a.sing(b0, PRE_1 if name == "pre 1" else PRE_2, tr)
+        elif name.startswith("chorus"):
+            a.drums_house(b0, n)
+            a.bass_sync(b0, n)
+            a.saw_pump(b0, n)
+            step = 1 if name == "chorus 3" else 2
+            for bar in range(0, n, step):
+                a.riff(b0 + bar * 4, 1, saw=False, pickups=False, vel=0.9)
+            a.sing(b0, HOOK, tr)
+        elif name in ("post", "drop"):
+            a.drums_house(b0, n)
+            a.bass_house(b0, n)
+            a.riff(b0, n)
+            a.sing(b0, CALL, tr)
+        elif name == "bridge":
+            a.drums_half(b0, 6, vel=0.85)
+            a.build(b0 + 24, 2)
+            a.bass_long(b0, n)
+            a.pads(b0, 6)
+            a.saw_pump(b0 + 24, 2, vel=0.8)
+            a.sing(b0, BRIDGE_MEL, tr)
+        elif name == "tag":
+            a.drums_house(b0, n, fill=False)
+            a.bass_sync(b0, n)
+            a.saw_pump(b0, n)
+            a.riff(b0, n, saw=False, pickups=False, vel=0.9)
+            a.sing(b0, TAG_MEL, tr)
+        elif name == "outro":
+            a.drums_house(b0, 3, fill=True)
+            a.bass_house(b0, 3)
+            a.riff(b0, 3)
+            a.final_hit(b0 + 12)
+    a.mix()
+    s.length_beats = s.bar(a.total_bars)
+    return s
+
+
+if __name__ == "__main__":
+    s = compose()
+    for beat, label in s.markers:
+        sec = s.seconds(beat)
+        print(f"{int(sec // 60)}:{sec % 60:04.1f}  {label}")
+    print("length", round(s.seconds(s.end_beat), 1), "s")
