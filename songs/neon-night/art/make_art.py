@@ -263,7 +263,10 @@ def content_alert():
     for i, line in enumerate(memo):
         s.append(f'<text x="{CX0 + 26}" y="{CY0 + 46 + 38 * i}" font-size="25" fill="{INK}">{line}</text>')
     s.append(px_rect(CX0 + 27, CY0 + 46 + 38 * 4 - 24, 2.5, 30, INK))
-    dx0, dy0, dx1, dy1 = CX0 + 90, CY0 + 340, CX1 - 90, CY0 + 680
+    # the alert sits dead centre on the screen, like a real modal dialog
+    dw, dh = 706, 340
+    dx0, dy0 = W / 2 - dw / 2, W / 2 - dh / 2
+    dx1, dy1 = dx0 + dw, dy0 + dh
     s.append(px_rect(dx0 + 8, dy0 + 8, dx1 - dx0, dy1 - dy0, "rgba(0,0,0,0.35)"))
     s.append(f'<rect x="{dx0}" y="{dy0}" width="{dx1 - dx0}" height="{dy1 - dy0}" fill="#dddddd" stroke="{INK}" stroke-width="2"/>')
     s.append(f'<path d="M{dx0 + 3},{dy1 - 3} V{dy0 + 3} H{dx1 - 3}" stroke="#ffffff" stroke-width="3" fill="none"/>')
