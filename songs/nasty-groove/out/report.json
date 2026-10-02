@@ -1,0 +1,120 @@
+{
+  "master": {
+    "integrated_lufs": -14.03,
+    "short_term_max_lufs": -12.45,
+    "loudness_range_lu": 2.46,
+    "true_peak_dbtp": -1.07,
+    "sample_peak_db": -1.11,
+    "plr_db": 12.96,
+    "crest_db": 15.86,
+    "stereo_correlation": 0.827,
+    "side_to_mid_db": -10.24,
+    "tonal_slope_db_per_oct": -1.56,
+    "bands_db": {
+      "sub": -31.8,
+      "bass": -19.3,
+      "low-mid": -21.8,
+      "mid": -22.9,
+      "hi-mid": -26.9,
+      "presence": -31.4,
+      "air": -33.0
+    }
+  },
+  "masking": [
+    "sub: bass 0a, bass 1a, bass 2a within 3 dB of each other",
+    "presence: snare, hats within 3 dB of each other"
+  ],
+  "master_chain": {
+    "lufs": -14.03,
+    "true_peak": -1.07,
+    "limiter_drive_db": 4.74
+  },
+  "tracks": {
+    "kick": {
+      "lufs": -22.2,
+      "peak_db": -10.4,
+      "stereo_correlation": 1.0
+    },
+    "snare": {
+      "lufs": -20.0,
+      "peak_db": -7.8,
+      "stereo_correlation": 1.0
+    },
+    "hats": {
+      "lufs": -31.0,
+      "peak_db": -17.6,
+      "stereo_correlation": 1.0
+    },
+    "perc": {
+      "lufs": -33.0,
+      "peak_db": -15.1,
+      "stereo_correlation": 1.0
+    },
+    "toms": {
+      "lufs": -25.0,
+      "peak_db": -11.6,
+      "stereo_correlation": 1.0
+    },
+    "timpani": {
+      "lufs": -24.4,
+      "peak_db": -7.9,
+      "stereo_correlation": 1.0
+    },
+    "bell": {
+      "lufs": -31.2,
+      "peak_db": -15.6,
+      "stereo_correlation": 0.17
+    },
+    "stab": {
+      "lufs": -31.1,
+      "peak_db": -14.8,
+      "stereo_correlation": 0.37
+    },
+    "orch": {
+      "lufs": -24.9,
+      "peak_db": -11.7,
+      "stereo_correlation": 1.0
+    },
+    "bass 0a": {
+      "lufs": -28.5,
+      "peak_db": -14.2,
+      "stereo_correlation": 1.0
+    },
+    "bass 1a": {
+      "lufs": -28.8,
+      "peak_db": -15.7,
+      "stereo_correlation": 1.0
+    },
+    "bass 2a": {
+      "lufs": -30.3,
+      "peak_db": -17.2,
+      "stereo_correlation": 1.0
+    },
+    "bass 2b": {
+      "lufs": -33.1,
+      "peak_db": -18.7,
+      "stereo_correlation": 1.0
+    },
+    "fx:gate": {
+      "lufs": -27.7,
+      "peak_db": -13.3,
+      "stereo_correlation": -0.13
+    },
+    "fx:plate": {
+      "lufs": -37.3,
+      "peak_db": -19.1,
+      "stereo_correlation": 0.17
+    },
+    "fx:hall": {
+      "lufs": -28.0,
+      "peak_db": -13.0,
+      "stereo_correlation": 0.06
+    },
+    "fx:dly": {
+      "lufs": -51.5,
+      "peak_db": -34.7,
+      "stereo_correlation": 0.01
+    }
+  },
+  "warnings": []
+}
