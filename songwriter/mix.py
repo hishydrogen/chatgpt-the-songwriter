@@ -190,6 +190,8 @@ def master(x: np.ndarray, cfg: dict, log=print) -> tuple[np.ndarray, dict]:
     if "width" in cfg:
         x = dsp.width(x, cfg["width"])
     x = dsp.mono_bass(x, cfg.get("mono_below", 100))
+    if "fade" in cfg:             # {"start": s, "end": s}: radio-single fade before the limiter
+        x = dsp.fade_out(x, cfg["fade"]["start"], cfg["fade"]["end"], cfg["fade"].get("floor_db", -50.0))
     # loudness: iterate input gain into the limiter until integrated LUFS hits target,
     # trimming any inter-sample overs the limiter leaves (measured at 4x)
     gain = target - lufs(x)
@@ -203,6 +205,8 @@ def master(x: np.ndarray, cfg: dict, log=print) -> tuple[np.ndarray, dict]:
         if abs(err) < 0.1:
             break
         gain += err
+    if "fade" in cfg:             # nothing after a fade: end the file half a second later
+        y = y[:, :int((cfg["fade"]["end"] + 0.5) * config.SAMPLE_RATE)]
     stats = {"lufs": round(lufs(y), 2), "true_peak": round(tp, 2), "limiter_drive_db": round(gain, 2)}
     log(f"  master: {stats}")
     return y.astype(np.float32), stats

@@ -1,10 +1,11 @@
-"""Catalina Blue (working title) - a 1978 West Coast instrumental in the spirit of
+"""Catalina Blue - a 1978 West Coast instrumental in the spirit of
 "What a Fool Believes" (style, harmony vocabulary, groove and sound only; all material
 is original). Eb major, 119 BPM drifting to 122 like a live band (the reference measured
 118.9 -> 122), 8th notes at 52:48.
 
 Intro 8 | Verse 16 | Pre 8 | Chorus 16 | Riff 4 | Verse 8 | Pre 8 | Chorus 8 (pivot) |
-Bridge 16 (B major, synth solo) | Final chorus 16 (E major) | Outro 8 | Ending 2
+Bridge 16 (B major, synth solo) | Final chorus 16 (E major) | Chorus vamp 12, faded out
+like a 1978 single (the reference fades on its chorus too)
 
 The face of the song is the piano riff: left-hand octaves on a 3+3+2 tresillo, the right
 hand rocking between two voicings with a top line climbing Bb-C-D-Eb, doubled by an OB-8
@@ -87,6 +88,7 @@ PRE = ["Cm9", ("Bbm9", "Eb13"), "Abmaj7#11", ("Gm7", "C7b9"), "Fm9", "Gm7", ("Ab
 CHORUS_A = ["Abmaj9", "Eb/G", "Fm9", ("Gm7", "C7b9"), "Abmaj9", ("Bbm7", "Eb7b9"), "Abm6", ("Ab/Bb", "Bb13")]
 CHORUS_B = CHORUS_A[:6] + [("Abm6", "Db9"), "Ebmaj9"]
 CHORUS_PIVOT = CHORUS_A[:6] + [("Abm7", "Db9"), ("F#13sus", "F#13")]
+VAMP = ["Abmaj9", "Eb/G", "Fm9", ("Gm7", "C7b9")]
 BRIDGE = ["Bmaj9", "A/B", "Bmaj9", "A/B", "G#m9", ("C#m9", "F#13"), "Emaj9", ("D#m7", "G#7b9"),
           "C#m9", "D#m7", "Emaj7#11", "F#/E", "C#m9", "F#m9", "A/B", ("A/B", "B13")]
 
@@ -101,8 +103,7 @@ FORM = [  # (name, groove, progression, transpose)
     ("chorus 2", "C", CHORUS_PIVOT, 0),
     ("bridge", "R", BRIDGE, 0),
     ("final chorus", "C", CHORUS_A + CHORUS_B, 1),
-    ("outro", "A", RIFF * 2, 1),
-    ("ending", "-", ["E6/9", "E6/9"], 0),
+    ("fade", "C", VAMP * 3, 1),
 ]
 
 # -- melodies: (bar, beat, pitch, length[, velocity]) relative to the section --------------
@@ -199,6 +200,18 @@ OUTRO_SAX = [  # E major, over the riff
     (7, 0.0, "B4", 1.5), (7, 1.5, "A4", 0.5), (7, 2.0, "F#4", 1.0), (7, 3.0, "E4", 0.5),
     (7, 3.5, "F#4", 0.5), (8, 0.0, "G#4", 7.0, 100),
 ]
+VAMP_SAX = [  # ad-libs on the hook while the fade takes it away
+    (0, 0.5, "Bb4", 0.5), (0, 1.0, "C5", 0.5), (0, 1.5, "Eb5", 1.5, 112), (0, 3.0, "D5", 0.5), (0, 3.5, "C5", 0.5),
+    (1, 0.0, "Bb4", 1.5), (1, 1.5, "G4", 0.5), (1, 2.0, "Bb4", 0.5), (1, 2.5, "C5", 0.5), (1, 3.0, "Eb5", 1.0, 110),
+    (2, 0.0, "C5", 1.0), (2, 1.0, "Ab4", 0.5), (2, 1.5, "F4", 0.5), (2, 2.0, "Ab4", 1.0), (2, 3.0, "C5", 1.0),
+    (3, 0.0, "Bb4", 1.0), (3, 1.0, "G4", 1.0), (3, 2.0, "E4", 0.5), (3, 2.5, "G4", 0.5), (3, 3.0, "Bb4", 0.5),
+    (3, 3.5, "Db5", 0.5),
+    (4, 0.0, "C5", 0.5), (4, 0.5, "Eb5", 0.5), (4, 1.0, "Eb5", 0.5), (4, 1.5, "Eb5", 1.0, 114), (4, 2.5, "D5", 0.5),
+    (4, 3.0, "C5", 0.5), (4, 3.5, "Bb4", 0.5),
+    (5, 0.0, "G4", 1.0), (5, 1.0, "Bb4", 0.5), (5, 1.5, "Eb5", 2.0, 112), (5, 3.5, "D5", 0.5),
+    (6, 0.0, "C5", 0.5), (6, 0.5, "Ab4", 0.5), (6, 1.0, "C5", 0.5), (6, 1.5, "Eb5", 1.5), (6, 3.0, "C5", 1.0),
+    (7, 0.0, "Bb4", 1.5), (7, 1.5, "G4", 0.5), (7, 2.0, "E4", 1.0), (7, 3.0, "G4", 0.5), (7, 3.5, "Ab4", 0.5),
+] + [(8 + b, p, n, d, *r) for b, p, n, d, *r in HOOK[:21]]
 RIFF_LICK = [  # guitar double-stops over the 4-bar riff interlude
     (0, 0.5, [67, 72], 0.5), (0, 1.0, [70, 75], 1.0), (0, 2.5, [68, 72], 0.5), (0, 3.0, [67, 70], 1.0),
     (1, 0.5, [65, 70], 0.5), (1, 1.0, [67, 72], 1.5), (1, 3.0, [65, 70], 0.5), (1, 3.5, [62, 67], 0.5),
@@ -231,6 +244,7 @@ class Arranger:
         self.tpt_st = s.track("trumpet stabs", "brass.trumpet_stac")
         self.sax = s.track("tenor sax", SAX)
         self.syn = s.track("synth lead", SYNTH)
+        self.syn2 = s.track("synth double", SYNTH)
         self.sec = {}          # name -> (first bar, bars, transpose)
         self.timeline = []     # (start beat, end beat, chord name, transpose)
         bar = 0
@@ -562,9 +576,9 @@ class Arranger:
         if not extra:
             self.fill(st + 7 * 4 + 3.0, "tag", 0.9)
         else:
-            self.brass_pads(st + 16, n - 4, "C", vel=0.8, swell=(64, 96, 84))
+            self.brass_pads(st + 16, n - 4, "C", vel=0.8, swell=(58, 88, 78))
         for i, ph in enumerate(phrases):
-            self.play(self.sax, st + i * 32, ph, vel=92)
+            self.play(self.sax, st + i * 32, ph, vel=97)
 
     def pre(self, name, last=False):
         st, n, tr = self.bars(name)
@@ -575,7 +589,7 @@ class Arranger:
         self.groove(st, n, "B", double=True, congas=True, crash=False, skip_last=0.0 if last else 2.0)
         self.fill(st + (n - 1) * 4 + (0.0 if last else 2.0), "long" if last else "build")
         self.guitar_part(st, n, "B")
-        self.brass_pads(st + 16, 4, "A", vel=0.9, swell=(64, 104, 112))
+        self.brass_pads(st + 16, 4, "A", vel=0.9, swell=(60, 96, 104))
         if last:
             self.brass_hits([st + (n - 1) * 4 + 3.5], "B", dur=0.5, vel=110)
         self.play(self.sax, st, PRE_MEL, vel=96)
@@ -604,7 +618,7 @@ class Arranger:
         for i, ph in enumerate(passes):
             self.play(self.sax, st + i * 32, ph, tr=tr, vel=100)
             if final and i == 1:   # the synth doubles the last pass an octave up
-                self.play(self.syn, st + i * 32, ph, tr=tr, vel=80, sax=False, octave=1)
+                self.play(self.syn2, st + i * 32, ph, tr=tr, vel=80, sax=False, octave=1)
         kind = {"chorus 1": "big", "chorus 2": "big", "final chorus": "rolling"}[name]
         self.fill(st + (n - 1) * 4 + 2.0, kind)
         if n == 16:
@@ -636,45 +650,28 @@ class Arranger:
         self.fill(st + (n - 1) * 4, "long")
         self.guitar_part(st, n - 4, "arp", vel=0.9)
         self.brass_pads(st, 8, "C", vel=0.75, swell=(60, 90, 80))
-        self.brass_pads(st + 48, 4, "B", vel=1.0, swell=(70, 120, 124))
+        self.brass_pads(st + 48, 4, "B", vel=0.95, swell=(64, 110, 116))
         self.cym.hit("crash", self.T(st + 48, 4), self.V(100))
         self.play(self.syn, st, SOLO, vel=98, sax=False)
         self.play(self.sax, st + n * 4, PICKUP, tr=1, vel=100)
 
-    def outro(self):
-        st, n, tr = self.bars("outro")
-        self.s.marker(st, "outro")
-        self.keys_bounce(st, n, last_push=True)
-        self.bass_part(st, n, "A")
-        self.groove(st, n, "A", tamb=True, double=True, skip_last=2.0)
-        self.fill(st + (n - 1) * 4 + 2.0, "end")
-        self.rhodes_pad(st, n, vel=56)
-        self.brass_pads(st, 4, "A", vel=0.95, swell=(96, 116, 92))
+    def fade(self):
+        """The chorus vamps on its first four bars while the sax ad-libs; the master fades it
+        out over the last eight bars."""
+        st, n, tr = self.bars("fade")
+        self.s.marker(st, "fade-out")
+        self.keys_16ths(st, n)
+        self.bass_part(st, n, "C")
+        self.groove(st, n, "C", tamb=True, double=True, open_every=2, crash=False, skip_last=4.0)
+        self.fill(st + 3 * 4 + 3.0, "tag")
+        self.fill(st + 7 * 4 + 2.0, "small")
         self.cym.hit("crash", self.T(st + 16, 4), self.V(96))
-        self.guitar_part(st, n, "A")
-        self.brass_hits([st + 4 * k + 3.5 for k in (0, 2, 4, 6)], "B", dur=0.4, vel=100)
-        self.play(self.sax, st, OUTRO_SAX, vel=96)
-        e = st + n * 4
-        self.sax.ccs = [c for c in self.sax.ccs if not (c[1] == 11 and c[0] > e + 1.0)]
-        self.sax.cc_ramp(11, e + 1.0, e + 7.0, 112, 50, step=0.25)
-        # ending: E6/9 rings out
-        e0 = st + n * 4
-        self.s.marker(e0, "ending")
-        v1, v2, root, pad, _ = self.ch(e0)
-        for i, p in enumerate(sorted(set(v1 + v2))):
-            self.piano.note(p, e0 + i * 0.06, 7.5, self.V(92))
-        self.piano.notes_at([28, 40], e0, 7.5, 100).sustain(e0 + 0.02, e0 + 7.9)
-        self.ob.notes_at(v2, e0, 6.0, 80)
-        self.rhodes.notes_at(pad, e0, 7.5, 70)
-        self.bass.note(28, self.T(e0, 3), 6.0, 108)
-        self.gtr.notes_at(v2, self.T(e0, 3), 6.0, 92, strum=0.03)
-        self.kick.hit("kick", e0, 118)
-        self.cym.hit("crash", e0, 116).hit("crash_sizzle", e0 + 0.02, 100)
-        self.snare.hit("snare", e0, 116)
-        for tr_, notes in ((self.tbn, pad[:2]), (self.hn, pad[2:]), (self.tpt, [pad[2] + 12, pad[3] + 12])):
-            tr_.cc(11, 120, e0 - 0.05).notes_at(notes, e0, 6.0, 100)
-            tr_.cc_ramp(11, e0 + 1.0, e0 + 6.0, 120, 70)
-
+        self.guitar_part(st, n, "C", vel=0.85)
+        self.rhodes_pad(st, n, vel=58)
+        self.brass_pads(st, n, "A", vel=1.0)
+        self.brass_pads(st, n, "T", vel=0.9, swell=(76, 112, 100))
+        self.brass_hits([st + 16 * k + 3.0 for k in range(3)] + [st + 16 * k + 3.5 for k in range(3)], "B", dur=0.3)
+        self.play(self.sax, st, VAMP_SAX, tr=tr, vel=100)
 
 def compose() -> Song:
     a = Arranger()
@@ -690,7 +687,7 @@ def compose() -> Song:
     a.chorus("chorus 2")
     a.bridge()
     a.chorus("final chorus")
-    a.outro()
+    a.fade()
 
     # tempo: a live band leaning into the choruses (reference 118.9 -> 122)
     bar = lambda name: s.bar(a.sec[name][0])
@@ -701,20 +698,22 @@ def compose() -> Song:
     s.tempo(bar("chorus 2"), 121.5)
     s.tempo(bar("bridge"), 121.0)
     s.tempo(bar("final chorus"), 122.0)
-    s.tempo_ramp(bar("ending") - 4, bar("ending"), 122.0, 110.0, step=0.5)
-    s.length_beats = bar("ending") + 8 + 4
+    fade_end = bar("fade") + 12 * 4
+    s.length_beats = fade_end + 1
 
     s.mix = {
         "tracks": {
             "kick": {"gain": -4, "eq": [("hpf", 45), ("bell", 80, -1.5, 1.5), ("bell", 380, -4, 1.4), ("bell", 3500, 2.5, 1.0)],
                      "comp": {"threshold": -18, "ratio": 3, "attack": 15, "release": 90}, "tape": {"drive_db": 5},
                      "sends": {"room": -8}},
-            "snare": {"gain": -3, "eq": [("hpf", 100), ("bell", 220, 1.5, 1.0), ("bell", 900, -2, 2.0), ("hshelf", 5000, 2)],
+            "snare": {"gain": -3, "eq": [("hpf", 110), ("bell", 220, 0.5, 1.0), ("bell", 900, -2, 2.0), ("bell", 6000, 2, 1.0),
+                                         ("hshelf", 5000, 1.5)],
                       "comp": {"threshold": -20, "ratio": 3, "attack": 10, "release": 120}, "tape": {"drive_db": 5},
                       "sends": {"plate": -12, "room": -8}},
             "snare 2": {"gain": -10, "eq": [("hpf", 120), ("bell", 220, 2, 1.0), ("hshelf", 6000, -3)], "pan": -0.15,
                         "tape": {"drive_db": 5}, "sends": {"room": -12}},
-            "hats": {"gain": -9, "eq": [("hpf", 300), ("hshelf", 7000, 2)], "pan": 0.35, "tape": {"drive_db": 3},
+            "hats": {"gain": -9, "eq": [("hpf", 300), ("bell", 6000, 2.5, 0.9), ("hshelf", 9000, -1)], "pan": 0.35,
+                     "tape": {"drive_db": 3},
                      "sends": {"room": -10}},
             "toms": {"gain": -6, "eq": [("hpf", 60), ("bell", 600, -3, 1.0)], "sends": {"room": -8}},
             "cymbals": {"gain": -11, "eq": [("hpf", 400), ("hshelf", 7000, 2)], "width": 1.1},
@@ -722,11 +721,11 @@ def compose() -> Song:
             "bass": {"gain": -5, "eq": [("hpf", 42), ("bell", 700, 1.5, 1.0), ("bell", 2000, 1.5, 1.0)],
                      "comp": {"threshold": -20, "ratio": 3, "attack": 20, "release": 120}, "tape": {"drive_db": 4},
                      "mono": True},
-            "piano": {"gain": -2.5, "eq": [("hpf", 70), ("bell", 300, -2.5, 1.0), ("bell", 900, 1.5, 1.0), ("hshelf", 4500, 3.5)],
-                      "width": 0.6, "mono_below": 150,
+            "piano": {"gain": -3.0, "eq": [("hpf", 90), ("bell", 280, -3, 1.0), ("bell", 900, 1.5, 1.0), ("hshelf", 4500, 3.5)],
+                      "width": 0.5, "mono_below": 150,
                       "sends": {"plate": -16}},
             "OB-8": {"gain": -13, "eq": [("hpf", 200), ("lpf", 4000)], "chorus": {"rate_hz": 0.5, "depth_ms": 2.0, "mix": 0.35}},
-            "rhodes": {"gain": -9, "eq": [("hpf", 100), ("bell", 250, -2.5, 1.0), ("bell", 2500, 2, 1.0)],
+            "rhodes": {"gain": -9, "eq": [("hpf", 120), ("bell", 250, -3.5, 1.0), ("bell", 2500, 2, 1.0)],
                        "tremolo": {"rate_hz": 4.2, "depth": 0.3},
                        "sends": {"plate": -16}},
             "guitar": {"gain": -9, "eq": [("hpf", 150), ("bell", 400, -2, 1.0)],
@@ -739,19 +738,24 @@ def compose() -> Song:
             "trombone stabs": {"gain": -8, "eq": [("hpf", 100), ("bell", 350, -2, 1.0)], "pan": 0.25, "sends": {"plate": -9}},
             "horn stabs": {"gain": -8, "eq": [("hpf", 120)], "pan": -0.25, "sends": {"plate": -9}},
             "trumpet stabs": {"gain": -9, "eq": [("hpf", 200)], "pan": 0.35, "sends": {"plate": -9}},
-            "tenor sax": {"gain": -1, "eq": [("hpf", 100), ("bell", 250, -2, 1.0), ("bell", 900, 1, 1.0),
-                                             ("bell", 2500, 2, 0.8), ("hshelf", 6500, 2.5)],
+            "tenor sax": {"gain": 0.5, "eq": [("hpf", 110), ("bell", 250, -2.5, 1.0), ("bell", 900, 1, 1.0),
+                                              ("bell", 2500, 2, 0.8), ("bell", 6000, 2, 1.0)],
                           "comp": {"threshold": -22, "ratio": 2.5, "attack": 15, "release": 150},
                           "sends": {"plate": -10, "dly": -18}},
             "synth lead": {"gain": -3, "eq": [("hpf", 150)], "sends": {"plate": -12, "dly": -14}},
+            "synth double": {"gain": -10, "eq": [("hpf", 300), ("lpf", 9000)], "sends": {"plate": -10}},
         },
         "fx": {
             "plate": {"type": "reverb", "kind": "plate", "decay": 2.0, "predelay": 25, "hpf": 250, "lpf": 8000},
             "room": {"type": "reverb", "kind": "room", "decay": 0.6, "predelay": 5, "hpf": 200, "lpf": 7000},
             "dly": {"type": "delay", "beats": 0.75, "feedback": 0.25, "hpf": 400, "lpf": 3500},
         },
-        "master": {"eq": [("lshelf", 120, -5, 0.7), ("hpf", 32), ("hshelf", 5500, 1.5, 0.7)],
-                   "glue": {"threshold": -18, "ratio": 2, "attack": 30, "release": 250}, "target_lufs": -14},
+        # 1978 balance: reference bass -6.8 / sub -16.5 dB under the mids, presence lift
+        # around 6 kHz, a tape-like roll-off above 12 kHz
+        "master": {"eq": [("lshelf", 120, -5, 0.7), ("hpf", 32), ("bell", 190, 1.5, 0.8), ("bell", 800, 1.5, 1.2),
+                          ("hshelf", 5000, 2.5, 0.7), ("lpf", 15000, 1)],
+                   "glue": {"threshold": -18, "ratio": 2, "attack": 30, "release": 250}, "target_lufs": -14,
+                   "fade": {"start": s.seconds(fade_end - 8 * 4), "end": s.seconds(fade_end)}},
     }
     return s
 
