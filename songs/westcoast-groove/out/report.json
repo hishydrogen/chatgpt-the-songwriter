@@ -1,0 +1,172 @@
+{
+  "master": {
+    "integrated_lufs": -14.08,
+    "short_term_max_lufs": -13.11,
+    "loudness_range_lu": 1.37,
+    "true_peak_dbtp": -1.0,
+    "sample_peak_db": -1.29,
+    "plr_db": 13.08,
+    "crest_db": 15.86,
+    "stereo_correlation": 0.601,
+    "side_to_mid_db": -6.03,
+    "tonal_slope_db_per_oct": -2.09,
+    "bands_db": {
+      "sub": -34.4,
+      "bass": -22.3,
+      "low-mid": -21.0,
+      "mid": -21.4,
+      "hi-mid": -30.2,
+      "presence": -33.3,
+      "air": -34.3
+    }
+  },
+  "masking": [
+    "bass: kick, bass within 3 dB of each other",
+    "low-mid: piano, snare within 3 dB of each other",
+    "mid: piano, snare within 3 dB of each other",
+    "hi-mid: piano, snare within 3 dB of each other",
+    "air: hats, guitar within 3 dB of each other"
+  ],
+  "master_chain": {
+    "lufs": -14.08,
+    "true_peak": -1.0,
+    "limiter_drive_db": 6.97
+  },
+  "sections": [
+    {
+      "label": "A: Bounce",
+      "start_s": 0.0,
+      "end_s": 16.13,
+      "master_lufs": -14.6,
+      "tracks": {
+        "kick": -25.1,
+        "snare": -25.2,
+        "hats": -31.1,
+        "toms": -21.9,
+        "cymbals": -31.1,
+        "piano": -24.1,
+        "OB-8 double": -37.6,
+        "bass": -26.7,
+        "guitar": -35.3,
+        "fx:plate": -36.6,
+        "fx:room": -37.2
+      }
+    },
+    {
+      "label": "B: Floppy pushes (double drums)",
+      "start_s": 16.13,
+      "end_s": 32.27,
+      "master_lufs": -13.7,
+      "tracks": {
+        "kick": -24.8,
+        "snare": -24.7,
+        "snare 2": -28.4,
+        "hats": -31.1,
+        "toms": -33.6,
+        "cymbals": -32.1,
+        "perc": -35.7,
+        "piano": -23.2,
+        "OB-8 double": -37.3,
+        "rhodes": -33.4,
+        "bass": -26.5,
+        "guitar": -35.2,
+        "fx:plate": -36.1,
+        "fx:room": -36.9
+      }
+    },
+    {
+      "label": "C: 16th drive",
+      "start_s": 32.27,
+      "end_s": 50.42,
+      "master_lufs": -14.0,
+      "tracks": {
+        "kick": -25.0,
+        "snare": -25.6,
+        "hats": -30.1,
+        "toms": -22.9,
+        "cymbals": -32.5,
+        "perc": -61.8,
+        "piano": -23.7,
+        "OB-8 double": -36.9,
+        "rhodes": -58.2,
+        "bass": -27.2,
+        "guitar": -32.7,
+        "fx:plate": -36.1,
+        "fx:room": -36.9
+      }
+    }
+  ],
+  "tracks": {
+    "kick": {
+      "lufs": -25.0,
+      "peak_db": -11.7,
+      "stereo_correlation": 1.0
+    },
+    "snare": {
+      "lufs": -25.2,
+      "peak_db": -6.4,
+      "stereo_correlation": 0.84
+    },
+    "snare 2": {
+      "lufs": -28.4,
+      "peak_db": -11.7,
+      "stereo_correlation": 0.8
+    },
+    "hats": {
+      "lufs": -30.7,
+      "peak_db": -12.9,
+      "stereo_correlation": 0.39
+    },
+    "toms": {
+      "lufs": -24.4,
+      "peak_db": -9.0,
+      "stereo_correlation": 0.93
+    },
+    "cymbals": {
+      "lufs": -31.8,
+      "peak_db": -18.9,
+      "stereo_correlation": 0.29
+    },
+    "perc": {
+      "lufs": -35.9,
+      "peak_db": -19.0,
+      "stereo_correlation": 1.0
+    },
+    "piano": {
+      "lufs": -23.7,
+      "peak_db": -10.1,
+      "stereo_correlation": 0.44
+    },
+    "OB-8 double": {
+      "lufs": -37.3,
+      "peak_db": -23.7,
+      "stereo_correlation": 0.51
+    },
+    "rhodes": {
+      "lufs": -33.4,
+      "peak_db": -20.6,
+      "stereo_correlation": 0.94
+    },
+    "bass": {
+      "lufs": -26.9,
+      "peak_db": -15.3,
+      "stereo_correlation": 1.0
+    },
+    "guitar": {
+      "lufs": -33.9,
+      "peak_db": -17.5,
+      "stereo_correlation": 0.69
+    },
+    "fx:plate": {
+      "lufs": -36.3,
+      "peak_db": -21.2,
+      "stereo_correlation": 0.26
+    },
+    "fx:room": {
+      "lufs": -37.0,
+      "peak_db": -18.2,
+      "stereo_correlation": -0.19
+    }
+  },
+  "warnings": []
+}
