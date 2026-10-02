@@ -3,8 +3,8 @@
 (a flat grey-and-dark-red drawing inside an old desktop window), redrawn as a classic
 Mac OS 8/9 "Platinum" window: pinstriped title bar, close / zoom / collapse boxes, lavender
 scroll thumb, a menu bar whose clock reads 2:00 AM (the song's first line).
-Inside: one flat stencil silhouette of an original character - a girl in a cat-ear hoodie,
-upper body (the detailed drawing is kept as drawing_detailed() for reference). Renders cover.html -> cover.png (3000x3000) with headless Chromium -> cover.jpg.
+Inside: a notepad with the first lines of the song typed at 2 AM and a waiting caret,
+and one Platinum alert on top: "まだ起きてる？" [寝る] [もう少しだけ] (default). Renders cover.html -> cover.png (3000x3000) with headless Chromium -> cover.jpg.
 No logos: the Apple menu is a plain note glyph.
 """
 import random
@@ -197,24 +197,95 @@ def drawing_detailed():
     return "".join(s)
 
 
-SIL = "#2b2147"
+import os
+
+VARIANT = os.environ.get("ART", "B")   # B (alert over a notepad) is the cover; A and C were drafts
+
+
+def px_rect(x, y, w, h, fill):
+    return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{fill}"/>'
+
+
+def content_typo():
+    """A: an empty document with the title in big bitmap type and a text cursor."""
+    s = [px_rect(CX0, CY0, CX1 - CX0, CY1 - CY0, "#ffffff")]
+    s.append(f'<text x="{CX0 + 70}" y="{CY0 + 330}" font-size="150" fill="{INK}">ドゥーム</text>')
+    s.append(f'<text x="{CX0 + 70}" y="{CY0 + 520}" font-size="150" fill="{INK}">スクロール</text>')
+    s.append(px_rect(CX0 + 75, CY0 + 560, 8, 150, INK))
+    return "".join(s)
+
+
+def button(x, y, w, h, label, default=False):
+    out = ""
+    if default:
+        out += f'<rect x="{x - 7}" y="{y - 7}" width="{w + 14}" height="{h + 14}" rx="{h / 2 + 7}" fill="none" stroke="{INK}" stroke-width="5"/>'
+    out += (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{h / 2}" fill="#e4e4e4" stroke="{INK}" stroke-width="2"/>'
+            f'<path d="M{x + h / 2},{y + 3} H{x + w - h / 2}" stroke="#ffffff" stroke-width="3"/>'
+            f'<text x="{x + w / 2}" y="{y + h / 2 + 9}" font-size="26" fill="{INK}" text-anchor="middle">{label}</text>')
+    return out
+
+
+def content_alert():
+    """B: one Platinum alert dialog: "still awake?" [寝る] [もう少しだけ]."""
+    # behind the dialog: a notepad document, a few lines typed at 2 AM, caret waiting
+    s = [px_rect(CX0, CY0, CX1 - CX0, CY1 - CY0, "#ffffff")]
+    memo = ["午前二時のコンビニの光", "レシートだけ ポケットで鳴る", "既読つかない 吹き出しを", "親指で 何度も なぞる"]
+    for i, line in enumerate(memo):
+        s.append(f'<text x="{CX0 + 26}" y="{CY0 + 46 + 38 * i}" font-size="25" fill="{INK}">{line}</text>')
+    s.append(px_rect(CX0 + 27, CY0 + 46 + 38 * 4 - 24, 2.5, 30, INK))
+    dx0, dy0, dx1, dy1 = CX0 + 90, CY0 + 340, CX1 - 90, CY0 + 680
+    s.append(px_rect(dx0 + 8, dy0 + 8, dx1 - dx0, dy1 - dy0, "rgba(0,0,0,0.35)"))
+    s.append(f'<rect x="{dx0}" y="{dy0}" width="{dx1 - dx0}" height="{dy1 - dy0}" fill="#dddddd" stroke="{INK}" stroke-width="2"/>')
+    s.append(f'<path d="M{dx0 + 3},{dy1 - 3} V{dy0 + 3} H{dx1 - 3}" stroke="#ffffff" stroke-width="3" fill="none"/>')
+    s.append(f'<path d="M{dx0 + 3},{dy1 - 3} H{dx1 - 3} V{dy0 + 3}" stroke="#9a9a9a" stroke-width="3" fill="none"/>')
+    # alert icon: a moon in a rounded square (no system icons)
+    ix, iy = dx0 + 40, dy0 + 48
+    s.append(f'<rect x="{ix}" y="{iy}" width="96" height="96" rx="14" fill="#2b2147"/>')
+    s.append(f'<circle cx="{ix + 52}" cy="{iy + 46}" r="28" fill="#ffe36e"/><circle cx="{ix + 66}" cy="{iy + 36}" r="26" fill="#2b2147"/>')
+    for sx, sy in ((ix + 22, iy + 24), (ix + 76, iy + 74), (ix + 20, iy + 76)):
+        s.append(px_rect(sx, sy, 5, 5, "#ffffff"))
+    s.append(f'<text x="{ix + 130}" y="{dy0 + 92}" font-size="40" fill="{INK}">まだ起きてる？</text>')
+    s.append(f'<text x="{ix + 130}" y="{dy0 + 142}" font-size="24" fill="#3c3c3c">午前2時です。スクロールを続けますか？</text>')
+    s.append(button(dx1 - 520, dy1 - 90, 170, 52, "寝る"))
+    s.append(button(dx1 - 300, dy1 - 90, 240, 52, "もう少しだけ", default=True))
+    return "".join(s)
+
+
+def content_watch():
+    """C: an empty window and one big pixel wristwatch cursor, hands at 2:00."""
+    s = [px_rect(CX0, CY0, CX1 - CX0, CY1 - CY0, "#ffffff")]
+    P = 22   # pixel size
+    art = [
+        "....XXXXXXX....",
+        "....X.....X....",
+        "....XXXXXXX....",
+        "...XX.....XX...",
+        "..X....X....X..",
+        ".X.....X.....X.",
+        ".X.....X..X..X.",
+        ".X.....X.X...XX",
+        ".X.....XX....X.",
+        ".X...........X.",
+        "..X.........X..",
+        "...XX.....XX...",
+        "....XXXXXXX....",
+        "....X.....X....",
+        "....XXXXXXX....",
+    ]
+    ox = (CX0 + CX1) / 2 - len(art[0]) * P / 2
+    oy = (CY0 + CY1) / 2 - len(art) * P / 2
+    # white fill inside the face, black pixels on top
+    s.append(f'<circle cx="{ox + 7.5 * P}" cy="{oy + 7.5 * P}" r="{5.8 * P}" fill="#ffffff"/>')
+    for r, row in enumerate(art):
+        for c, ch in enumerate(row):
+            if ch == "X":
+                s.append(px_rect(ox + c * P, oy + r * P, P + 0.5, P + 0.5, INK))
+    s.append(f'<text x="{(CX0 + CX1) / 2}" y="{CY1 - 60}" font-size="26" fill="#6a6a6a" text-anchor="middle">loading...</text>')
+    return "".join(s)
 
 
 def drawing():
-    """Stencil: the cat-hoodie girl as one flat silhouette (hood with ears + shoulders)."""
-    cx = (CX0 + CX1) / 2
-    s = [f'<rect x="{CX0}" y="{CY0}" width="{CX1 - CX0}" height="{CY1 - CY0}" fill="{BG}"/>']
-    for y in range(int(CY0) + 12, int(CY1), 26):
-        for x in range(int(CX0) + 12 + (13 if (y // 26) % 2 else 0), int(CX1), 26):
-            s.append(f'<circle cx="{x}" cy="{y}" r="2.2" fill="#e2daf7"/>')
-    g = f'fill="{SIL}" stroke="{SIL}" stroke-width="4" stroke-linejoin="round"'
-    s.append(f'<path d="M{cx - 360},{CY1 + 5} C{cx - 340},{760} {cx - 270},{700} {cx - 150},{680} L{cx + 150},{680} '
-             f'C{cx + 270},{700} {cx + 340},{760} {cx + 360},{CY1 + 5}Z" {g}/>')
-    # hood and ears as one outline, so there are no seams
-    s.append(f'<path d="M{cx - 250},{700} C{cx - 278},{560} {cx - 266},{420} {cx - 220},{330} '
-             f'L{cx - 192},{118} L{cx - 72},{232} Q{cx},{206} {cx + 72},{232} L{cx + 192},{118} '
-             f'L{cx + 220},{330} C{cx + 266},{420} {cx + 278},{560} {cx + 250},{700} Q{cx},{740} {cx - 250},{700}Z" {g}/>')
-    return "".join(s)
+    return {"A": content_typo, "B": content_alert, "C": content_watch}[VARIANT]()
 
 
 HTML = f"""<!doctype html><html><head><meta charset="utf-8"><style>
