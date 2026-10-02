@@ -1,0 +1,218 @@
+{
+  "master": {
+    "integrated_lufs": -14.09,
+    "short_term_max_lufs": -12.48,
+    "loudness_range_lu": 3.59,
+    "true_peak_dbtp": -1.0,
+    "sample_peak_db": -1.03,
+    "plr_db": 13.09,
+    "crest_db": 15.19,
+    "stereo_correlation": 0.911,
+    "side_to_mid_db": -13.29,
+    "tonal_slope_db_per_oct": -1.96,
+    "bands_db": {
+      "sub": -20.5,
+      "bass": -21.7,
+      "low-mid": -22.8,
+      "mid": -19.4,
+      "hi-mid": -30.8,
+      "presence": -33.2,
+      "air": -32.2
+    }
+  },
+  "masking": [
+    "bass: kick, bass within 3 dB of each other",
+    "low-mid: vocal, bass, kick, piano within 3 dB of each other",
+    "hi-mid: vocal, clap within 3 dB of each other",
+    "air: hats, clap within 3 dB of each other"
+  ],
+  "master_chain": {
+    "lufs": -14.09,
+    "true_peak": -1.0,
+    "limiter_drive_db": 4.35
+  },
+  "sections": [
+    {
+      "label": "A house riff",
+      "start_s": 0.0,
+      "end_s": 14.55,
+      "master_lufs": -15.8,
+      "tracks": {
+        "kick": -26.3,
+        "clap": -29.4,
+        "hats": -34.3,
+        "perc": -45.3,
+        "cymbals": -36.6,
+        "piano": -28.7,
+        "saw": -32.8,
+        "bass": -28.5,
+        "vocal": -63.4,
+        "fx:plate": -43.7,
+        "fx:room": -46.0
+      }
+    },
+    {
+      "label": "A + vocal",
+      "start_s": 14.55,
+      "end_s": 29.09,
+      "master_lufs": -12.8,
+      "tracks": {
+        "kick": -26.3,
+        "clap": -28.6,
+        "hats": -34.3,
+        "perc": -45.3,
+        "cymbals": -36.6,
+        "piano": -28.8,
+        "saw": -32.8,
+        "bass": -28.5,
+        "vocal": -21.6,
+        "fx:plate": -30.8,
+        "fx:room": -45.6,
+        "fx:dly": -44.0
+      }
+    },
+    {
+      "label": "B pump",
+      "start_s": 29.09,
+      "end_s": 43.64,
+      "master_lufs": -16.0,
+      "tracks": {
+        "kick": -26.3,
+        "clap": -29.4,
+        "hats": -34.3,
+        "perc": -45.3,
+        "cymbals": -36.6,
+        "piano": -29.2,
+        "saw": -30.1,
+        "bass": -28.6,
+        "vocal": -63.4,
+        "fx:plate": -44.7,
+        "fx:room": -45.8,
+        "fx:dly": -65.0
+      }
+    },
+    {
+      "label": "B + vocal",
+      "start_s": 43.64,
+      "end_s": 58.18,
+      "master_lufs": -12.8,
+      "tracks": {
+        "kick": -26.3,
+        "clap": -28.8,
+        "hats": -34.3,
+        "perc": -45.3,
+        "cymbals": -36.6,
+        "piano": -29.5,
+        "saw": -30.1,
+        "bass": -28.5,
+        "vocal": -21.6,
+        "fx:plate": -30.7,
+        "fx:room": -45.7,
+        "fx:dly": -44.0
+      }
+    },
+    {
+      "label": "C dance funk",
+      "start_s": 58.18,
+      "end_s": 72.73,
+      "master_lufs": -16.1,
+      "tracks": {
+        "kick": -27.3,
+        "clap": -29.3,
+        "hats": -36.6,
+        "perc": -30.3,
+        "cymbals": -36.6,
+        "piano": -29.1,
+        "saw": -33.8,
+        "bass": -27.3,
+        "vocal": -63.4,
+        "fx:plate": -44.7,
+        "fx:room": -45.8,
+        "fx:dly": -65.0
+      }
+    },
+    {
+      "label": "C + vocal",
+      "start_s": 72.73,
+      "end_s": 89.09,
+      "master_lufs": -13.0,
+      "tracks": {
+        "kick": -27.4,
+        "clap": -29.4,
+        "hats": -36.6,
+        "perc": -31.1,
+        "cymbals": -36.6,
+        "piano": -29.0,
+        "saw": -33.8,
+        "bass": -27.3,
+        "vocal": -21.6,
+        "fx:plate": -30.8,
+        "fx:room": -45.9,
+        "fx:dly": -44.0
+      }
+    }
+  ],
+  "tracks": {
+    "kick": {
+      "lufs": -26.5,
+      "peak_db": -11.9,
+      "stereo_correlation": 1.0
+    },
+    "clap": {
+      "lufs": -29.0,
+      "peak_db": -11.2,
+      "stereo_correlation": 1.0
+    },
+    "hats": {
+      "lufs": -35.0,
+      "peak_db": -23.6,
+      "stereo_correlation": 1.0
+    },
+    "perc": {
+      "lufs": -40.8,
+      "peak_db": -18.0,
+      "stereo_correlation": 1.0
+    },
+    "cymbals": {
+      "lufs": -36.0,
+      "peak_db": -23.8,
+      "stereo_correlation": 1.0
+    },
+    "piano": {
+      "lufs": -29.0,
+      "peak_db": -13.2,
+      "stereo_correlation": 0.5
+    },
+    "saw": {
+      "lufs": -31.7,
+      "peak_db": -17.6,
+      "stereo_correlation": 0.7
+    },
+    "bass": {
+      "lufs": -28.1,
+      "peak_db": -16.4,
+      "stereo_correlation": 1.0
+    },
+    "vocal": {
+      "lufs": -21.6,
+      "peak_db": -12.7,
+      "stereo_correlation": 1.0
+    },
+    "fx:plate": {
+      "lufs": -32.0,
+      "peak_db": -17.8,
+      "stereo_correlation": 0.23
+    },
+    "fx:room": {
+      "lufs": -45.6,
+      "peak_db": -28.6,
+      "stereo_correlation": -0.03
+    },
+    "fx:dly": {
+      "lufs": -44.0,
+      "peak_db": -32.1,
+      "stereo_correlation": 0.02
+    }
+  },
+  "warnings": []
+}
