@@ -215,6 +215,36 @@ def content_typo():
     return "".join(s)
 
 
+def pixel_moon(x0, y0, P):
+    """32x32 bitmap: crescent (outside a shifted circle), 1-px black outline, two-tone fill."""
+    N = 32
+    inside = set()
+    for r in range(N):
+        for c in range(N):
+            a = (c - 14.5) ** 2 + (r - 17.5) ** 2 <= 13.2 ** 2
+            b = (c - 20.5) ** 2 + (r - 12.5) ** 2 <= 11.0 ** 2
+            if a and not b:
+                inside.add((r, c))
+    out = []
+    for r, c in inside:
+        edge = any((r + dr, c + dc) not in inside for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)))
+        d = ((c - 14.5) ** 2 + (r - 17.5) ** 2) ** 0.5
+        shade = d > 10.6 and (r - 17.5) + (14.5 - c) > 4
+        col = INK if edge else ("#e0b830" if shade else "#ffe36e")
+        out.append(f'<rect x="{x0 + c * P}" y="{y0 + r * P}" width="{P + 0.3}" height="{P + 0.3}" fill="{col}"/>')
+    zs = [  # two small z's, top right
+        (3, 22, ["XXXX", "..X.", ".X..", "XXXX"]),
+        (9, 27, ["XXX", ".X.", "XXX"]),
+    ]
+    for r0, c0, rows in zs:
+        for dr, row in enumerate(rows):
+            for dc, ch in enumerate(row):
+                if ch == "X":
+                    out.append(f'<rect x="{x0 + (c0 + dc) * P}" y="{y0 + (r0 + dr) * P}" width="{P + 0.3}" '
+                               f'height="{P + 0.3}" fill="{INK}"/>')
+    return "".join(out)
+
+
 def button(x, y, w, h, label, default=False):
     out = ""
     if default:
@@ -238,12 +268,9 @@ def content_alert():
     s.append(f'<rect x="{dx0}" y="{dy0}" width="{dx1 - dx0}" height="{dy1 - dy0}" fill="#dddddd" stroke="{INK}" stroke-width="2"/>')
     s.append(f'<path d="M{dx0 + 3},{dy1 - 3} V{dy0 + 3} H{dx1 - 3}" stroke="#ffffff" stroke-width="3" fill="none"/>')
     s.append(f'<path d="M{dx0 + 3},{dy1 - 3} H{dx1 - 3} V{dy0 + 3}" stroke="#9a9a9a" stroke-width="3" fill="none"/>')
-    # alert icon: a moon in a rounded square (no system icons)
-    ix, iy = dx0 + 40, dy0 + 48
-    s.append(f'<rect x="{ix}" y="{iy}" width="96" height="96" rx="14" fill="#2b2147"/>')
-    s.append(f'<circle cx="{ix + 52}" cy="{iy + 46}" r="28" fill="#ffe36e"/><circle cx="{ix + 66}" cy="{iy + 36}" r="26" fill="#2b2147"/>')
-    for sx, sy in ((ix + 22, iy + 24), (ix + 76, iy + 74), (ix + 20, iy + 76)):
-        s.append(px_rect(sx, sy, 5, 5, "#ffffff"))
+    # alert icon: a 32x32 pixel crescent moon with "z z", drawn like a System 7/8 icon
+    ix, iy = dx0 + 40, dy0 + 44
+    s.append(pixel_moon(ix, iy, 3.4))
     s.append(f'<text x="{ix + 130}" y="{dy0 + 92}" font-size="40" fill="{INK}">まだ起きてる？</text>')
     s.append(f'<text x="{ix + 130}" y="{dy0 + 142}" font-size="24" fill="#3c3c3c">午前2時です。スクロールを続けますか？</text>')
     s.append(button(dx1 - 520, dy1 - 90, 170, 52, "寝る"))
