@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Measure a reference track: tempo, swing and micro-timing, key and tuning (with key
-changes), band balance relative to the mid band, loudness (LUFS / PLR / LRA), structure
-and energy per N bars.
+"""What a reference tells a songwriter: tempo (and how it drifts), feel (swing and
+micro-timing, 8th or 16th hats), key and tuning with key changes, sections, and where the
+song builds (energy per N bars relative to its median).
 
   python scripts/measure_ref.py refs/song.wav [--out refs/song] [--bars 4] [--k 6]
-         [--downbeat 0.0] [--sections "intro:0,verse:8,..."]
+         [--downbeat 0.0]
 
-Writes <out>.measure.json and <out>.measure.png. The numbers are design targets only:
-never copy a reference's melody, riff or hook, and never commit or sample its audio.
+Writes <out>.measure.json and <out>.measure.png. Use it to write in the reference's
+spirit; never copy its melody, riff or hook, and never commit or sample its audio.
 """
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ import scipy.sparse.csgraph
 from scipy import signal
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from songwriter import analyze, config  # noqa: E402
+from songwriter import config  # noqa: E402
 from songwriter.__main__ import read_audio  # noqa: E402
 from songwriter.mix import lufs  # noqa: E402
 
@@ -167,15 +167,6 @@ def main():
     y = librosa.resample(mono, orig_sr=config.SAMPLE_RATE, target_sr=SR_A)
     res: dict = {"file": src.name, "duration_s": round(dur, 2)}
 
-    # -- loudness, dynamics, stereo, tonal balance -----------------------------------
-    st = analyze.stats(x48)
-    bands = st.pop("bands_db")
-    st["bands_rel_mid_db"] = {b: round(v - bands["mid"], 1) for b, v in bands.items()}
-    fc, lv = analyze.third_octave(x48)
-    mid_ref = np.mean([l for f, l in zip(fc, lv) if 400 <= f < 1500])
-    st["third_octave_rel_mid_db"] = {str(f): round(l - mid_ref, 1) for f, l in zip(fc, lv)}
-    res["loudness"] = st
-
     # -- tempo --------------------------------------------------------------------------
     tempo, beats, oenv = beat_track(y, SR_A)
     bt = librosa.frames_to_time(beats, sr=SR_A, hop_length=HOP)
@@ -251,20 +242,17 @@ def main():
         per.append({"bar": i + 1, "t": round(float(bars[i]), 1), "key": k, "corr": round(r, 2), "top3": top})
     res["key"]["per_8_bars"] = per
 
-    # -- energy per N bars --------------------------------------------------------------------
+    # -- where the song builds: energy per N bars relative to the median block ------------
     blocks = []
-    meter_bands = {"low": (30, 150), "mid": (150, 2000), "high": (5000, 16000)}
     for i in range(0, len(bars) - 1, a.bars):
         t0, t1 = bars[i], bars[min(i + a.bars, len(bars) - 1)]
         seg = x48[:, int(t0 * config.SAMPLE_RATE):int(t1 * config.SAMPLE_RATE)]
         if seg.shape[1] < config.SAMPLE_RATE:
             continue
-        bl = analyze.band_levels(seg, meter_bands)
-        rms = np.sqrt(np.mean(seg ** 2, axis=0))
-        blocks.append({"bar": i + 1, "t": round(float(t0), 1), "lufs": round(lufs(seg), 1),
-                       **{f"{k}_db": round(v, 1) for k, v in bl.items()},
-                       "crest_db": round(float(20 * np.log10(np.abs(seg).max() / (np.sqrt(np.mean(seg ** 2)) + 1e-12))), 1),
-                       "corr": round(float(np.corrcoef(seg[0], seg[1])[0, 1]), 2)})
+        blocks.append({"bar": i + 1, "t": round(float(t0), 1), "level": lufs(seg)})
+    med = float(np.median([b["level"] for b in blocks]))
+    for b in blocks:
+        b["rel_db"] = round(b.pop("level") - med, 1)
     res["energy_blocks"] = blocks
 
     # -- structure: beat-synchronous chroma + MFCC -------------------------------------------
@@ -301,38 +289,32 @@ def main():
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    fig, ax = plt.subplots(5, 1, figsize=(14, 18), constrained_layout=True)
-    fig.suptitle(f"{src.name}: {res['tempo']['median_bpm']} BPM, {gk}, {st['integrated_lufs']} LUFS, "
-                 f"PLR {st['plr_db']} dB")
-    ax[0].semilogx([float(f) for f in st["third_octave_rel_mid_db"]], list(st["third_octave_rel_mid_db"].values()), "-o", ms=3)
-    ax[0].set_xlim(20, 20000); ax[0].grid(True, which="both", alpha=.3); ax[0].set_title("Tonal balance (rel. mid 400-1500 Hz)")
+    fig, ax = plt.subplots(4, 1, figsize=(14, 15), constrained_layout=True)
+    fig.suptitle(f"{src.name}: {res['tempo']['median_bpm']} BPM, {gk}")
     centers = np.linspace(0.005, 0.995, 100)
     for name in ("hats", "full"):
         h = np.array(sw[name]["hist"])
-        ax[1].plot(centers, h / (h.max() + 1e-9), label=name)
+        ax[0].plot(centers, h / (h.max() + 1e-9), label=name)
     for q in (0.25, 0.5, 0.75):
-        ax[1].axvline(q, color="k", alpha=.3, ls="--")
-    ax[1].legend(); ax[1].set_title("Onset phase inside the beat (straight 16ths at dashed lines)")
+        ax[0].axvline(q, color="k", alpha=.3, ls="--")
+    ax[0].legend(); ax[0].set_title("Onset phase inside the beat (straight 16ths at dashed lines)")
     tb = [b["t"] for b in blocks]
-    ax[2].step(tb, [b["lufs"] for b in blocks], where="post", label="LUFS")
-    for k in ("low_db", "mid_db", "high_db"):
-        vals = np.array([b[k] for b in blocks])
-        ax[2].step(tb, vals - vals.max() + max(b["lufs"] for b in blocks), where="post", alpha=.6, label=k)
+    ax[1].step(tb, [b["rel_db"] for b in blocks], where="post")
     for s in secs:
-        ax[2].axvline(s["t"], color="c", alpha=.4)
-        ax[2].text(s["t"], max(b["lufs"] for b in blocks) + 0.5, s["label"], fontsize=9)
-    ax[2].legend(fontsize=8); ax[2].grid(alpha=.3); ax[2].set_title(f"Energy per {a.bars} bars + sections")
-    ax[3].imshow(csync, aspect="auto", origin="lower", cmap="magma",
+        ax[1].axvline(s["t"], color="c", alpha=.4)
+        ax[1].text(s["t"], max(b["rel_db"] for b in blocks) + 0.3, s["label"], fontsize=9)
+    ax[1].grid(alpha=.3); ax[1].set_title(f"Where the song builds (dB vs median, per {a.bars} bars) + sections")
+    ax[2].imshow(csync, aspect="auto", origin="lower", cmap="magma",
                  extent=[bt[0], bt[min(len(bt) - 1, csync.shape[1] - 1)], -0.5, 11.5])
-    ax[3].set_yticks(range(12), NOTES); ax[3].set_title("Beat-synchronous chroma")
+    ax[2].set_yticks(range(12), NOTES); ax[2].set_title("Beat-synchronous chroma")
     for pk in per:
-        ax[3].text(pk["t"], 11.6, pk["key"].replace(" major", "").replace(" minor", "m"), fontsize=7, color="k")
-    ax[4].imshow(R, cmap="gray_r", origin="lower"); ax[4].set_title("Recurrence (beats)")
+        ax[2].text(pk["t"], 11.6, pk["key"].replace(" major", "").replace(" minor", "m"), fontsize=7, color="k")
+    ax[3].imshow(R, cmap="gray_r", origin="lower"); ax[3].set_title("Recurrence (beats)")
     fig.savefig(out.parent / (out.name + ".measure.png"), dpi=80)
     print(json.dumps({k: v for k, v in res.items() if k not in ("energy_blocks",)}, indent=1)[:6000])
-    print("energy per", a.bars, "bars:")
+    print("where the song builds (dB vs median, per", a.bars, "bars):")
     for b in blocks:
-        print(f"  bar {b['bar']:3d} {b['t']:6.1f}s  {b['lufs']:6.1f} LUFS  low {b['low_db']:6.1f} mid {b['mid_db']:6.1f} high {b['high_db']:6.1f}  crest {b['crest_db']}")
+        print(f"  bar {b['bar']:3d} {b['t']:6.1f}s  {b['rel_db']:+5.1f} {'#' * max(0, int((b['rel_db'] + 8) * 2))}")
 
 
 if __name__ == "__main__":

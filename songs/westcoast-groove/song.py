@@ -279,7 +279,7 @@ def compose() -> Song:
             "plate": {"type": "reverb", "kind": "plate", "decay": 1.8, "predelay": 25, "hpf": 250, "lpf": 8000},
             "room": {"type": "reverb", "kind": "room", "decay": 0.6, "predelay": 5, "hpf": 200, "lpf": 7000},
         },
-        # 1978 balance (reference: bass band -6.8 dB and sub -16.5 dB under the mids)
+        # warm 1978 tone: a lighter low end
         "master": {"eq": [("lshelf", 120, -6, 0.7), ("hpf", 28)],
                    "glue": {"threshold": -18, "ratio": 2, "attack": 30, "release": 250}, "target_lufs": -14},
     }
