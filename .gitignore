@@ -5,3 +5,6 @@ __pycache__/
 *.pyc
 songs/_*/out/
 *.wav
+refs/
+songs/*/release/*.m4a
+songs/*/art/cover.png

@@ -278,5 +278,129 @@ def delay(x, seconds, feedback=0.35, pingpong=True, hpf=300.0, lpf=4500.0, repea
     return out.astype(np.float32)
 
 
+def gated_reverb(x, decay=1.6, hold_ms=260.0, release_ms=45.0, predelay=0.0, threshold_db=-30.0,
+                 kind="room", hpf=200.0, lpf=9000.0, **extra):
+    """80s "non-linear" reverb (AMS RMX16 / Phil Collins snare): a dense reverb that is
+    cut off by a gate keyed from the dry send, so the tail is big but stops dead."""
+    wet = reverb(x, kind, decay=decay, predelay=predelay, hpf=hpf, lpf=lpf, **extra)
+    env = envelope(x, attack_ms=0.5, release_ms=5.0)
+    key = env > env.max() * 10 ** (threshold_db / 20)
+    hold = int(SR * hold_ms / 1000)
+    # extend every open region by `hold` samples
+    idx = np.flatnonzero(key)
+    gate = np.zeros(x.shape[1], np.float32)
+    if len(idx):
+        starts = np.concatenate([[idx[0]], idx[1:][np.diff(idx) > 1]])
+        ends = np.concatenate([idx[:-1][np.diff(idx) > 1], [idx[-1]]])
+        for s, e in zip(starts, ends):
+            gate[s: min(len(gate), e + hold)] = 1.0
+    # 2 ms attack ramp, exponential release: abrupt but click-free
+    att = max(1, int(SR * 0.002))
+    opened = np.convolve(gate, np.ones(att) / att, mode="full")[: len(gate)]
+    hop = 16
+    m = opened[: len(opened) // hop * hop].reshape(-1, hop).max(axis=1)
+    rel = np.exp(-hop / (SR * release_ms / 1000))
+    g = np.empty_like(m)
+    e = 0.0
+    for i, v in enumerate(m):
+        e = v if v >= e else e * rel
+        g[i] = e
+    g = np.repeat(g, hop)
+    g = np.pad(g, (0, len(gate) - len(g)), mode="edge").astype(np.float32)
+    return (wet * g).astype(np.float32)
+
+
+def chorus(x, rate_hz=0.6, depth_ms=2.2, delay_ms=7.0, mix=0.5, stereo=True):
+    """BBD-style chorus (Juno/JX-8P flavour): two delay lines modulated in anti-phase,
+    which also widens a mono source."""
+    n = x.shape[1]
+    t = np.arange(n) / SR
+    lfo = 2 * np.abs(2 * ((t * rate_hz) % 1.0) - 1) - 1  # triangle, -1..1
+    src = x.mean(axis=0) if stereo else None
+    out = np.empty_like(x)
+    for ch, sign in ((0, 1.0), (1, -1.0)):
+        sig = src if stereo else x[ch]
+        d = (delay_ms + sign * depth_ms * lfo) * SR / 1000
+        pos = np.arange(n) - d
+        i0 = np.floor(pos).astype(np.int64)
+        frac = pos - i0
+        i0c = np.clip(i0, 0, n - 1)
+        i1c = np.clip(i0 + 1, 0, n - 1)
+        wet = (1 - frac) * sig[i0c] + frac * sig[i1c]
+        wet[i0 < 0] = 0
+        out[ch] = (1 - mix) * x[ch] + mix * wet
+    return out.astype(np.float32)
+
+
+def _biquad(kind, f0, gain_db=0.0, q=0.707):
+    """RBJ cookbook biquad -> (b, a)."""
+    A = 10 ** (gain_db / 40)
+    w0 = 2 * np.pi * f0 / SR
+    cw, sw = np.cos(w0), np.sin(w0)
+    alpha = sw / (2 * q)
+    if kind == "peak":
+        b = [1 + alpha * A, -2 * cw, 1 - alpha * A]; a = [1 + alpha / A, -2 * cw, 1 - alpha / A]
+    elif kind == "lowshelf":
+        sa = 2 * np.sqrt(A) * alpha
+        b = [A * ((A + 1) - (A - 1) * cw + sa), 2 * A * ((A - 1) - (A + 1) * cw), A * ((A + 1) - (A - 1) * cw - sa)]
+        a = [(A + 1) + (A - 1) * cw + sa, -2 * ((A - 1) + (A + 1) * cw), (A + 1) + (A - 1) * cw - sa]
+    elif kind == "highshelf":
+        sa = 2 * np.sqrt(A) * alpha
+        b = [A * ((A + 1) + (A - 1) * cw + sa), -2 * A * ((A - 1) + (A + 1) * cw), A * ((A + 1) + (A - 1) * cw - sa)]
+        a = [(A + 1) - (A - 1) * cw + sa, 2 * ((A - 1) - (A + 1) * cw), (A + 1) - (A - 1) * cw - sa]
+    else:
+        raise ValueError(kind)
+    return np.array(b) / a[0], np.array(a) / a[0]
+
+
+def tape(x, drive_db=6.0, bump_db=1.5, hf_comp=True, mix=1.0):
+    """Hot-to-tape colour ("recorded in the red"): pre-emphasis -> soft saturation ->
+    de-emphasis, plus a low-frequency head bump. HF transients compress first, like tape."""
+    y = x.astype(np.float64)
+    if hf_comp:
+        b, a = _biquad("highshelf", 3000, 6.0)
+        y = signal.lfilter(b, a, y, axis=1)
+    y = saturate(y.astype(np.float32), drive_db=drive_db, asym=0.08)
+    if hf_comp:
+        b, a = _biquad("highshelf", 3000, -6.0)
+        y = signal.lfilter(b, a, y, axis=1)
+    if bump_db:
+        b, a = _biquad("peak", 75, bump_db, 0.9)
+        y = signal.lfilter(b, a, y, axis=1)
+    y = y.astype(np.float32)
+    rms_in = np.sqrt(np.mean(x ** 2)) + 1e-12
+    y = y * (rms_in / (np.sqrt(np.mean(y ** 2)) + 1e-12))
+    return ((1 - mix) * x + mix * y).astype(np.float32)
+
+
+def crush(x, bits=8, rate=28000.0, mulaw=False, reconstruct=True):
+    """Early-sampler degradation: sample-and-hold at `rate` without anti-alias filtering
+    (aliasing included), quantise to `bits` (optionally mu-law companded like the
+    LinnDrum/DMX), then a DAC reconstruction low-pass."""
+    n = x.shape[-1]
+    idx = np.floor(np.arange(n) * rate / SR) * (SR / rate)
+    held = x[..., np.minimum(idx.astype(np.int64), n - 1)]
+    q = 2 ** (bits - 1)
+    if mulaw:
+        mu = 255.0
+        c = np.sign(held) * np.log1p(mu * np.minimum(np.abs(held), 1)) / np.log1p(mu)
+        c = np.round(c * q) / q
+        y = np.sign(c) * np.expm1(np.abs(c) * np.log1p(mu)) / mu
+    else:
+        y = np.round(np.clip(held, -1, 1) * q) / q
+    if reconstruct:
+        sos = signal.butter(6, min(0.45 * rate, 0.45 * SR), "lp", fs=SR, output="sos")
+        y = signal.sosfilt(sos, y, axis=-1)
+    return y.astype(np.float32)
+
+
+def varispeed(x, ratio):
+    """Pitch by playback speed with zero-order hold and no interpolation: how a Mirage or
+    Fairlight transposed one sample across the keyboard (grit and aliasing included)."""
+    n_out = int(x.shape[-1] / ratio)
+    idx = np.minimum((np.arange(n_out) * ratio).astype(np.int64), x.shape[-1] - 1)
+    return x[..., idx]
+
+
 def db(x: float) -> float:
     return 10 ** (x / 20)

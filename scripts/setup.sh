@@ -59,6 +59,8 @@ if [[ "${1:-}" != "--no-libs" ]]; then
   log "sample libraries"
   "$REPO/scripts/fetch_libraries.sh"
   python3 "$REPO/scripts/build_vsco_sfz.py"
+  log "baked vintage instruments (LinnDrum-style kit, Mirage/Fairlight sounds)"
+  python3 "$REPO/scripts/build_nasty_palette.py"
 fi
 
 log "check"

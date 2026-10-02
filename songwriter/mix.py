@@ -15,7 +15,8 @@
       "master": {"eq": [...], "glue": {...}, "target_lufs": -14, "ceiling": -1.0},
     }
 
-Strip order: gain staging -> eq -> comp -> saturate/tube -> duck -> pan/width -> fader
+Strip order: gain staging -> eq -> comp -> crush/tape/tube/saturate -> duck -> chorus ->
+mono/width/pan -> fader
 -> (post-fader sends) -> bus. Every stem is first normalised to STEM_LUFS so "gain"
 values are true relative balances.
 """
@@ -60,6 +61,10 @@ def strip(x: np.ndarray, cfg: dict, song: Song, stems: dict[str, np.ndarray]) ->
         x = dsp.compress(x, **cfg["comp"])
     if "comp2" in cfg:            # serial second stage (e.g. fast peak + slow leveller)
         x = dsp.compress(x, **cfg["comp2"])
+    if "crush" in cfg:            # early-sampler grit: {"bits": 8, "rate": 28000}
+        x = dsp.crush(x, **cfg["crush"])
+    if "tape" in cfg:             # hot-to-tape: {"drive_db": 6}
+        x = dsp.tape(x, **cfg["tape"])
     if "tube" in cfg:
         x = dsp.tube(x, **cfg["tube"])
     if "saturate" in cfg:
@@ -70,6 +75,8 @@ def strip(x: np.ndarray, cfg: dict, song: Song, stems: dict[str, np.ndarray]) ->
         d = dict(cfg["duck"])
         trig = stems[d.pop("by")]
         x = dsp.duck(x, trig, **{"depth_db": d.pop("depth", 6), **d})
+    if "chorus" in cfg:           # JX/Juno-style: {"rate_hz": 0.6, "depth_ms": 2, "mix": 0.5}
+        x = dsp.chorus(x, **cfg["chorus"])
     if "mono_below" in cfg:
         x = dsp.mono_bass(x, cfg["mono_below"])
     if cfg.get("mono"):
@@ -87,6 +94,8 @@ def _fx_return(kind_cfg: dict, x: np.ndarray, song: Song) -> np.ndarray:
     post = {k: c.pop(k) for k in ("eq", "gain", "width", "comp", "duck") if k in c}
     if t == "reverb":
         y = dsp.reverb(x, **c)
+    elif t == "gated":
+        y = dsp.gated_reverb(x, **c)
     elif t == "delay":
         beats = c.pop("beats", 0.75)
         y = dsp.delay(x, song.seconds(beats), **c)
