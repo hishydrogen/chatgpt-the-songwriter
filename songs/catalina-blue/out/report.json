@@ -1,0 +1,467 @@
+{
+  "master": {
+    "integrated_lufs": -14.01,
+    "short_term_max_lufs": -11.49,
+    "loudness_range_lu": 4.66,
+    "true_peak_dbtp": -1.0,
+    "sample_peak_db": -1.2,
+    "plr_db": 13.01,
+    "crest_db": 16.0,
+    "stereo_correlation": 0.703,
+    "side_to_mid_db": -7.58,
+    "tonal_slope_db_per_oct": -1.49,
+    "bands_db": {
+      "sub": -37.1,
+      "bass": -25.8,
+      "low-mid": -22.2,
+      "mid": -19.1,
+      "hi-mid": -26.7,
+      "presence": -33.1,
+      "air": -32.9
+    }
+  },
+  "masking": [
+    "bass: kick, bass within 3 dB of each other",
+    "low-mid: tenor sax, snare, piano, rhodes within 3 dB of each other"
+  ],
+  "master_chain": {
+    "lufs": -14.01,
+    "true_peak": -1.0,
+    "limiter_drive_db": 5.7
+  },
+  "sections": [
+    {
+      "label": "intro",
+      "start_s": 0.0,
+      "end_s": 16.13,
+      "master_lufs": -18.8,
+      "tracks": {
+        "kick": -28.0,
+        "snare": -27.4,
+        "hats": -35.5,
+        "toms": -26.6,
+        "cymbals": -28.5,
+        "piano": -26.6,
+        "OB-8": -38.0,
+        "rhodes": -37.2,
+        "bass": -28.4,
+        "guitar": -36.0,
+        "synth lead": -25.1,
+        "fx:plate": -35.3,
+        "fx:room": -39.7,
+        "fx:dly": -42.2
+      }
+    },
+    {
+      "label": "verse 1",
+      "start_s": 16.13,
+      "end_s": 48.4,
+      "master_lufs": -15.6,
+      "tracks": {
+        "kick": -27.3,
+        "snare": -26.2,
+        "hats": -27.8,
+        "toms": -27.7,
+        "cymbals": -29.7,
+        "piano": -24.9,
+        "OB-8": -38.1,
+        "rhodes": -35.5,
+        "bass": -28.1,
+        "guitar": -36.6,
+        "tenor sax": -24.0,
+        "synth lead": -40.7,
+        "fx:plate": -31.6,
+        "fx:room": -38.4,
+        "fx:dly": -46.6
+      }
+    },
+    {
+      "label": "pre 1",
+      "start_s": 48.4,
+      "end_s": 64.47,
+      "master_lufs": -14.0,
+      "tracks": {
+        "kick": -27.1,
+        "snare": -25.2,
+        "snare 2": -29.5,
+        "hats": -28.1,
+        "toms": -47.5,
+        "perc": -33.1,
+        "piano": -24.2,
+        "OB-8": -37.3,
+        "rhodes": -29.1,
+        "bass": -27.4,
+        "guitar": -36.8,
+        "trombones": -32.3,
+        "horns": -28.3,
+        "tenor sax": -22.3,
+        "fx:plate": -29.2,
+        "fx:room": -37.3,
+        "fx:dly": -44.0
+      }
+    },
+    {
+      "label": "chorus 1",
+      "start_s": 64.47,
+      "end_s": 96.21,
+      "master_lufs": -12.9,
+      "tracks": {
+        "kick": -27.1,
+        "snare": -26.4,
+        "hats": -26.6,
+        "toms": -26.0,
+        "cymbals": -31.4,
+        "perc": -41.3,
+        "piano": -24.5,
+        "OB-8": -60.9,
+        "rhodes": -34.3,
+        "bass": -26.9,
+        "guitar": -34.1,
+        "trombones": -27.3,
+        "horns": -27.7,
+        "trombone stabs": -27.8,
+        "horn stabs": -27.7,
+        "tenor sax": -20.7,
+        "fx:plate": -27.1,
+        "fx:room": -37.7,
+        "fx:dly": -42.3
+      }
+    },
+    {
+      "label": "riff",
+      "start_s": 96.21,
+      "end_s": 104.18,
+      "master_lufs": -16.9,
+      "tracks": {
+        "kick": -27.1,
+        "snare": -26.0,
+        "hats": -28.4,
+        "toms": -35.5,
+        "cymbals": -28.7,
+        "piano": -24.8,
+        "OB-8": -38.2,
+        "rhodes": -35.7,
+        "bass": -28.0,
+        "guitar": -33.8,
+        "trombones": -46.9,
+        "horns": -50.1,
+        "fx:plate": -35.3,
+        "fx:room": -38.2,
+        "fx:dly": -52.6
+      }
+    },
+    {
+      "label": "verse 2",
+      "start_s": 104.18,
+      "end_s": 120.11,
+      "master_lufs": -15.0,
+      "tracks": {
+        "kick": -27.3,
+        "snare": -26.4,
+        "hats": -28.4,
+        "toms": -24.2,
+        "cymbals": -29.7,
+        "perc": -33.3,
+        "piano": -24.7,
+        "OB-8": -37.8,
+        "rhodes": -34.1,
+        "bass": -28.0,
+        "guitar": -36.4,
+        "horns": -37.1,
+        "harmon trumpets": -28.4,
+        "tenor sax": -23.8,
+        "fx:plate": -31.0,
+        "fx:room": -38.0,
+        "fx:dly": -46.2
+      }
+    },
+    {
+      "label": "pre 2",
+      "start_s": 120.11,
+      "end_s": 136.01,
+      "master_lufs": -13.9,
+      "tracks": {
+        "kick": -27.5,
+        "snare": -25.9,
+        "snare 2": -29.4,
+        "hats": -27.4,
+        "toms": -23.2,
+        "perc": -33.1,
+        "piano": -24.2,
+        "OB-8": -37.2,
+        "rhodes": -28.4,
+        "bass": -27.2,
+        "guitar": -37.2,
+        "trombones": -32.3,
+        "horns": -28.2,
+        "harmon trumpets": -49.7,
+        "trombone stabs": -26.3,
+        "trumpet stabs": -32.3,
+        "tenor sax": -22.4,
+        "fx:plate": -29.2,
+        "fx:room": -37.5,
+        "fx:dly": -44.1
+      }
+    },
+    {
+      "label": "chorus 2",
+      "start_s": 136.01,
+      "end_s": 151.82,
+      "master_lufs": -12.9,
+      "tracks": {
+        "kick": -27.0,
+        "snare": -26.5,
+        "hats": -27.0,
+        "toms": -24.6,
+        "cymbals": -30.2,
+        "perc": -41.3,
+        "piano": -24.5,
+        "OB-8": -61.6,
+        "rhodes": -33.7,
+        "bass": -26.7,
+        "guitar": -34.0,
+        "trombones": -27.5,
+        "horns": -27.5,
+        "trombone stabs": -27.3,
+        "horn stabs": -26.5,
+        "trumpet stabs": -47.9,
+        "tenor sax": -20.7,
+        "fx:plate": -27.4,
+        "fx:room": -37.7,
+        "fx:dly": -42.3
+      }
+    },
+    {
+      "label": "bridge (B major)",
+      "start_s": 151.82,
+      "end_s": 183.55,
+      "master_lufs": -14.4,
+      "tracks": {
+        "kick": -27.8,
+        "snare": -26.5,
+        "toms": -25.5,
+        "cymbals": -32.3,
+        "perc": -33.2,
+        "piano": -29.2,
+        "rhodes": -24.6,
+        "bass": -27.2,
+        "guitar": -32.4,
+        "trombones": -25.1,
+        "horns": -39.4,
+        "trumpets": -26.8,
+        "harmon trumpets": -29.5,
+        "tenor sax": -22.2,
+        "synth lead": -23.0,
+        "fx:plate": -30.0,
+        "fx:room": -39.5,
+        "fx:dly": -40.3
+      }
+    },
+    {
+      "label": "final chorus",
+      "start_s": 183.55,
+      "end_s": 215.03,
+      "master_lufs": -12.2,
+      "tracks": {
+        "kick": -27.1,
+        "snare": -26.6,
+        "snare 2": -29.4,
+        "hats": -26.6,
+        "toms": -27.3,
+        "cymbals": -29.8,
+        "perc": -41.3,
+        "piano": -24.4,
+        "rhodes": -34.0,
+        "bass": -26.5,
+        "guitar": -33.7,
+        "trombones": -26.3,
+        "horns": -26.8,
+        "trumpets": -28.6,
+        "trombone stabs": -27.8,
+        "trumpet stabs": -28.4,
+        "tenor sax": -20.8,
+        "synth lead": -22.4,
+        "fx:plate": -26.7,
+        "fx:room": -37.2,
+        "fx:dly": -39.5
+      }
+    },
+    {
+      "label": "outro",
+      "start_s": 215.03,
+      "end_s": 230.85,
+      "master_lufs": -14.2,
+      "tracks": {
+        "kick": -27.5,
+        "snare": -26.2,
+        "snare 2": -29.5,
+        "hats": -27.7,
+        "toms": -26.6,
+        "cymbals": -29.9,
+        "perc": -41.2,
+        "piano": -24.5,
+        "OB-8": -37.8,
+        "rhodes": -34.6,
+        "bass": -27.4,
+        "guitar": -36.8,
+        "trombones": -27.9,
+        "horns": -26.1,
+        "trumpets": -49.6,
+        "trombone stabs": -29.6,
+        "trumpet stabs": -29.6,
+        "tenor sax": -22.9,
+        "synth lead": -41.3,
+        "fx:plate": -30.1,
+        "fx:room": -37.4,
+        "fx:dly": -44.9
+      }
+    },
+    {
+      "label": "ending",
+      "start_s": 230.85,
+      "end_s": 237.4,
+      "master_lufs": -14.5,
+      "tracks": {
+        "kick": -29.3,
+        "snare": -28.6,
+        "toms": -53.2,
+        "cymbals": -26.3,
+        "piano": -28.9,
+        "OB-8": -37.9,
+        "rhodes": -34.2,
+        "bass": -42.0,
+        "guitar": -31.4,
+        "trombones": -23.0,
+        "horns": -25.0,
+        "trumpets": -26.1,
+        "tenor sax": -24.9,
+        "fx:plate": -29.0,
+        "fx:room": -39.2,
+        "fx:dly": -47.4
+      }
+    }
+  ],
+  "tracks": {
+    "kick": {
+      "lufs": -27.2,
+      "peak_db": -10.9,
+      "stereo_correlation": 1.0
+    },
+    "snare": {
+      "lufs": -26.3,
+      "peak_db": -7.3,
+      "stereo_correlation": 0.83
+    },
+    "snare 2": {
+      "lufs": -29.5,
+      "peak_db": -12.9,
+      "stereo_correlation": 0.81
+    },
+    "hats": {
+      "lufs": -27.5,
+      "peak_db": -11.7,
+      "stereo_correlation": 0.31
+    },
+    "toms": {
+      "lufs": -26.5,
+      "peak_db": -10.6,
+      "stereo_correlation": 0.92
+    },
+    "cymbals": {
+      "lufs": -30.6,
+      "peak_db": -13.9,
+      "stereo_correlation": 0.26
+    },
+    "perc": {
+      "lufs": -36.6,
+      "peak_db": -13.9,
+      "stereo_correlation": 0.91
+    },
+    "piano": {
+      "lufs": -24.8,
+      "peak_db": -9.2,
+      "stereo_correlation": 0.5
+    },
+    "OB-8": {
+      "lufs": -37.8,
+      "peak_db": -23.8,
+      "stereo_correlation": 0.5
+    },
+    "rhodes": {
+      "lufs": -30.3,
+      "peak_db": -11.2,
+      "stereo_correlation": 0.9
+    },
+    "bass": {
+      "lufs": -27.2,
+      "peak_db": -15.0,
+      "stereo_correlation": 1.0
+    },
+    "guitar": {
+      "lufs": -34.4,
+      "peak_db": -17.9,
+      "stereo_correlation": 0.72
+    },
+    "trombones": {
+      "lufs": -27.0,
+      "peak_db": -10.7,
+      "stereo_correlation": 0.65
+    },
+    "horns": {
+      "lufs": -27.6,
+      "peak_db": -12.3,
+      "stereo_correlation": 0.79
+    },
+    "trumpets": {
+      "lufs": -28.0,
+      "peak_db": -14.2,
+      "stereo_correlation": 0.8
+    },
+    "harmon trumpets": {
+      "lufs": -29.1,
+      "peak_db": -15.6,
+      "stereo_correlation": 0.75
+    },
+    "trombone stabs": {
+      "lufs": -28.0,
+      "peak_db": -8.0,
+      "stereo_correlation": 0.49
+    },
+    "horn stabs": {
+      "lufs": -27.3,
+      "peak_db": -13.7,
+      "stereo_correlation": 0.53
+    },
+    "trumpet stabs": {
+      "lufs": -29.0,
+      "peak_db": -12.5,
+      "stereo_correlation": 0.51
+    },
+    "tenor sax": {
+      "lufs": -21.8,
+      "peak_db": -13.2,
+      "stereo_correlation": 1.0
+    },
+    "synth lead": {
+      "lufs": -23.0,
+      "peak_db": -16.2,
+      "stereo_correlation": 0.83
+    },
+    "fx:plate": {
+      "lufs": -28.9,
+      "peak_db": -15.0,
+      "stereo_correlation": 0.21
+    },
+    "fx:room": {
+      "lufs": -37.9,
+      "peak_db": -19.3,
+      "stereo_correlation": -0.21
+    },
+    "fx:dly": {
+      "lufs": -42.1,
+      "peak_db": -27.5,
+      "stereo_correlation": 0.03
+    }
+  },
+  "warnings": []
+}
