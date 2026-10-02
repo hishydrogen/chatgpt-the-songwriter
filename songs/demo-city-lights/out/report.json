@@ -1,0 +1,99 @@
+{
+  "master": {
+    "integrated_lufs": -14.01,
+    "short_term_max_lufs": -10.77,
+    "loudness_range_lu": 8.81,
+    "true_peak_dbtp": -1.0,
+    "sample_peak_db": -1.39,
+    "plr_db": 13.01,
+    "crest_db": 15.34,
+    "stereo_correlation": 0.754,
+    "side_to_mid_db": -8.54,
+    "tonal_slope_db_per_oct": -2.61,
+    "bands_db": {
+      "sub": -30.0,
+      "bass": -20.1,
+      "low-mid": -20.5,
+      "mid": -22.6,
+      "hi-mid": -26.2,
+      "presence": -35.4,
+      "air": -42.6
+    }
+  },
+  "masking": [
+    "presence: guitar, drums within 3 dB of each other"
+  ],
+  "master_chain": {
+    "lufs": -14.01,
+    "true_peak": -1.0,
+    "limiter_drive_db": 5.83
+  },
+  "tracks": {
+    "rhodes": {
+      "lufs": -27.2,
+      "peak_db": -12.9,
+      "stereo_correlation": 0.98
+    },
+    "pad": {
+      "lufs": -34.8,
+      "peak_db": -21.7,
+      "stereo_correlation": 0.65
+    },
+    "bass": {
+      "lufs": -26.5,
+      "peak_db": -9.9,
+      "stereo_correlation": 1.0
+    },
+    "drums": {
+      "lufs": -24.3,
+      "peak_db": -5.4,
+      "stereo_correlation": 0.96
+    },
+    "guitar": {
+      "lufs": -28.5,
+      "peak_db": -4.6,
+      "stereo_correlation": 1.0
+    },
+    "violins": {
+      "lufs": -30.4,
+      "peak_db": -17.4,
+      "stereo_correlation": 0.41
+    },
+    "violas": {
+      "lufs": -31.1,
+      "peak_db": -17.3,
+      "stereo_correlation": 0.62
+    },
+    "celli": {
+      "lufs": -30.7,
+      "peak_db": -18.8,
+      "stereo_correlation": 0.63
+    },
+    "sax": {
+      "lufs": -24.9,
+      "peak_db": -18.9,
+      "stereo_correlation": 1.0
+    },
+    "fx:room": {
+      "lufs": -42.5,
+      "peak_db": -24.0,
+      "stereo_correlation": -0.04
+    },
+    "fx:plate": {
+      "lufs": -35.1,
+      "peak_db": -22.1,
+      "stereo_correlation": 0.16
+    },
+    "fx:hall": {
+      "lufs": -28.7,
+      "peak_db": -14.1,
+      "stereo_correlation": -0.04
+    },
+    "fx:dly": {
+      "lufs": -44.6,
+      "peak_db": -32.0,
+      "stereo_correlation": 0.0
+    }
+  },
+  "warnings": []
+}

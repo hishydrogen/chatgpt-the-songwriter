@@ -155,19 +155,19 @@ def master(x: np.ndarray, cfg: dict, log=print) -> tuple[np.ndarray, dict]:
     if "width" in cfg:
         x = dsp.width(x, cfg["width"])
     x = dsp.mono_bass(x, cfg.get("mono_below", 100))
-    # loudness: iterate input gain into the limiter until integrated LUFS hits target
+    # loudness: iterate input gain into the limiter until integrated LUFS hits target,
+    # trimming any inter-sample overs the limiter leaves (measured at 4x)
     gain = target - lufs(x)
-    y = x
-    for i in range(4):
-        y = dsp.limit(x * dsp.db(gain), ceiling_db=ceiling - 0.3, **cfg.get("limiter", {}))
+    for i in range(6):
+        y = dsp.limit(x * dsp.db(gain), ceiling_db=ceiling - 0.2, **cfg.get("limiter", {}))
+        tp = true_peak_db(y)
+        if tp > ceiling:
+            y = y * dsp.db(ceiling - tp)
+            tp = ceiling
         err = target - lufs(y)
         if abs(err) < 0.1:
             break
         gain += err
-    tp = true_peak_db(y)
-    if tp > ceiling:  # inter-sample overs left after the limiter: trim
-        y = y * dsp.db(ceiling - tp)
-        tp = ceiling
     stats = {"lufs": round(lufs(y), 2), "true_peak": round(tp, 2), "limiter_drive_db": round(gain, 2)}
     log(f"  master: {stats}")
     return y.astype(np.float32), stats
