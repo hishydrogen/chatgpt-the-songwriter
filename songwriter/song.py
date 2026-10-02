@@ -8,6 +8,7 @@
 """
 from __future__ import annotations
 
+import math
 import random
 import re
 import zlib
@@ -129,15 +130,39 @@ class Track:
         self.bends.append((beat, int(max(-8192, min(8191, value)))))
         return self
 
+    def cc_ramp(self, number: int, beat0: float, beat1: float, v0: int, v1: int,
+                step: float = 0.125, curve: float = 1.0):
+        """Linear (curve=1) or shaped CC sweep, e.g. a brass swell on CC11."""
+        n = max(1, int(round((beat1 - beat0) / step)))
+        for i in range(n + 1):
+            f = (i / n) ** curve
+            self.cc(number, round(v0 + (v1 - v0) * f), beat0 + i * (beat1 - beat0) / n)
+        return self
+
+    def vibrato(self, beat0: float, beat1: float, rate_hz: float = 5.5, cents: float = 20.0,
+                bend_range: float = 2.0, fade: float = 0.4, step_s: float = 0.02):
+        """Pitch-bend vibrato between two beats that fades in over `fade` of the span and
+        returns to centre at beat1 (for synths/samples without their own vibrato)."""
+        span = max(1e-6, beat1 - beat0)
+        b, t = beat0, 0.0
+        while b < beat1:
+            env = min(1.0, (b - beat0) / (span * fade + 1e-9))
+            val = cents / (bend_range * 100) * 8191 * env * math.sin(2 * math.pi * rate_hz * t)
+            self.bend(int(round(val)), b)
+            b += step_s * self.song.bpm_at(b) / 60.0
+            t += step_s
+        self.bend(0, beat1)
+        return self
+
     # -- feel ----------------------------------------------------------------
     def humanize(self, timing_ms: float = 8.0, vel: int = 6, seed: int | None = None,
                  skip_downbeats: bool = False):
         """Small random timing/velocity drift. Deterministic per track name unless seed given."""
         rng = random.Random(seed if seed is not None else zlib.crc32(self.name.encode()))
-        spb = 60.0 / self.song.bpm
         for n in self.notes:
             if skip_downbeats and abs(n.start - round(n.start)) < 1e-6:
                 continue
+            spb = 60.0 / self.song.bpm_at(n.start)
             n.start = max(0.0, n.start + rng.gauss(0, timing_ms / 1000 / spb / 2))
             n.vel = int(max(1, min(127, n.vel + rng.randint(-vel, vel))))
         return self
@@ -166,6 +191,7 @@ class Song:
         self.markers: list[tuple[float, str]] = []
         self.mix: dict = {}       # filled by the song file, consumed by songwriter.mix
         self.length_beats: float | None = None
+        self.tempo_changes: list[tuple[float, float]] = []  # (beat, bpm) after the start
 
     def track(self, name: str, instrument: str, **kw) -> Track:
         if name in self.tracks:
@@ -181,8 +207,46 @@ class Song:
     def marker(self, beat: float, label: str):
         self.markers.append((beat, label))
 
+    def tempo(self, beat: float, bpm: float):
+        """Tempo change at `beat` (a live band leaning into the chorus). Written to the
+        MIDI files as set_tempo events, honoured by every renderer."""
+        self.tempo_changes = sorted([c for c in self.tempo_changes if abs(c[0] - beat) > 1e-9]
+                                    + [(float(beat), float(bpm))])
+        return self
+
+    def tempo_ramp(self, beat0: float, beat1: float, bpm0: float, bpm1: float, step: float = 1.0):
+        """Gradual drift from bpm0 to bpm1 between two beats, one small change per `step` beats."""
+        n = max(1, int(round((beat1 - beat0) / step)))
+        for i in range(n + 1):
+            self.tempo(beat0 + i * (beat1 - beat0) / n, bpm0 + i * (bpm1 - bpm0) / n)
+        return self
+
+    def bpm_at(self, beat: float) -> float:
+        bpm = self.bpm
+        for b, t in self.tempo_changes:
+            if b > beat:
+                break
+            bpm = t
+        return bpm
+
     def seconds(self, beats: float) -> float:
-        return beats * 60.0 / self.bpm
+        """Time of a beat position (follows tempo changes)."""
+        t, prev_b, prev_bpm = 0.0, 0.0, self.bpm
+        for b, bpm in self.tempo_changes:
+            if b >= beats:
+                break
+            t += (b - prev_b) * 60.0 / prev_bpm
+            prev_b, prev_bpm = b, bpm
+        return t + (beats - prev_b) * 60.0 / prev_bpm
+
+    def _tempo_events(self) -> list[tuple[int, mido.MetaMessage]]:
+        ev = [(0, mido.MetaMessage("set_tempo", tempo=mido.bpm2tempo(self.bpm), time=0))]
+        for b, bpm in self.tempo_changes:
+            tick = round(b * self.TPB)
+            if tick == 0:
+                ev = []
+            ev.append((tick, mido.MetaMessage("set_tempo", tempo=mido.bpm2tempo(bpm), time=0)))
+        return ev
 
     @property
     def end_beat(self) -> float:
@@ -197,7 +261,7 @@ class Song:
         ev = []  # (tick, order, msg) - offs before ons at equal tick
         ch = track.channel
         for n in track.notes:
-            on = round(n.start * self.TPB)
+            on = max(0, round(n.start * self.TPB))  # humanized notes may start a hair before 0
             off = max(on + 1, round((n.start + n.dur) * self.TPB))
             ev.append((on, 2, mido.Message("note_on", note=n.pitch, velocity=n.vel, channel=ch)))
             ev.append((off, 0, mido.Message("note_off", note=n.pitch, velocity=0, channel=ch)))
@@ -213,10 +277,11 @@ class Song:
         mt = mido.MidiTrack()
         mf.tracks.append(mt)
         mt.append(mido.MetaMessage("track_name", name=track.name, time=0))
-        mt.append(mido.MetaMessage("set_tempo", tempo=mido.bpm2tempo(self.bpm), time=0))
         mt.append(mido.MetaMessage("time_signature", numerator=self.time_sig[0], denominator=self.time_sig[1], time=0))
+        ev = [(tick, -1, m) for tick, m in self._tempo_events()] + self._events(track)
+        ev.sort(key=lambda e: (e[0], e[1]))
         last = 0
-        for tick, _, msg in self._events(track):
+        for tick, _, msg in ev:
             mt.append(msg.copy(time=tick - last))
             last = tick
         return mf
@@ -226,13 +291,13 @@ class Song:
         mf = mido.MidiFile(type=1, ticks_per_beat=self.TPB)
         meta = mido.MidiTrack([
             mido.MetaMessage("track_name", name=self.title, time=0),
-            mido.MetaMessage("set_tempo", tempo=mido.bpm2tempo(self.bpm), time=0),
             mido.MetaMessage("time_signature", numerator=self.time_sig[0], denominator=self.time_sig[1], time=0),
         ])
+        ev = self._tempo_events() + [(round(b * self.TPB), mido.MetaMessage("marker", text=label, time=0))
+                                     for b, label in self.markers]
         last = 0
-        for beat, label in sorted(self.markers):
-            tick = round(beat * self.TPB)
-            meta.append(mido.MetaMessage("marker", text=label, time=tick - last))
+        for tick, msg in sorted(ev, key=lambda e: e[0]):
+            meta.append(msg.copy(time=tick - last))
             last = tick
         mf.tracks.append(meta)
         for i, t in enumerate(self.tracks.values()):
@@ -246,4 +311,4 @@ class Song:
 
     def timed_messages(self, track: Track) -> list[tuple[float, mido.Message]]:
         """(seconds, message) list for engines that take live MIDI (VST3, surgepy)."""
-        return [(tick / self.TPB * 60.0 / self.bpm, msg) for tick, _, msg in self._events(track)]
+        return [(self.seconds(tick / self.TPB), msg) for tick, _, msg in self._events(track)]

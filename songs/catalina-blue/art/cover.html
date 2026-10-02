@@ -1,0 +1,85 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face { font-family: Fraunces; font-style: italic; src: url(fonts/Fraunces-Italic.ttf); }
+@font-face { font-family: Fraunces; font-style: normal; src: url(fonts/Fraunces.ttf); }
+@font-face { font-family: Josefin; src: url(fonts/JosefinSans.ttf); }
+html, body { margin: 0; width: 1000px; height: 1000px; background: #20324c; overflow: hidden; }
+svg { display: block; }
+.title { font-family: Fraunces; font-style: italic; font-size: 86px; font-weight: 380;
+          font-variation-settings: "SOFT" 100, "WONK" 0, "opsz" 144; letter-spacing: -0.5px; fill: #f5ead8; }
+.artist { font-family: Josefin; font-size: 19px; font-weight: 300; letter-spacing: 6.5px; fill: #f0e3cf; }
+</style></head><body>
+<svg width="1000" height="1000" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="612" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#2d4a73"/><stop offset="0.38" stop-color="#5f7fa3"/>
+    <stop offset="0.7" stop-color="#a9b9c8"/><stop offset="0.88" stop-color="#e2cdb8"/>
+    <stop offset="1" stop-color="#f1d2ae"/></linearGradient>
+  <radialGradient id="afterglow" cx="0.68" cy="0.612" r="0.55" fx="0.68" fy="0.612">
+    <stop offset="0" stop-color="#f6c99c" stop-opacity="0.55"/><stop offset="1" stop-color="#f6c99c" stop-opacity="0"/></radialGradient>
+  <linearGradient id="sea" x1="0" y1="612" x2="0" y2="1000" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#8ea3b5"/><stop offset="0.05" stop-color="#5d7b98"/>
+    <stop offset="0.3" stop-color="#2f557d"/><stop offset="1" stop-color="#16304f"/></linearGradient>
+  <linearGradient id="isl" x1="0" y1="567" x2="0" y2="612" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#5d6683"/><stop offset="1" stop-color="#7d8499"/></linearGradient>
+  <linearGradient id="haze" x1="0" y1="598" x2="0" y2="614" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#d9cbbd" stop-opacity="0"/><stop offset="1" stop-color="#d9cbbd" stop-opacity="0.55"/></linearGradient>
+  <linearGradient id="glint" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#f3d6b6" stop-opacity="0"/><stop offset="0.5" stop-color="#f3d6b6" stop-opacity="0.32"/>
+    <stop offset="1" stop-color="#f3d6b6" stop-opacity="0"/></linearGradient>
+  <filter id="soft"><feGaussianBlur stdDeviation="0.6"/></filter>
+  <filter id="cloud" x="-30%" y="-300%" width="160%" height="700%"><feGaussianBlur stdDeviation="9 2.2"/></filter>
+  <filter id="ripple" x="-50%" y="-50%" width="200%" height="200%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.02 0.6" numOctaves="2" seed="11" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+    <feGaussianBlur stdDeviation="0.5"/></filter>
+  <filter id="water" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.0035 0.045" numOctaves="3" seed="21"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0.88  0 0 0 0 0.92  0 0 0 0 0.97  0 0 0 1.6 -0.78"/></filter>
+  <filter id="water2" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.007 0.1" numOctaves="3" seed="22"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0.88  0 0 0 0 0.92  0 0 0 0 0.97  0 0 0 1.6 -0.78"/></filter>
+  <filter id="water3" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.014 0.3" numOctaves="2" seed="23"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0.9  0 0 0 0 0.93  0 0 0 0 0.97  0 0 0 1.6 -0.8"/></filter>
+  <linearGradient id="gfar" x1="0" y1="612" x2="0" y2="1000" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="white"/><stop offset="0.16" stop-color="white"/><stop offset="0.3" stop-color="black"/></linearGradient>
+  <linearGradient id="gmid" x1="0" y1="612" x2="0" y2="1000" gradientUnits="userSpaceOnUse">
+    <stop offset="0.14" stop-color="black"/><stop offset="0.3" stop-color="white"/><stop offset="0.5" stop-color="white"/>
+    <stop offset="0.66" stop-color="black"/></linearGradient>
+  <linearGradient id="gnear" x1="0" y1="612" x2="0" y2="1000" gradientUnits="userSpaceOnUse">
+    <stop offset="0.5" stop-color="black"/><stop offset="0.68" stop-color="white"/></linearGradient>
+  <mask id="zfar"><rect y="612" width="1000" height="388" fill="url(#gfar)"/></mask>
+  <mask id="zmid"><rect y="612" width="1000" height="388" fill="url(#gmid)"/></mask>
+  <mask id="znear"><rect y="612" width="1000" height="388" fill="url(#gnear)"/></mask>
+  <linearGradient id="wfade" x1="0" y1="612" x2="0" y2="1000" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="white" stop-opacity="0.5"/><stop offset="0.35" stop-color="white" stop-opacity="0.3"/>
+    <stop offset="1" stop-color="white" stop-opacity="0.1"/></linearGradient>
+  <mask id="watermask"><rect y="612" width="1000" height="388" fill="url(#wfade)"/></mask>
+  <filter id="dither"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="1" seed="5"/>
+    <feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 0.022"/></feComponentTransfer></filter>
+</defs>
+
+<rect width="1000" height="612" fill="url(#sky)"/>
+<rect width="1000" height="612" fill="url(#afterglow)"/>
+<circle cx="834" cy="122" r="1.5" fill="#fff6e6" opacity="0.8"/>
+<ellipse cx="610" cy="452" rx="210.0" ry="5.5" fill="#f3cfae" opacity="0.55" filter="url(#cloud)"/><ellipse cx="602.9" cy="453.7" rx="84.0" ry="3.8" fill="#f3cfae" opacity="0.33" filter="url(#cloud)"/><ellipse cx="656.6" cy="448.1" rx="84.0" ry="3.8" fill="#f3cfae" opacity="0.33" filter="url(#cloud)"/><ellipse cx="473.0" cy="450.6" rx="84.0" ry="3.8" fill="#f3cfae" opacity="0.33" filter="url(#cloud)"/><ellipse cx="760" cy="476" rx="150.0" ry="4.0" fill="#f6d8b8" opacity="0.5" filter="url(#cloud)"/><ellipse cx="714.8" cy="478.5" rx="60.0" ry="2.8" fill="#f6d8b8" opacity="0.30" filter="url(#cloud)"/><ellipse cx="798.1" cy="476.8" rx="60.0" ry="2.8" fill="#f6d8b8" opacity="0.30" filter="url(#cloud)"/><ellipse cx="771.6" cy="477.3" rx="60.0" ry="2.8" fill="#f6d8b8" opacity="0.30" filter="url(#cloud)"/><ellipse cx="420" cy="498" rx="180.0" ry="3.5" fill="#efd2b6" opacity="0.42" filter="url(#cloud)"/><ellipse cx="334.9" cy="497.6" rx="72.0" ry="2.4" fill="#efd2b6" opacity="0.25" filter="url(#cloud)"/><ellipse cx="338.9" cy="500.8" rx="72.0" ry="2.4" fill="#efd2b6" opacity="0.25" filter="url(#cloud)"/><ellipse cx="314.1" cy="500.2" rx="72.0" ry="2.4" fill="#efd2b6" opacity="0.25" filter="url(#cloud)"/><ellipse cx="850" cy="408" rx="130.0" ry="4.5" fill="#e9c3a6" opacity="0.35" filter="url(#cloud)"/><ellipse cx="776.3" cy="409.7" rx="52.0" ry="3.1" fill="#e9c3a6" opacity="0.21" filter="url(#cloud)"/><ellipse cx="821.7" cy="407.1" rx="52.0" ry="3.1" fill="#e9c3a6" opacity="0.21" filter="url(#cloud)"/><ellipse cx="909.3" cy="403.7" rx="52.0" ry="3.1" fill="#e9c3a6" opacity="0.21" filter="url(#cloud)"/><ellipse cx="300" cy="430" rx="110.0" ry="3.0" fill="#dcc3b0" opacity="0.28" filter="url(#cloud)"/><ellipse cx="235.6" cy="432.5" rx="44.0" ry="2.1" fill="#dcc3b0" opacity="0.17" filter="url(#cloud)"/><ellipse cx="301.3" cy="427.5" rx="44.0" ry="2.1" fill="#dcc3b0" opacity="0.17" filter="url(#cloud)"/><ellipse cx="371.4" cy="432.7" rx="44.0" ry="2.1" fill="#dcc3b0" opacity="0.17" filter="url(#cloud)"/><ellipse cx="690" cy="520" rx="120.0" ry="3.0" fill="#f7dcc0" opacity="0.4" filter="url(#cloud)"/><ellipse cx="628.0" cy="519.5" rx="48.0" ry="2.1" fill="#f7dcc0" opacity="0.24" filter="url(#cloud)"/><ellipse cx="631.6" cy="518.9" rx="48.0" ry="2.1" fill="#f7dcc0" opacity="0.24" filter="url(#cloud)"/><ellipse cx="709.4" cy="518.0" rx="48.0" ry="2.1" fill="#f7dcc0" opacity="0.24" filter="url(#cloud)"/>
+
+<path d="M180.0,612.5L180.0,612.00L181.5,611.95L183.0,611.80L184.5,611.54L186.0,611.25L187.5,610.93L189.0,610.49L190.5,610.09L192.0,609.79L193.5,609.28L195.0,608.87L196.5,608.63L198.0,608.41L199.5,608.31L201.0,608.04L202.5,607.41L204.0,607.61L205.5,607.40L207.0,607.14L208.5,606.57L210.0,605.91L211.5,605.96L213.0,605.46L214.5,605.28L216.0,605.13L217.5,604.95L219.0,604.15L220.5,603.34L222.0,602.85L223.5,602.47L225.0,602.40L226.5,602.18L228.0,601.93L229.5,601.58L231.0,601.41L232.5,601.43L234.0,601.01L235.5,601.15L237.0,600.57L238.5,600.80L240.0,600.79L241.5,600.64L243.0,600.56L244.5,600.26L246.0,600.52L247.5,600.55L249.0,600.33L250.5,600.21L252.0,599.71L253.5,599.42L255.0,599.37L256.5,599.54L258.0,599.01L259.5,598.63L261.0,598.26L262.5,598.09L264.0,598.34L265.5,597.66L267.0,597.82L268.5,597.81L270.0,597.48L271.5,596.72L273.0,596.03L274.5,595.93L276.0,595.60L277.5,595.44L279.0,594.97L280.5,594.72L282.0,594.19L283.5,593.36L285.0,592.88L286.5,592.19L288.0,592.29L289.5,592.62L291.0,592.57L292.5,592.10L294.0,592.06L295.5,591.98L297.0,592.07L298.5,592.13L300.0,592.12L301.5,591.83L303.0,591.56L304.5,591.32L306.0,591.58L307.5,591.39L309.0,591.35L310.5,591.61L312.0,591.76L313.5,591.82L315.0,591.90L316.5,592.52L318.0,592.57L319.5,592.22L321.0,592.61L322.5,592.45L324.0,592.04L325.5,591.63L327.0,591.44L328.5,591.00L330.0,590.92L331.5,590.90L333.0,590.03L334.5,589.18L336.0,588.95L337.5,588.77L339.0,588.58L340.5,588.49L342.0,587.50L343.5,587.46L345.0,586.87L346.5,586.63L348.0,586.24L349.5,585.83L351.0,585.65L352.5,585.37L354.0,584.90L355.5,584.50L357.0,584.30L358.5,584.67L360.0,584.16L361.5,584.19L363.0,583.80L364.5,583.92L366.0,584.09L367.5,584.10L369.0,583.75L370.5,583.88L372.0,583.98L373.5,583.29L375.0,582.77L376.5,582.37L378.0,581.90L379.5,582.00L381.0,581.70L382.5,581.66L384.0,581.12L385.5,580.60L387.0,580.54L388.5,580.81L390.0,580.93L391.5,580.93L393.0,580.99L394.5,580.86L396.0,581.30L397.5,581.40L399.0,581.72L400.5,581.97L402.0,582.00L403.5,582.34L405.0,582.92L406.5,582.94L408.0,582.74L409.5,583.00L411.0,583.34L412.5,583.55L414.0,583.13L415.5,582.75L417.0,582.30L418.5,582.33L420.0,581.93L421.5,581.67L423.0,581.50L424.5,580.79L426.0,580.69L427.5,579.76L429.0,579.51L430.5,578.48L432.0,577.62L433.5,577.43L435.0,576.83L436.5,576.32L438.0,575.67L439.5,575.12L441.0,575.18L442.5,574.58L444.0,574.66L445.5,575.06L447.0,575.06L448.5,575.06L450.0,574.81L451.5,574.86L453.0,574.58L454.5,574.31L456.0,574.10L457.5,573.30L459.0,572.68L460.5,572.65L462.0,572.24L463.5,572.35L465.0,571.74L466.5,571.44L468.0,571.20L469.5,571.55L471.0,571.06L472.5,571.59L474.0,571.59L475.5,571.40L477.0,571.57L478.5,571.71L480.0,571.96L481.5,572.47L483.0,572.69L484.5,573.10L486.0,573.38L487.5,574.17L489.0,574.77L490.5,575.27L492.0,575.88L493.5,576.20L495.0,576.43L496.5,576.30L498.0,576.54L499.5,576.46L501.0,576.29L502.5,576.17L504.0,575.82L505.5,575.25L507.0,574.87L508.5,574.96L510.0,574.40L511.5,574.48L513.0,574.37L514.5,574.37L516.0,574.36L517.5,574.42L519.0,574.57L520.5,574.12L522.0,574.05L523.5,574.03L525.0,574.40L526.5,574.88L528.0,574.91L529.5,575.54L531.0,576.10L532.5,576.07L534.0,575.91L535.5,576.39L537.0,576.85L538.5,577.30L540.0,577.55L541.5,578.21L543.0,578.90L544.5,579.24L546.0,579.43L547.5,579.59L549.0,580.08L550.5,580.31L552.0,580.48L553.5,580.93L555.0,580.52L556.5,580.27L558.0,580.02L559.5,580.09L561.0,580.42L562.5,580.24L564.0,579.83L565.5,579.39L567.0,579.69L568.5,579.48L570.0,579.40L571.5,579.31L573.0,579.07L574.5,578.80L576.0,578.88L577.5,578.90L579.0,579.13L580.5,578.65L582.0,578.89L583.5,579.11L585.0,578.87L586.5,578.70L588.0,578.38L589.5,578.29L591.0,578.61L592.5,578.45L594.0,578.74L595.5,579.28L597.0,579.34L598.5,579.80L600.0,580.23L601.5,580.40L603.0,580.90L604.5,581.47L606.0,581.77L607.5,582.15L609.0,582.92L610.5,583.35L612.0,583.84L613.5,583.80L615.0,584.38L616.5,584.28L618.0,584.36L619.5,584.73L621.0,584.63L622.5,584.42L624.0,584.85L625.5,584.67L627.0,584.39L628.5,584.81L630.0,584.82L631.5,584.61L633.0,585.05L634.5,584.88L636.0,585.07L637.5,585.20L639.0,585.24L640.5,585.36L642.0,585.97L643.5,586.28L645.0,586.38L646.5,586.54L648.0,586.99L649.5,587.33L651.0,587.46L652.5,587.08L654.0,586.91L655.5,586.48L657.0,586.77L658.5,587.37L660.0,587.85L661.5,587.68L663.0,587.90L664.5,588.44L666.0,588.61L667.5,589.55L669.0,589.79L670.5,590.31L672.0,590.58L673.5,590.95L675.0,591.71L676.5,592.28L678.0,592.72L679.5,593.09L681.0,593.55L682.5,593.52L684.0,593.56L685.5,593.99L687.0,594.12L688.5,594.26L690.0,594.11L691.5,594.33L693.0,594.77L694.5,594.77L696.0,595.61L697.5,596.17L699.0,596.69L700.5,597.47L702.0,597.91L703.5,597.97L705.0,598.61L706.5,599.17L708.0,599.63L709.5,599.78L711.0,600.15L712.5,599.91L714.0,599.79L715.5,599.52L717.0,599.34L718.5,599.80L720.0,600.30L721.5,600.91L723.0,601.35L724.5,602.17L726.0,603.01L727.5,604.09L729.0,604.39L730.5,604.55L732.0,605.19L733.5,605.64L735.0,606.10L736.5,605.92L738.0,605.35L739.5,605.57L741.0,605.39L742.5,605.11L744.0,604.66L745.5,604.47L747.0,604.36L748.5,603.87L750.0,603.57L751.5,603.77L753.0,603.30L754.5,603.24L756.0,602.61L757.5,601.64L759.0,601.48L760.5,600.98L762.0,600.53L763.5,599.42L765.0,599.09L766.5,598.67L768.0,598.14L769.5,597.30L771.0,597.26L772.5,597.02L774.0,596.47L775.5,596.26L777.0,596.05L778.5,595.57L780.0,595.06L781.5,594.60L783.0,594.68L784.5,594.69L786.0,594.38L787.5,594.19L789.0,593.68L790.5,593.91L792.0,593.44L793.5,593.40L795.0,593.28L796.5,593.21L798.0,593.02L799.5,593.12L801.0,592.84L802.5,592.82L804.0,592.84L805.5,592.69L807.0,592.43L808.5,592.12L810.0,591.82L811.5,591.32L813.0,591.24L814.5,591.50L816.0,591.16L817.5,591.19L819.0,591.18L820.5,591.12L822.0,591.40L823.5,591.19L825.0,591.54L826.5,591.93L828.0,592.26L829.5,591.98L831.0,592.48L832.5,593.11L834.0,593.32L835.5,593.22L837.0,593.98L838.5,594.49L840.0,595.18L841.5,595.06L843.0,595.73L844.5,596.26L846.0,596.82L847.5,596.56L849.0,596.61L850.5,596.40L852.0,596.29L853.5,596.10L855.0,596.42L856.5,597.03L858.0,597.37L859.5,597.53L861.0,597.99L862.5,598.20L864.0,598.83L865.5,599.69L867.0,600.62L868.5,600.67L870.0,601.35L871.5,601.42L873.0,601.37L874.5,601.53L876.0,601.85L877.5,601.71L879.0,602.22L880.5,602.41L882.0,602.93L883.5,603.30L885.0,604.07L886.5,605.20L888.0,605.72L889.5,606.44L891.0,606.68L892.5,606.90L894.0,607.16L895.5,607.63L897.0,608.35L898.5,609.00L900.0,609.88L901.5,610.79L903.0,611.57L904.5,611.97L905.0,612.5Z" fill="url(#isl)" filter="url(#soft)"/>
+<rect x="0" y="598" width="1000" height="16" fill="url(#haze)"/>
+
+<rect y="612" width="1000" height="388" fill="url(#sea)"/>
+<rect x="420" y="613" width="520" height="5" fill="url(#glint)"/>
+<g mask="url(#watermask)">
+  <rect y="612" width="1000" height="388" filter="url(#water3)" mask="url(#zfar)"/>
+  <rect y="612" width="1000" height="388" filter="url(#water2)" mask="url(#zmid)"/>
+  <rect y="612" width="1000" height="388" filter="url(#water)" mask="url(#znear)"/>
+</g>
+<rect y="611.6" width="1000" height="1.1" fill="#f4dcc0" opacity="0.6"/>
+
+<g><path d="M262.54,607.9L262.54,632.56L274.6,632.56Q270.55,621.4 262.54,607.9Z" fill="#f7f1e6"/><path d="M261.46,610.6L261.46,632.02L253.0,632.02Q256.15,623.2 261.46,610.6Z" fill="#efe7da"/><path d="M262,607.0L262,634" stroke="#d8d2c8" stroke-width="0.315"/><path d="M251.2,632.92L276.4,632.92L273.7,635.26L253.0,635.26Z" fill="#2c3d55"/></g><g opacity="0.14" filter="url(#ripple)" transform="translate(0,1029.12) scale(1,-0.62)"><path d="M262.54,607.9L262.54,632.56L274.6,632.56Q270.55,621.4 262.54,607.9Z" fill="#f7f1e6"/><path d="M261.46,610.6L261.46,632.02L253.0,632.02Q256.15,623.2 261.46,610.6Z" fill="#efe7da"/></g>
+
+<text class="title" x="78" y="168">Catalina Blue</text>
+<text class="artist" x="82" y="210">CLAUDE THE SONGWRITER</text>
+
+<rect width="1000" height="1000" filter="url(#dither)"/>
+</svg></body></html>

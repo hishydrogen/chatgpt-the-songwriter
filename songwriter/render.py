@@ -46,6 +46,39 @@ def _render_sfz(song: Song, track: Track, inst: Instrument, n: int) -> np.ndarra
     return _fit(audio.T, n)
 
 
+SURGE_PLAY_MODES = {"poly": 0, "mono": 1, "mono_st": 2, "mono_fp": 3, "mono_st_fp": 4, "latch": 5}
+
+
+def _surge_overrides(s, params: dict):
+    """Apply surge(..., portamento_ms=, play_mode=, bend_range=, **{"Param Name": raw}) to
+    every parameter with that name (both scenes)."""
+    if not params:
+        return
+    from surgepy import constants as c
+    named: dict = {}
+    for cg in (c.cg_GLOBAL, c.cg_OSC, c.cg_MIX, c.cg_FILTER, c.cg_ENV, c.cg_LFO, c.cg_FX):
+        for e in s.getControlGroup(cg).getEntries():
+            for p in e.getParams():
+                named.setdefault(p.getName(), []).append(p)
+
+    def put(name, val):
+        if name not in named:
+            raise KeyError(f"Surge has no parameter {name!r}")
+        for p in named[name]:
+            s.setParamVal(p, float(val))
+
+    for k, v in params.items():
+        if k == "portamento_ms":
+            put("Portamento", -8.0 if v <= 0 else float(np.log2(v / 1000)))
+        elif k == "play_mode":
+            put("Play Mode", SURGE_PLAY_MODES[v])
+        elif k == "bend_range":
+            put("Pitch Bend Up Range", v)
+            put("Pitch Bend Down Range", v)
+        else:
+            put(k, v)
+
+
 def _render_surge(song: Song, track: Track, inst: Instrument, n: int) -> np.ndarray:
     import surgepy
 
@@ -54,6 +87,7 @@ def _render_surge(song: Song, track: Track, inst: Instrument, n: int) -> np.ndar
         s.setTempo(float(song.bpm))
     if not s.loadPatch(str(inst.path)):
         raise RuntimeError(f"Surge could not load patch {inst.path}")
+    _surge_overrides(s, inst.params)
     bs = s.getBlockSize()
     # let the patch settle (FX, smoothing) before the first note
     warm = s.createMultiBlock(64)

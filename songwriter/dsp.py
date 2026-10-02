@@ -182,9 +182,15 @@ def saturate(x, drive_db=6.0, mix=1.0, asym=0.0):
     if drive_db <= 0:
         return x
     g = 10 ** (drive_db / 20)
-    up = signal.resample_poly(x, 4, 1, axis=1)
-    y = np.tanh(g * up + asym) - np.tanh(asym)
-    y = signal.resample_poly(y, 1, 4, axis=1)[:, : x.shape[1]]
+    # 4x oversampling in overlapping blocks: same result as one pass, a fraction of the
+    # memory (a 4-minute stem at 4x is ~1.5 GB in float64)
+    n, block, pad = x.shape[1], SR * 8, 4096
+    y = np.empty_like(x, dtype=np.float64)
+    for s in range(0, n, block):
+        a, b = max(0, s - pad), min(n, s + block + pad)
+        up = signal.resample_poly(x[:, a:b], 4, 1, axis=1)
+        seg = signal.resample_poly(np.tanh(g * up + asym) - np.tanh(asym), 1, 4, axis=1)
+        y[:, s:min(n, s + block)] = seg[:, s - a:s - a + min(block, n - s)]
     rms_in = np.sqrt(np.mean(x ** 2)) + 1e-12
     rms_out = np.sqrt(np.mean(y ** 2)) + 1e-12
     y = y * (rms_in / rms_out)
@@ -332,6 +338,18 @@ def chorus(x, rate_hz=0.6, depth_ms=2.2, delay_ms=7.0, mix=0.5, stereo=True):
     return out.astype(np.float32)
 
 
+def tremolo(x, rate_hz=4.5, depth=0.35, stereo=True, phase=0.0, start=0.0):
+    """Rhodes Suitcase "vibrato": amplitude modulation, left and right in anti-phase when
+    stereo (an auto-pan), in phase otherwise. depth 0-1. `start` (s) aligns the LFO."""
+    t = (np.arange(x.shape[1]) / SR) - start
+    lfo = np.sin(2 * np.pi * rate_hz * t + phase)
+    g_l = 1 - depth * (0.5 + 0.5 * lfo)
+    g_r = 1 - depth * (0.5 - 0.5 * lfo) if stereo else g_l
+    y = np.stack([x[0] * g_l, x[1] * g_r])
+    rms_in = np.sqrt(np.mean(x ** 2)) + 1e-12
+    return (y * (rms_in / (np.sqrt(np.mean(y ** 2)) + 1e-12))).astype(np.float32)
+
+
 def _biquad(kind, f0, gain_db=0.0, q=0.707):
     """RBJ cookbook biquad -> (b, a)."""
     A = 10 ** (gain_db / 40)
@@ -400,6 +418,19 @@ def varispeed(x, ratio):
     n_out = int(x.shape[-1] / ratio)
     idx = np.minimum((np.arange(n_out) * ratio).astype(np.int64), x.shape[-1] - 1)
     return x[..., idx]
+
+
+def fade_out(x, start_s, end_s, floor_db=-50.0):
+    """Console-style fade: linear in dB from 0 to floor_db between start and end, then
+    a short ramp to silence."""
+    n = x.shape[1]
+    t = np.arange(n) / SR
+    g_db = np.where(t < start_s, 0.0, floor_db * np.clip((t - start_s) / max(1e-6, end_s - start_s), 0, 1))
+    g = 10 ** (g_db / 20)
+    g[t >= end_s] = 0.0
+    tail = (t >= end_s - 0.05) & (t < end_s)
+    g[tail] *= np.linspace(1, 0, int(tail.sum()))
+    return (x * g).astype(np.float32)
 
 
 def db(x: float) -> float:

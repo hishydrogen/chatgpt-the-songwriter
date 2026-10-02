@@ -141,7 +141,8 @@ def dashboard(x: np.ndarray, out_png: Path, tracks: dict[str, np.ndarray] | None
     # per-track band energy heatmap
     if tracks:
         names = [n for n in tracks if not n.startswith("bus:")]
-        M = np.array([[band_levels(tracks[n])[b] for b in BANDS] for n in names])
+        levels = [band_levels(tracks[n]) for n in names]   # one PSD per track
+        M = np.array([[lv[b] for b in BANDS] for lv in levels])
         im = ax[3].imshow(M, aspect="auto", cmap="viridis", vmin=M.max() - 40, vmax=M.max())
         ax[3].set_yticks(range(len(names)), names); ax[3].set_xticks(range(len(BANDS)), list(BANDS))
         fig.colorbar(im, ax=ax[3], label="dB"); ax[3].set_title("Where each track lives (band energy)")
@@ -179,9 +180,35 @@ def warnings(master_stats: dict, track_info: dict) -> list[str]:
     return w
 
 
+def section_levels(master: np.ndarray, tracks: dict, song) -> list[dict]:
+    """Per marker section: master LUFS and the LUFS of every track that plays in it
+    (after its channel strip). Used to balance sections and to loudness-match auditions."""
+    marks = sorted(song.markers)
+    if not marks:
+        return []
+    marks.append((song.end_beat, "end"))
+    out = []
+    for (b0, label), (b1, _) in zip(marks, marks[1:]):
+        s0, s1 = int(song.seconds(b0) * SR), int(song.seconds(b1) * SR)
+        if s1 - s0 < SR // 2:
+            continue
+        lv = {}
+        for n, x in tracks.items():
+            seg = x[:, s0:s1]
+            if np.abs(seg).max() > 1e-5:
+                v = lufs(seg)
+                if v > -70:
+                    lv[n] = round(v, 1)
+        out.append({"label": label, "start_s": round(s0 / SR, 2), "end_s": round(s1 / SR, 2),
+                    "master_lufs": round(lufs(master[:, s0:s1]), 1), "tracks": lv})
+    return out
+
+
 def write_report(out_dir: Path, master: np.ndarray, tracks: dict, song=None, extra: dict | None = None):
     s = stats(master)
     report = {"master": s, "masking": masking_report(tracks), **(extra or {})}
+    if song is not None:
+        report["sections"] = section_levels(master, tracks, song)
     report["tracks"] = {n: {"lufs": round(lufs(x), 1),
                             "peak_db": round(float(20 * np.log10(np.abs(x).max() + 1e-12)), 1),
                             "stereo_correlation": round(_corr(x), 2)}
