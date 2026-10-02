@@ -4,7 +4,6 @@
   python -m songwriter instruments [filter]
   python -m songwriter surge-patches [filter]
   python -m songwriter analyze file.wav
-  python -m songwriter compare mine.wav reference.mp3
 """
 from __future__ import annotations
 
@@ -98,25 +97,6 @@ def cmd_analyze(a):
     print("->", png)
 
 
-def cmd_compare(a):
-    x, r = read_audio(Path(a.mine)), read_audio(Path(a.reference))
-    sx, sr_ = analyze.stats(x), analyze.stats(r)
-    print(f"{'metric':<26}{'mine':>12}{'reference':>12}")
-    for k, v in sx.items():
-        if k == "bands_db":
-            continue
-        print(f"{k:<26}{str(v):>12}{str(sr_[k]):>12}")
-    # tonal difference after loudness alignment
-    bx, br = sx["bands_db"], sr_["bands_db"]
-    ox, orf = np.mean(list(bx.values())), np.mean(list(br.values()))
-    print("band balance (mine - ref, loudness aligned):")
-    for b in bx:
-        print(f"  {b:<10}{(bx[b] - ox) - (br[b] - orf):+6.1f} dB")
-    png = Path(a.mine).with_suffix(".compare.png")
-    analyze.dashboard(x, png, title=f"{Path(a.mine).name} vs {Path(a.reference).name}", reference=r)
-    print("->", png)
-
-
 def main(argv=None):
     p = argparse.ArgumentParser(prog="songwriter")
     sub = p.add_subparsers(required=True)
@@ -125,7 +105,6 @@ def main(argv=None):
     i = sub.add_parser("instruments"); i.add_argument("filter", nargs="?"); i.set_defaults(fn=cmd_instruments)
     s = sub.add_parser("surge-patches"); s.add_argument("filter", nargs="?"); s.set_defaults(fn=cmd_surge_patches)
     an = sub.add_parser("analyze"); an.add_argument("file"); an.set_defaults(fn=cmd_analyze)
-    c = sub.add_parser("compare"); c.add_argument("mine"); c.add_argument("reference"); c.set_defaults(fn=cmd_compare)
     a = p.parse_args(argv)
     a.fn(a)
 

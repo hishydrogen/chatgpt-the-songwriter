@@ -1,11 +1,11 @@
 """Catalina Blue - a 1978 West Coast instrumental in the spirit of
 "What a Fool Believes" (style, harmony vocabulary, groove and sound only; all material
-is original). Eb major, 119 BPM drifting to 122 like a live band (the reference measured
-118.9 -> 122), 8th notes at 52:48.
+is original). Eb major, 119 BPM drifting to 122 like a live band leaning into the
+choruses, 8th notes at 52:48.
 
 Intro 8 | Verse 16 | Pre 8 | Chorus 16 | Riff 4 | Verse 8 | Pre 8 | Chorus 8 (pivot) |
 Bridge 16 (B major, synth solo) | Final chorus 16 (E major) | Chorus vamp 12, faded out
-like a 1978 single (the reference fades on its chorus too)
+like a 1978 single
 
 The face of the song is the piano riff: left-hand octaves on a 3+3+2 tresillo, the right
 hand rocking between two voicings with a top line climbing Bb-C-D-Eb, doubled by an OB-8
@@ -689,7 +689,7 @@ def compose() -> Song:
     a.chorus("final chorus")
     a.fade()
 
-    # tempo: a live band leaning into the choruses (reference 118.9 -> 122)
+    # tempo: a live band leaning into the choruses
     bar = lambda name: s.bar(a.sec[name][0])
     s.tempo_ramp(bar("pre 1"), bar("chorus 1"), 119.0, 120.0, step=2.0)
     s.tempo(bar("chorus 1"), 121.0)
@@ -750,8 +750,7 @@ def compose() -> Song:
             "room": {"type": "reverb", "kind": "room", "decay": 0.6, "predelay": 5, "hpf": 200, "lpf": 7000},
             "dly": {"type": "delay", "beats": 0.75, "feedback": 0.25, "hpf": 400, "lpf": 3500},
         },
-        # 1978 balance: reference bass -6.8 / sub -16.5 dB under the mids, presence lift
-        # around 6 kHz, a tape-like roll-off above 12 kHz
+        # warm 1978 tone: a light low end, presence around 5 kHz, a soft tape-like top
         "master": {"eq": [("lshelf", 120, -5, 0.7), ("hpf", 32), ("bell", 190, 1.5, 0.8), ("bell", 800, 1.5, 1.2),
                           ("hshelf", 5000, 2.5, 0.7), ("lpf", 15000, 1)],
                    "glue": {"threshold": -18, "ratio": 2, "attack": 30, "release": 250}, "target_lufs": -14,

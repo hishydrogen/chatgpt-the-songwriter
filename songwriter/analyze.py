@@ -1,8 +1,8 @@
-"""Objective mix analysis: the "ears" of this pipeline.
+"""Objective mix analysis: a technical check for what Claude cannot hear.
 
-Produces numbers (loudness, peaks, dynamics, stereo, tonal balance, masking) and a
-PNG dashboard, so mix decisions can be checked against measurements and against
-reference tracks (`python -m songwriter compare mine.wav reference.mp3`).
+Produces numbers (loudness, peaks, dynamics, stereo, tonal balance, masking, per-section
+track levels) and a PNG dashboard, so technical problems (clipping, mono collapse, mud,
+resonances, masking, a buried lead) show up. Sound choices stay with the listener.
 """
 from __future__ import annotations
 
@@ -108,7 +108,7 @@ def masking_report(tracks: dict[str, np.ndarray], top_db: float = 3.0) -> list[s
 
 
 def dashboard(x: np.ndarray, out_png: Path, tracks: dict[str, np.ndarray] | None = None,
-              title: str = "", markers=None, reference: np.ndarray | None = None):
+              title: str = "", markers=None):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -120,9 +120,6 @@ def dashboard(x: np.ndarray, out_png: Path, tracks: dict[str, np.ndarray] | None
     fc, lv = third_octave(x)
     off = np.mean(lv[10:24])
     ax[0].semilogx(fc, np.array(lv) - off, "-o", ms=3, label="mix")
-    if reference is not None:
-        fr, lr = third_octave(reference)
-        ax[0].semilogx(fr, np.array(lr) - np.mean(lr[10:24]), "-o", ms=3, alpha=.7, label="reference")
     ax[0].set_xlim(20, 20000); ax[0].grid(True, which="both", alpha=.3)
     ax[0].set_ylabel("1/3-oct level (dB, rel.)"); ax[0].legend(); ax[0].set_title("Tonal balance")
     # spectrogram
