@@ -1,0 +1,447 @@
+{
+  "master": {
+    "integrated_lufs": -14.06,
+    "short_term_max_lufs": -12.29,
+    "loudness_range_lu": 2.31,
+    "true_peak_dbtp": -1.0,
+    "sample_peak_db": -1.09,
+    "plr_db": 13.06,
+    "crest_db": 13.81,
+    "stereo_correlation": 0.984,
+    "side_to_mid_db": -20.81,
+    "tonal_slope_db_per_oct": -1.43,
+    "bands_db": {
+      "sub": -15.9,
+      "bass": -19.4,
+      "low-mid": -24.6,
+      "mid": -22.9,
+      "hi-mid": -29.7,
+      "presence": -31.9,
+      "air": -30.7
+    }
+  },
+  "masking": [
+    "mid: voice F: Adachi Rei (robot), voice A: Hitsuboku Kumi, voice D: Hikari One, voice E: Viki Hopper, voice B: Kumi strong, voice C: Milk within 3 dB of each other",
+    "hi-mid: clap, voice C: Milk within 3 dB of each other",
+    "air: hats, clap within 3 dB of each other"
+  ],
+  "master_chain": {
+    "lufs": -14.06,
+    "true_peak": -1.0,
+    "limiter_drive_db": 4.56
+  },
+  "sections": [
+    {
+      "label": "voice A: Hitsuboku Kumi",
+      "start_s": 0.0,
+      "end_s": 14.55,
+      "master_lufs": -13.3,
+      "tracks": {
+        "kick": -24.2,
+        "clap": -28.9,
+        "hats": -33.9,
+        "bed bass": -29.7,
+        "bed keys": -37.2,
+        "voice A: Hitsuboku Kumi": -24.5,
+        "voice B: Kumi strong": -63.3,
+        "fx:plate": -35.0,
+        "fx:room": -47.6,
+        "fx:dly": -48.3
+      }
+    },
+    {
+      "label": "voice B: Kumi strong",
+      "start_s": 14.55,
+      "end_s": 29.09,
+      "master_lufs": -13.6,
+      "tracks": {
+        "kick": -24.2,
+        "clap": -28.9,
+        "hats": -33.9,
+        "bed bass": -29.7,
+        "bed keys": -37.2,
+        "voice B: Kumi strong": -25.3,
+        "voice C: Milk": -55.9,
+        "fx:plate": -36.5,
+        "fx:room": -47.6,
+        "fx:dly": -48.4
+      }
+    },
+    {
+      "label": "voice C: Milk",
+      "start_s": 29.09,
+      "end_s": 43.64,
+      "master_lufs": -13.3,
+      "tracks": {
+        "kick": -24.2,
+        "clap": -28.9,
+        "hats": -33.9,
+        "bed bass": -29.7,
+        "bed keys": -37.2,
+        "voice C: Milk": -24.7,
+        "voice D: Hikari One": -50.1,
+        "fx:plate": -35.2,
+        "fx:room": -47.6,
+        "fx:dly": -47.7
+      }
+    },
+    {
+      "label": "voice D: Hikari One",
+      "start_s": 43.64,
+      "end_s": 58.18,
+      "master_lufs": -13.1,
+      "tracks": {
+        "kick": -24.2,
+        "clap": -28.9,
+        "hats": -33.9,
+        "bed bass": -29.7,
+        "bed keys": -37.2,
+        "voice D: Hikari One": -24.2,
+        "fx:plate": -34.9,
+        "fx:room": -47.6,
+        "fx:dly": -47.4
+      }
+    },
+    {
+      "label": "voice E: Viki Hopper",
+      "start_s": 58.18,
+      "end_s": 72.73,
+      "master_lufs": -13.3,
+      "tracks": {
+        "kick": -24.2,
+        "clap": -28.9,
+        "hats": -33.9,
+        "bed bass": -29.7,
+        "bed keys": -37.2,
+        "voice E: Viki Hopper": -24.7,
+        "voice F: Adachi Rei (robot)": -46.6,
+        "fx:plate": -35.5,
+        "fx:room": -47.6,
+        "fx:dly": -49.3
+      }
+    },
+    {
+      "label": "voice F: Adachi Rei (robot)",
+      "start_s": 72.73,
+      "end_s": 89.09,
+      "master_lufs": -13.2,
+      "tracks": {
+        "kick": -24.2,
+        "clap": -29.0,
+        "hats": -33.9,
+        "bed bass": -29.7,
+        "bed keys": -37.2,
+        "voice F: Adachi Rei (robot)": -24.1,
+        "fx:plate": -35.0,
+        "fx:room": -47.6,
+        "fx:dly": -47.7
+      }
+    },
+    {
+      "label": "keys A: house piano (Salamander)",
+      "start_s": 89.09,
+      "end_s": 96.36,
+      "master_lufs": -15.1,
+      "tracks": {
+        "kick": -24.2,
+        "clap": -28.8,
+        "hats": -33.9,
+        "keys A: house piano (Salamander)": -30.4,
+        "fx:plate": -46.8,
+        "fx:room": -47.4
+      }
+    },
+    {
+      "label": "keys B: Rhodes",
+      "start_s": 96.36,
+      "end_s": 103.64,
+      "master_lufs": -15.0,
+      "tracks": {
+        "kick": -24.2,
+        "clap": -28.8,
+        "hats": -33.9,
+        "keys A: house piano (Salamander)": -46.5,
+        "keys B: Rhodes": -29.6,
+        "fx:plate": -44.8,
+        "fx:room": -47.5
+      }
+    },
+    {
+      "label": "keys C: pluck synth",
+      "start_s": 103.64,
+      "end_s": 110.91,
+      "master_lufs": -15.0,
+      "tracks": {
+        "kick": -24.2,
+        "clap": -28.8,
+        "hats": -33.9,
+        "keys B: Rhodes": -62.3,
+        "keys C: pluck synth": -29.3,
+        "fx:plate": -44.4,
+        "fx:room": -47.5
+      }
+    },
+    {
+      "label": "keys D: supersaw stab",
+      "start_s": 110.91,
+      "end_s": 118.18,
+      "master_lufs": -14.9,
+      "tracks": {
+        "kick": -24.2,
+        "clap": -28.8,
+        "hats": -33.9,
+        "keys C: pluck synth": -32.0,
+        "keys D: supersaw stab": -29.6,
+        "fx:plate": -44.2,
+        "fx:room": -47.5
+      }
+    },
+    {
+      "label": "keys E: DX EP",
+      "start_s": 118.18,
+      "end_s": 125.45,
+      "master_lufs": -14.9,
+      "tracks": {
+        "kick": -24.2,
+        "clap": -28.8,
+        "hats": -33.9,
+        "keys D: supersaw stab": -46.8,
+        "keys E: DX EP": -29.2,
+        "fx:plate": -44.9,
+        "fx:room": -47.5
+      }
+    },
+    {
+      "label": "bass A: rubber synth bass",
+      "start_s": 125.45,
+      "end_s": 132.73,
+      "master_lufs": -14.8,
+      "tracks": {
+        "kick": -24.2,
+        "clap": -28.8,
+        "hats": -33.9,
+        "keys E: DX EP": -36.6,
+        "bass A: rubber synth bass": -27.5,
+        "fx:plate": -47.0,
+        "fx:room": -47.5
+      }
+    },
+    {
+      "label": "bass B: FM slap",
+      "start_s": 132.73,
+      "end_s": 140.0,
+      "master_lufs": -14.7,
+      "tracks": {
+        "kick": -24.2,
+        "clap": -28.8,
+        "hats": -33.9,
+        "bass B: FM slap": -27.4,
+        "fx:room": -47.5
+      }
+    },
+    {
+      "label": "bass C: saw bass",
+      "start_s": 140.0,
+      "end_s": 147.27,
+      "master_lufs": -14.5,
+      "tracks": {
+        "kick": -24.2,
+        "clap": -28.8,
+        "hats": -33.9,
+        "bass C: saw bass": -27.3,
+        "fx:room": -47.5
+      }
+    },
+    {
+      "label": "bass D: deep sub",
+      "start_s": 147.27,
+      "end_s": 154.55,
+      "master_lufs": -14.9,
+      "tracks": {
+        "kick": -24.2,
+        "clap": -28.8,
+        "hats": -33.9,
+        "bass D: deep sub": -27.3,
+        "fx:room": -47.5
+      }
+    },
+    {
+      "label": "bass E: finger bass (sampled)",
+      "start_s": 154.55,
+      "end_s": 161.82,
+      "master_lufs": -15.0,
+      "tracks": {
+        "kick": -24.2,
+        "clap": -28.8,
+        "hats": -33.9,
+        "bass E: finger bass (sampled)": -27.2,
+        "fx:room": -47.5
+      }
+    },
+    {
+      "label": "drums A: house kick, 4 on the floor",
+      "start_s": 161.82,
+      "end_s": 169.09,
+      "master_lufs": -15.1,
+      "tracks": {
+        "kick": -24.2,
+        "clap": -28.8,
+        "hats": -33.9,
+        "bed bass": -29.1,
+        "bass E: finger bass (sampled)": -61.8,
+        "fx:room": -47.5
+      }
+    },
+    {
+      "label": "drums B: 808 kick, broken beat",
+      "start_s": 169.09,
+      "end_s": 176.36,
+      "master_lufs": -14.5,
+      "tracks": {
+        "kick": -21.5,
+        "clap": -35.2,
+        "hats": -34.9,
+        "bed bass": -30.0,
+        "fx:room": -52.1
+      }
+    },
+    {
+      "label": "drums C: punch kick, J-pop dance",
+      "start_s": 176.36,
+      "end_s": 184.55,
+      "master_lufs": -15.4,
+      "tracks": {
+        "kick": -24.4,
+        "clap": -28.9,
+        "hats": -36.5,
+        "bed bass": -29.1,
+        "fx:room": -47.6
+      }
+    }
+  ],
+  "tracks": {
+    "kick": {
+      "lufs": -24.0,
+      "peak_db": -9.6,
+      "stereo_correlation": 1.0
+    },
+    "clap": {
+      "lufs": -29.0,
+      "peak_db": -15.7,
+      "stereo_correlation": 1.0
+    },
+    "hats": {
+      "lufs": -34.0,
+      "peak_db": -21.6,
+      "stereo_correlation": 1.0
+    },
+    "bed bass": {
+      "lufs": -29.6,
+      "peak_db": -17.5,
+      "stereo_correlation": 1.0
+    },
+    "bed keys": {
+      "lufs": -37.2,
+      "peak_db": -21.5,
+      "stereo_correlation": 0.67
+    },
+    "voice A: Hitsuboku Kumi": {
+      "lufs": -24.5,
+      "peak_db": -14.8,
+      "stereo_correlation": 1.0
+    },
+    "voice B: Kumi strong": {
+      "lufs": -25.4,
+      "peak_db": -13.3,
+      "stereo_correlation": 1.0
+    },
+    "voice C: Milk": {
+      "lufs": -24.7,
+      "peak_db": -13.5,
+      "stereo_correlation": 1.0
+    },
+    "voice D: Hikari One": {
+      "lufs": -24.3,
+      "peak_db": -13.7,
+      "stereo_correlation": 1.0
+    },
+    "voice E: Viki Hopper": {
+      "lufs": -24.8,
+      "peak_db": -13.5,
+      "stereo_correlation": 1.0
+    },
+    "voice F: Adachi Rei (robot)": {
+      "lufs": -24.1,
+      "peak_db": -16.3,
+      "stereo_correlation": 1.0
+    },
+    "keys A: house piano (Salamander)": {
+      "lufs": -30.4,
+      "peak_db": -16.2,
+      "stereo_correlation": 0.44
+    },
+    "keys B: Rhodes": {
+      "lufs": -29.7,
+      "peak_db": -14.1,
+      "stereo_correlation": 0.97
+    },
+    "keys C: pluck synth": {
+      "lufs": -29.4,
+      "peak_db": -17.3,
+      "stereo_correlation": 0.94
+    },
+    "keys D: supersaw stab": {
+      "lufs": -29.6,
+      "peak_db": -13.6,
+      "stereo_correlation": 0.81
+    },
+    "keys E: DX EP": {
+      "lufs": -29.3,
+      "peak_db": -15.6,
+      "stereo_correlation": 0.73
+    },
+    "bass A: rubber synth bass": {
+      "lufs": -27.7,
+      "peak_db": -15.9,
+      "stereo_correlation": 1.0
+    },
+    "bass B: FM slap": {
+      "lufs": -27.6,
+      "peak_db": -18.3,
+      "stereo_correlation": 1.0
+    },
+    "bass C: saw bass": {
+      "lufs": -27.5,
+      "peak_db": -15.4,
+      "stereo_correlation": 1.0
+    },
+    "bass D: deep sub": {
+      "lufs": -27.4,
+      "peak_db": -17.2,
+      "stereo_correlation": 1.0
+    },
+    "bass E: finger bass (sampled)": {
+      "lufs": -27.3,
+      "peak_db": -16.6,
+      "stereo_correlation": 1.0
+    },
+    "fx:plate": {
+      "lufs": -36.5,
+      "peak_db": -20.5,
+      "stereo_correlation": 0.22
+    },
+    "fx:room": {
+      "lufs": -47.7,
+      "peak_db": -35.4,
+      "stereo_correlation": -0.04
+    },
+    "fx:dly": {
+      "lufs": -48.1,
+      "peak_db": -33.4,
+      "stereo_correlation": 0.01
+    }
+  },
+  "warnings": [
+    "sub louder than bass band: boomy, check kick/bass below 60 Hz"
+  ]
+}

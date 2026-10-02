@@ -128,7 +128,15 @@ def _render_vst3(song: Song, track: Track, inst: Instrument, n: int) -> np.ndarr
     return _fit(np.asarray(audio, dtype=np.float32), n)
 
 
-ENGINES = {"sfz": _render_sfz, "surge": _render_surge, "vst3": _render_vst3}
+def _render_voice(song: Song, track: Track, inst: Instrument, n: int) -> np.ndarray:
+    from . import voice
+    notes = [voice.VNote(song.seconds(x.start), song.seconds(x.start + x.dur), x.pitch,
+                         x.lyric or "ら", x.vel, x.x) for x in track.notes]
+    mono = voice.render(notes, inst.path, {**inst.params, **track.opts}, n, config.SAMPLE_RATE)
+    return _fit(mono, n)
+
+
+ENGINES = {"sfz": _render_sfz, "surge": _render_surge, "vst3": _render_vst3, "voice": _render_voice}
 
 
 def song_length_samples(song: Song) -> int:
@@ -153,6 +161,9 @@ def render_stems(song: Song, out_dir: Path, only: list[str] | None = None,
         sig = out_dir / f".{name}.sig"
         mf = song.track_midi(track)
         signature = f"{track.instrument}|{n}|" + "|".join(str(m) for t in mf.tracks for m in t)
+        if track.opts or any(x.lyric or x.x for x in track.notes):
+            signature += "|" + repr(sorted(track.opts.items())) + "|" + repr(
+                [(x.lyric, sorted((x.x or {}).items())) for x in track.notes])
         if only and name not in only and wav.exists():
             stems[name] = _fit(sf.read(wav, dtype="float32", always_2d=True)[0].T, n)
             continue
