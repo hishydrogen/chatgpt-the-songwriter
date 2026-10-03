@@ -8,3 +8,4 @@ pyloudnorm==0.2.0
 matplotlib==3.11.2
 librosa==0.11.0
 mutagen==1.48.1
+pyworld==0.3.5
