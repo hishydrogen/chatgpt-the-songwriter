@@ -14,7 +14,7 @@ C  "16-beat sprint" syncopated kick, 16th hats and ghost snares, tremolo-picked 
 import importlib.util
 from pathlib import Path
 
-_spec = importlib.util.spec_from_file_location("last_summer", Path(__file__).parent.parent / "last-summer" / "song.py")
+_spec = importlib.util.spec_from_file_location("last_summer", Path(__file__).parent.parent / "ramune" / "song.py")
 ls = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(ls)
 

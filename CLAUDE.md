@@ -18,6 +18,14 @@ Finished examples - read one `song.py` before writing a new song:
   a **sung Japanese vocal** (UTAU voicebank through `songwriter/voice.py`), self-made
   electronic kit, house-piano riff, pumping supersaw, harmony vocals, half-step key change,
   classic Mac OS UI cover. Before any song with lyrics read `docs/vocal-songwriting.md`.
+- `songs/ramune/`: "ラムネ (feat. 筆墨クミ)", early-2010s vocaloid rock at 170 BPM: double-tracked
+  high-gain guitars (DI samples into guitarix amps, `"amp"` strip insert), one sprint
+  four-on-the-floor groove with half-time only in pre-choruses and bridge (the user asked
+  for fewer groove types), a lead-guitar riff and solo with pitch-bend vibrato, quiet piano
+  chorus before a whole-step-up last chorus, a ringing last chord (DI samples last ~3.4 s:
+  fade them on CC11 into a long hall). Cover rendered in Blender Cycles
+  (`art/bottle_scene.py`). The user changed the voice and groove after the first rough mix:
+  `songs/ramune-samples` shows how to answer that with a sample file before redoing it.
 
 ## New song from a reference (the usual request)
 
@@ -159,6 +167,10 @@ CI-tested; if a step fails, fix the script and commit the fix.
 
 - Album art: HTML/SVG -> headless Chromium at 3x -> 3000x3000 PNG -> JPG
   (`songs/*/art/make_art.py`; fonts downloaded into `art/fonts/` with their OFL text).
+  For a photoreal object (glass, metal) render it in Blender (`apt install blender`,
+  Cycles CPU; Ubuntu's build has no OIDN denoiser: adaptive sampling + ffmpeg nlmeans) in
+  front of a camera-facing backdrop of the painted sky, then lay the type on in SVG
+  (`songs/ramune/art`). The user found a hand-drawn SVG bottle "low quality".
   Make it look like a real sleeve of the era: one strong image, quiet period type, lots of
   space. No present-day "retro" signifiers (synthwave stripes, VHS noise, heavy grain,
   cassettes, polaroid frames). Look at the render and fix what you see.
@@ -214,6 +226,10 @@ CI-tested; if a step fails, fix the script and commit the fix.
   different takes), not phase cancellation - the mono sum keeps them.
 - Voice styles (Kumi `S`) are looked up at the nearest recorded pitch before falling back
   to the plain voice.
+- Blender: a glass sphere is a wide-angle lens - a camera-facing backdrop must extend far
+  past the frame (image extension EXTEND) or its border shows up inside the marble, and
+  the Nishita sky is black below the horizon (mix in a pale haze there).
+- MIDI meta text is latin-1: keep `Song(title)` ASCII; the release tags carry the real title.
 - Cover art homage: don't reuse the reference's character (palette, hair, pose) - the
   user called that plagiarism. For an OS-UI cover keep everything UI-native (documents,
   dialogs, pixel icons, cursor), put a modal dialog at the exact screen centre, draw icons

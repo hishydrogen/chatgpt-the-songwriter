@@ -14,7 +14,7 @@ from pathlib import Path
 from songwriter.instruments import surge
 from songwriter.song import Song, note_number
 
-_spec = importlib.util.spec_from_file_location("last_summer", Path(__file__).parent.parent / "last-summer" / "song.py")
+_spec = importlib.util.spec_from_file_location("last_summer", Path(__file__).parent.parent / "ramune" / "song.py")
 ls = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(ls)
 
