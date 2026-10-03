@@ -128,18 +128,52 @@ HOOK = [("A4", "ろ", .5), ("A4", "ん", .25), ("C5", "り", .75), ("r", "", .5)
 - First render of a bank is slow (harvest analysis, 1-3 min per new set of samples on
   4 cores); later renders take seconds.
 
-## Checkpoints with a voice
+## Checkpoints with a voice (the process we followed)
 
-1. Palette: every bank sings **the same chorus** over the same groove (levels within
-   +/-1 dB). Explain each voice in plain words, including its weakness.
-2. Groove sketch: each version 8 bars alone, then 8 bars with the sung hook on top -
-   the riff has to leave room for the voice.
-3. Rough mix: send the full lyrics with a translation and the section table.
+The user picks every sound by ear; for a sung song the voice is the biggest choice, so
+it gets its own audition before anything else is written in detail.
 
-Talking to the user: AskUserQuestion allows only 4 options. When there are more
-candidates, do not hide them behind "type it in Other" - the user did not know what the
-letters meant. Repeat the timestamp and a plain description inside each option, or split
-the choice into two questions.
+1. **Ask first** (with length, mood, energy): does the song get a sung vocal at all?
+   Say honestly what it will sound like (classic UTAU, Japanese only). If yes, ask the
+   lyric language (Japanese / Japanese + a few English lines / Korean approximated in
+   kana, with its weakness) and the lyric theme (2-3 concrete options from the
+   reference's world). The Doomscroll answers: Japanese + English, "city night and
+   loneliness".
+2. **Write the chorus hook before the audition.** The candidates must sing real material:
+   the 8-bar chorus with draft lyrics (one mora per note, checked against the chords).
+   Send the draft lyrics with a translation alongside the audition.
+3. **Vocal audition = Checkpoint 1, part 1** (`songs/night-palette/song.py`):
+   - every voicebank sings **the same 8-bar chorus** over **the same simple groove**
+     (drums + bass + offbeat piano), one after another;
+   - add a style variant where the bank has one (Kumi strong `{"style": "S"}`) - it
+     sounded closest to the reference's energetic singer;
+   - each candidate on its own track named like its marker ("voice A: Hitsuboku Kumi"),
+     levels within +/-1 dB (`scripts/audition_levels.py`);
+   - before rendering, print the aliases each bank will use (`voice._plan(..., light=True)`)
+     and render each bank once on its own: missing spellings (Milk: づ) and slow first
+     analyses show up here, not in the middle of the palette build;
+   - check pitch with a spectrogram + f0 plot, and clicks, before sending.
+   Instruments (keys, bass, drums) follow in part 2 of the same file.
+4. **Timestamp table with one plain-words line per voice, including its weakness**, e.g.
+   "Hikari One: airy, young - recorded only up to G4, high notes are stretched";
+   "Viki Hopper: fewest samples, diction a bit blunt"; "Adachi Rei: robot voice, not a
+   human at all". Mention the release terms if a candidate cannot be released freely.
+5. **Ask** (AskUserQuestion): one question for the voice. Six candidates do not fit in
+   4 options - split them over two questions or put the timestamp and description in
+   each option; do not tell the user to type letters into "Other". The user chose
+   **A 筆墨クミ** (normal, not strong).
+6. **Tune the engine for the chosen voice**, then never audition voices again:
+   `VOX_OPTS` (vibrato depth, portamento timing, `consonant` 0.9 for fast 16ths), range
+   check of the whole melody against the bank, harmony takes from the same bank.
+7. **Groove sketch (Checkpoint 2):** each groove version 8 bars alone, then the same 8
+   bars with the chosen voice singing the hook - the user judges the riff *with* the
+   vocal on top, and we check the vocal stays 4-6 dB over the band.
+8. **Rough mix (Checkpoint 3):** full lyrics in Japanese with a Korean translation and
+   the section table; ask title and ending. Feedback here was about the vocal's
+   continuity (a post-chorus that went silent) and size (harmony, bigger chorus).
+9. **Release:** title "<Title> (feat. <voicebank>)", artist Claude, lyrics embedded
+   (`--lyrics "$(cat LYRICS.txt)"`), the voicebank's credit and terms in the comment
+   and `CREDITS.md`.
 
 ## Album art lesson (from the same song)
 
