@@ -1,4 +1,4 @@
-"""Build and verify the full checkpoint-3 rough mix.
+"""Build and verify the approved full Low Tide master.
 
 Run: python songs/low-tide/build.py
 Optional: --validate-only checks the existing outputs without rendering again.
@@ -27,6 +27,9 @@ def validate():
     song = load_song(HERE)
     assert len(song.tracks) == 9 and len(song.markers) == 10
     assert song.end_beat == 296 and not song.tempo_changes
+    midi = io.BytesIO()
+    song.full_midi().save(file=midi)
+    assert (HERE / "out/midi/song.mid").read_bytes() == midi.getvalue()
     expected_n = song_length_samples(song)
     raw = {}
     for name, track in song.tracks.items():
@@ -64,12 +67,12 @@ def validate():
     mp3_stats = analyze.stats(mp3)
     assert mp3_stats["true_peak_dbtp"] <= -1.0, mp3_stats
     assert abs(mp3_stats["integrated_lufs"] + 14) < .2, mp3_stats
-    result = {"checkpoint": 3, "palette_choice": "BBBB", "groove_choice": "A throughout",
+    result = {"checkpoint": 4, "palette_choice": "BBBB", "groove_choice": "A throughout",
               "bars": 74, "duration_s": round(duration, 3), "source_midi_exports_current": True,
               "wav_true_peak_dbtp": round(wav_peak, 3), "master": master,
               "decoded_mp3": mp3_stats, "raw_stems": raw,
               "sections": report["sections"], "warnings": report["warnings"],
-              "pending": {"title": "Low Tide (working title)", "ending": "full stop (provisional)"}}
+              "title": "Low Tide", "ending": "full stop"}
     (HERE / "out/validation.json").write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps({k: v for k, v in result.items() if k not in ("raw_stems", "sections")}, indent=2), flush=True)
     print("Full form, current MIDI/float stems, WAV/MP3 peaks, dynamics and mono checks passed.", flush=True)

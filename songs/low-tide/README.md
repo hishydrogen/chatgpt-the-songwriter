@@ -1,12 +1,19 @@
-# Low Tide — 체크포인트 3
+# Low Tide — 체크포인트 4
 
-사용자가 선택한 **BBBB 악기 + A 그루브만**으로 만든 전체 인스트루멘털 러프 믹스입니다.
-작업 제목은 `Low Tide`이며, 제목과 최종 엔딩은 이 단계에서 정합니다.
-현재 미리듣기는 마지막 화음을 남기고 끝내는 완결형 엔딩입니다.
+사용자가 선택한 **BBBB 악기 + A 그루브만**으로 만든 인스트루멘털입니다.
+사용자의 “이대로 4단계” 요청에 따라 승인한 편곡을 유지해 최종 패키지를 만들었습니다.
+제목은 `Low Tide`, 아티스트는 `Codex the Songwriter`이며,
+마지막 화음을 남기고 끝내는 기존 엔딩을 유지했습니다.
 
 ## 들어보기
 
-[전체 러프 믹스 MP3](out/master.mp3) / [24비트 WAV](out/master.wav)
+[최종 MP3](release/Low%20Tide.mp3) / [16비트 ALAC](release/Low%20Tide_16bit.m4a) /
+[24비트 ALAC](release/Low%20Tide.m4a) / [3000 px 재킷](art/cover.png)
+
+세 음원 모두 재킷과 제목, 아티스트, 연도, BPM, 악기 크레딧을 포함합니다.
+24비트 ALAC는 48 kHz 최종 WAV와 샘플 단위로 일치합니다.
+16비트 ALAC는 SoX로 44.1 kHz로 변환하고 디더링한 휴대용 버전입니다.
+원래 검증용 [MP3](out/master.mp3)와 로컬 [WAV](out/master.wav)도 남겨 두었습니다.
 
 86 BPM, E단조, 74마디이며 잔향을 포함해 약 3분 30초입니다.
 드럼과 베이스의 기본 리듬은 모든 섹션에서 A로 유지합니다. 스네어를 약간 늦게 둔
@@ -53,6 +60,8 @@ source /workspace/songwriter-env/activate.sh
 cd /workspace/chatgpt-the-songwriter
 python songs/low-tide/build.py
 python songs/low-tide/build.py --validate-only
+python songs/low-tide/art/make_art.py
+python songs/low-tide/release_song.py
 ```
 
 작곡 단계에서 악기 음역과 멜로디-화성 관계를 확인합니다. 빌드는 현재 소스와 MIDI의
@@ -60,5 +69,12 @@ python songs/low-tide/build.py --validate-only
 피크, 음량, 다이내믹과 모노 호환성을 검사합니다. 기술 리포트는 `out/report.json`과
 `out/report.png`, 검증 기록은 `out/validation.json`에 있습니다.
 
-이 단계는 전체 구성과 멜로디를 듣고 고르는 러프 믹스입니다. 최종 믹스, 앨범 아트,
-태그가 붙은 무손실 음원은 다음 체크포인트에서 준비합니다.
+최종 패키지 검증 기록은 `release/manifest.json`, 라이브러리 및 아트 크레딧은
+`CREDITS.md`에 있습니다. `release_song.py`는 승인한 WAV의 SHA-256을 고정해
+다른 마스터가 섞이지 않도록 합니다. 16비트 변환의 길이와 피크, 두 ALAC의
+태그와 재킷, MP3 태그 추가 전후의 디코딩 음원 일치도 확인합니다.
+
+재킷은 갯바위와 물웅덩이를 담은 생성 이미지와 작은 제목으로 구성했습니다.
+원본 생성 이미지는 1254 px이며, 배포 재킷은 3000 px로 리사이즈했습니다.
+`out/report.png`의 제목에 남은 체크포인트 3 표기는 해당 기술 리포트가 작성된
+시점을 뜻합니다. 그때 승인한 PCM을 변경 없이 최종 마스터로 사용했습니다.

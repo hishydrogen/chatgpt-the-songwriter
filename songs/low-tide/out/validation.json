@@ -1,5 +1,5 @@
 {
-  "checkpoint": 3,
+  "checkpoint": 4,
   "palette_choice": "BBBB",
   "groove_choice": "A throughout",
   "bars": 74,
@@ -265,8 +265,6 @@
     }
   ],
   "warnings": [],
-  "pending": {
-    "title": "Low Tide (working title)",
-    "ending": "full stop (provisional)"
-  }
+  "title": "Low Tide",
+  "ending": "full stop"
 }

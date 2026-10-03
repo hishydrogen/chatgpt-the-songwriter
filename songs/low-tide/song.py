@@ -1,9 +1,9 @@
-"""Low Tide, checkpoint 3: an original 74-bar instrumental, all groove A.
+"""Low Tide: an original 74-bar instrumental, all groove A.
 
 BBBB palette: vintage-mic drums, Darkblack finger bass, Wurlitzer, Emily guitar.
 86 BPM throughout. A's kick pattern, late snare and bass rhythm remain the basis
 of every section. Development comes from melody, harmony, replies and dynamics.
-The title and full-stop ending are provisional until the listening checkpoint.
+Checkpoint 4 retains the approved arrangement and full-stop ending.
 """
 from pathlib import Path
 import random
@@ -91,7 +91,7 @@ def velocity(rng, value, intensity):
 
 class Arrangement:
     def __init__(self):
-        self.song = Song("Low Tide - Checkpoint 3", bpm=BPM, key="Em")
+        self.song = Song("Low Tide", bpm=BPM, key="Em")
         self.kit = {v: self.song.track(v, "drums.virtuosity") for v in ("kick", "snare", "hats", "toms")}
         for track in self.kit.values():
             for cc, value in KIT_CC.items():
