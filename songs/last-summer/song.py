@@ -531,7 +531,7 @@ class Arranger:
                 for k in (.5, 1.5, 2.5, 3.5):
                     if not (last and k >= 2):
                         self.hit(self.tamb, "tambourine", b + k, 70 * vel, ms=3)
-            if not last and bar % 2 == 1:
+            if not last and bar % (4 if light else 2) == (3 if light else 1):
                 if style == "tamb":
                     self.hit(self.snare, "snare", b + 3.75, 72 * vel, ms=3)
                 elif style == "sprint":
@@ -865,8 +865,8 @@ class Arranger:
 
     # -- mix -------------------------------------------------------------------------------------
     def mix(self):
-        gtr_eq = [("hpf", 90), ("bell", 220, -2.5, 1.0), ("bell", 500, -1.5, 1.0), ("bell", 3000, 1.0, 1.0),
-                  ("lpf", 9000)]
+        gtr_eq = [("hpf", 90), ("bell", 220, -2.5, 1.0), ("bell", 500, -1.5, 1.0), ("bell", 1100, -2.0, 0.9),
+                  ("bell", 3000, 1.5, 1.0), ("lpf", 9500)]
         self.s.mix = {
             "tracks": {
                 "kick": {"gain": -6, "eq": [("hpf", 30), ("bell", 60, 2, 1.2), ("bell", 350, -3, 1.0),
@@ -906,8 +906,8 @@ class Arranger:
                 "violas": {"gain": -12, "eq": [("hpf", 150), ("bell", 400, -2, 1.0)], "width": 0.7, "pan": 0.15,
                            "bus": "strings"},
                 "celli": {"gain": -12, "eq": [("hpf", 70), ("bell", 300, -1.5, 1.0)], "width": 0.6, "bus": "strings"},
-                "vocal": {"gain": 2.5, "eq": [("hpf", 150), ("bell", 280, -2.5, 1.0), ("bell", 750, -2.0, 1.0),
-                                              ("bell", 3200, 2.5, 1.0), ("hshelf", 9000, 2.5)],
+                "vocal": {"gain": 3.5, "eq": [("hpf", 150), ("bell", 280, -2.5, 1.0), ("bell", 750, -3.0, 1.0),
+                                              ("bell", 1200, -1.5, 1.2), ("bell", 3200, 3.0, 1.0), ("hshelf", 9000, 3.0)],
                           "comp": {"threshold": -22, "ratio": 3.5, "attack": 4, "release": 70},
                           "sends": {"plate": -11, "dly": -19}},
                 "harmony L": {"gain": -9, "eq": [("hpf", 250), ("bell", 750, -3, 1.0), ("hshelf", 8000, 2)],
@@ -929,7 +929,8 @@ class Arranger:
                 "hall": {"type": "reverb", "kind": "hall", "decay": 2.2, "predelay": 25, "hpf": 250, "lpf": 8000},
                 "dly": {"type": "delay", "beats": 0.75, "feedback": 0.3, "hpf": 500, "lpf": 5000},
             },
-            "master": {"eq": [("bell", 2500, -1.0, 0.8), ("hshelf", 5000, 2.5, 0.7), ("hshelf", 10000, 2.0, 0.7)],
+            "master": {"eq": [("lshelf", 110, 2.5, 0.7), ("bell", 900, -1.5, 0.8), ("hshelf", 5000, 3.0, 0.7),
+                              ("hshelf", 10000, 2.0, 0.7)],
                        "glue": {"threshold": -18, "ratio": 2, "attack": 20, "release": 200}, "target_lufs": -14},
         }
 
@@ -937,8 +938,8 @@ class Arranger:
 # -- arrangement ------------------------------------------------------------------------------
 # Checkpoint 3 redo: one groove family. Dance rock (四つ打ち) everywhere, lighter in the verses;
 # half time only to gather the pre-choruses and the bridge.
-STYLE = "tamb"                   # stronger dance-rock style (samples pick)
-VOICE = {"verse": None, "pre": None, "chorus": STRONG, "bridge": None, "ochi": None, "last": STRONG}
+STYLE = "sprint"                 # samples pick 3: sprint four-on-the-floor
+VOICE = {"verse": None, "pre": None, "chorus": None, "bridge": None, "ochi": None, "last": None}  # Kumi plain
 OUTRO_RIFF = RIFF[:-11] + [("D5", .75), ("F#5", .75), ("A5", .5), ("B5", .5), ("A5", .5), ("F#5", .5),
                            ("E5", .5), ("D5", 4.0)]
 assert sum(d for _, d in OUTRO_RIFF) == 8 * 4
@@ -962,7 +963,7 @@ def dance(a: Arranger, b0, n, part="chorus", vel=1.0, fill="toms", crash=True, g
 
 
 def compose() -> Song:
-    a = Arranger(FORM, title="ラムネ")
+    a = Arranger(FORM, title="Ramune")   # MIDI meta text is latin-1: the release carries ラムネ
     s = a.s
     fills = iter(["snare", "toms", "flams", "toms", "snare", "flams", "toms", "toms", "flams", "snare",
                   "toms", "flams", "toms", "snare", "toms", "flams"])
