@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "bpm": 124,
+  "swing": 0.6,
+  "tracks": 31,
+  "notes": 2246,
+  "scat_notes_per_voice": 49,
+  "midi_lyrics": 147,
+  "sections": [
+    {
+      "label": "voice A - Kumi",
+      "beat": 0,
+      "bars": 8,
+      "role": "voice",
+      "start_s": 0.0,
+      "end_s": 15.48
+    },
+    {
+      "label": "voice B - Hikari",
+      "beat": 36,
+      "bars": 8,
+      "role": "voice",
+      "start_s": 17.42,
+      "end_s": 32.9
+    },
+    {
+      "label": "voice C - Milk",
+      "beat": 72,
+      "bars": 8,
+      "role": "voice",
+      "start_s": 34.84,
+      "end_s": 50.32
+    },
+    {
+      "label": "keys A - Yamaha grand",
+      "beat": 108,
+      "bars": 4,
+      "role": "keys",
+      "start_s": 52.26,
+      "end_s": 60.0
+    },
+    {
+      "label": "keys B - Steinway grand",
+      "beat": 128,
+      "bars": 4,
+      "role": "keys",
+      "start_s": 61.94,
+      "end_s": 69.68
+    },
+    {
+      "label": "keys C - Rhodes",
+      "beat": 148,
+      "bars": 4,
+      "role": "keys",
+      "start_s": 71.61,
+      "end_s": 79.35
+    },
+    {
+      "label": "bass A - upright",
+      "beat": 168,
+      "bars": 4,
+      "role": "bass",
+      "start_s": 81.29,
+      "end_s": 89.03
+    },
+    {
+      "label": "bass B - finger electric",
+      "beat": 188,
+      "bars": 4,
+      "role": "bass",
+      "start_s": 90.97,
+      "end_s": 98.71
+    },
+    {
+      "label": "drums A - Virtuosity",
+      "beat": 208,
+      "bars": 4,
+      "role": "drums",
+      "start_s": 100.65,
+      "end_s": 108.39
+    },
+    {
+      "label": "drums B - DRSKit",
+      "beat": 228,
+      "bars": 4,
+      "role": "drums",
+      "start_s": 110.32,
+      "end_s": 118.06
+    }
+  ]
+}
