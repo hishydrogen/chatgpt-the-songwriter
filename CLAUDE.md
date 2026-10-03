@@ -106,6 +106,9 @@ CI-tested; if a step fails, fix the script and commit the fix.
   `scripts/surgepy-settempo.patch`) renders any of the ~3,500 Surge patches.
 - VST3 in `/usr/lib/vst3`: LSP (EQ, compressors, limiter...), Dragonfly reverbs, ZAM, DPF;
   Surge XT + Surge XT Effects in `/usr/local/lib/vst3`.
+- LV2 guitarix (`guitarix-lv2`: amp models, cabinets, TS9, pedals) run offline through
+  `lv2host` (`scripts/lv2host.c`, built by setup.sh: atom ports, synchronous worker,
+  latency trim). `lv2apply` and pedalboard can't load gx_amp. `dsp.lv2(x, uri, **ports)`.
 - Network: GitHub clone + raw.githubusercontent, PyPI, Google Fonts (also via the
   google/fonts GitHub repo) work. GitHub release assets, archive.org, sourceforge, most web
   pages (WebFetch) are blocked; WebSearch works.
@@ -136,8 +139,10 @@ CI-tested; if a step fails, fix the script and commit the fix.
 ## Mixing and mastering
 
 - Every stem is normalised to -20 LUFS before its strip, so `gain` is a true balance.
-- Strip: eq -> comp -> crush/tape/tube/saturate -> duck -> chorus -> tremolo ->
-  mono/width/pan -> gain -> sends -> bus. FX returns: `reverb` (plate/hall/room), `gated`
+- Strip: amp -> eq -> comp -> crush/tape/tube/saturate -> duck -> chorus -> tremolo ->
+  mono/width/pan -> gain -> sends -> bus. `amp`: a guitar rig on a DI stem, e.g.
+  `[{"type": "ts9", ...}, {"type": "amp", "Distortion": 75, "t_model": 9, "c_model": 13}]`
+  (guitarix port symbols; `{"chain": [...], "dry": 0.5}` blends the DI back in for bass). FX returns: `reverb` (plate/hall/room), `gated`
   (80s non-linear), `delay`.
 - Follow the genre's conventions: HPF everything but kick/bass; cut 200-500 Hz on
   keys/pads/guitars; low end mono (`mono_below`, or `mono: True` on bass); reverb/delay on
@@ -202,6 +207,13 @@ CI-tested; if a step fails, fix the script and commit the fix.
   extend `voice.KANA_ALT` rather than changing the lyric.
 - Synthesised vocals are mid-heavy: cut ~280 and ~750 Hz, lift 3.2 kHz and air; check
   the lead sits 4-6 dB over the loudest other track (an electronic kick easily beats it).
+- sfizz: `amplitude_oncc` multiplies (CC at 0 = silence) - use `volume_oncc` (dB) for a
+  per-CC level; a velocity-tracked LPF pushed near Nyquist silences notes.
+- pyloudnorm refuses signals under one 400 ms block: `mix.lufs()` pads them.
+- Hard-panned double-tracked guitars give a bus correlation near 0.1: that is width (two
+  different takes), not phase cancellation - the mono sum keeps them.
+- Voice styles (Kumi `S`) are looked up at the nearest recorded pitch before falling back
+  to the plain voice.
 - Cover art homage: don't reuse the reference's character (palette, hair, pose) - the
   user called that plagiarism. For an OS-UI cover keep everything UI-native (documents,
   dialogs, pixel icons, cursor), put a modal dialog at the exact screen centre, draw icons
@@ -220,7 +232,9 @@ sounds yourself (see `drums.linn86`). Surge XT output is the user's.
 Self-made: `drums.club` (`scripts/build_club_kit.py`), `drums.linn86` rebuilds.
 Voicebanks: 筆墨クミ (`voice.kumi`) commercial use allowed without permission (keep the
 name, credit Cubialpha + link). Milk, Hikari One, Viki Hopper: commercial use needs the
-author's approval. 足立レイ: doujin use free (paid ok), corporate commercial use: contact.
+author's approval. Hikari One also: credit "Hikari One" + author "kyomiii" (or "revonni")
+exactly, no sexual/violent/political/religious content, no pitch/formant edits of the
+bank's audio (keep the engine's `formant` at 0), character art only with permission. 足立レイ: doujin use free (paid ok), corporate commercial use: contact.
 Release a sung song as "<Title> (feat. <voicebank>)" with the artist still Claude.
 
 ## Instrument choice (best available, by role)
@@ -238,7 +252,11 @@ Release a sung song as "<Title> (feat. <voicebank>)" with the artist still Claud
 - Bass: `bass.darkblack` (finger, warm), `bass.babyblue` (short-scale), `bass.upright_pizz`;
   synth bass: `surge("Basses/...")`; 8-bit: `mirage.bass_*`.
 - Guitars: `guitar.green_twang` (Gretsch, clean, bright) / `guitar.black_twang` (Hofner,
-  warmer); add `tube` for grit. Distorted rhythm guitar is a weak spot of free samples.
+  warmer); add `tube` for grit. Distorted rock guitar: `guitar.emily_di` (Karoryfer Emily,
+  recorded direct; CC70 = palm mute; `scripts/build_guitar_sfz.py`) into an `amp` rig -
+  the amp sees the whole chord like a real amp. Rigs that won the `songs/summer-palette`
+  audition are in `songs/last-summer/song.py` (Mesa high gain rhythm, AC30 edge-of-breakup
+  arpeggios, Ampeg drive bass). Double-track rhythm parts (two takes, hard L/R).
 - Brass and orchestra (VSCO 2 CE): `brass.horn_sus`, `trombone_sus`, `trumpet_sus`,
   `trumpet_harmon` (+ `_stac` versions; sustain samples are 4-25 s), `strings.*`,
   `winds.*`, `strings.harp`, `perc.*`.

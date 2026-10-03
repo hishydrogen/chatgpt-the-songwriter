@@ -781,14 +781,14 @@ class Arranger:
                 "violas": {"gain": -12, "eq": [("hpf", 150), ("bell", 400, -2, 1.0)], "width": 0.7, "pan": 0.15,
                            "bus": "strings"},
                 "celli": {"gain": -12, "eq": [("hpf", 70), ("bell", 300, -1.5, 1.0)], "width": 0.6, "bus": "strings"},
-                "vocal": {"gain": 1.0, "eq": [("hpf", 150), ("bell", 280, -2.5, 1.0), ("bell", 750, -2.0, 1.0),
+                "vocal": {"gain": 2.5, "eq": [("hpf", 150), ("bell", 280, -2.5, 1.0), ("bell", 750, -2.0, 1.0),
                                               ("bell", 3200, 2.5, 1.0), ("hshelf", 9000, 2.5)],
                           "comp": {"threshold": -22, "ratio": 3.5, "attack": 4, "release": 70},
                           "sends": {"plate": -11, "dly": -19}},
-                "harmony L": {"gain": -10, "eq": [("hpf", 250), ("bell", 750, -3, 1.0), ("hshelf", 8000, 2)],
+                "harmony L": {"gain": -9, "eq": [("hpf", 250), ("bell", 750, -3, 1.0), ("hshelf", 8000, 2)],
                               "comp": {"threshold": -24, "ratio": 4, "attack": 5, "release": 80},
                               "pan": -0.45, "sends": {"plate": -6}},
-                "harmony R": {"gain": -10, "eq": [("hpf", 250), ("bell", 750, -3, 1.0), ("hshelf", 8000, 2)],
+                "harmony R": {"gain": -9, "eq": [("hpf", 250), ("bell", 750, -3, 1.0), ("hshelf", 8000, 2)],
                               "comp": {"threshold": -24, "ratio": 4, "attack": 5, "release": 80},
                               "pan": 0.45, "sends": {"plate": -6}},
             },
@@ -810,7 +810,7 @@ class Arranger:
 
 
 # -- arrangement ------------------------------------------------------------------------------
-GROOVE = {"riff": "A", "verse": "A", "chorus": "A", "solo": "C", "last": "A"}   # checkpoint 2 picks
+GROOVE = {"riff": "A", "verse": "B", "chorus": "A", "solo": "C", "last": "A"}   # checkpoint 2 picks
 OUTRO_RIFF = RIFF[:-11] + [("D5", .75), ("F#5", .75), ("A5", .5), ("B5", .5), ("A5", .5), ("F#5", .5),
                            ("E5", .5), ("D5", 4.0)]
 assert sum(d for _, d in OUTRO_RIFF) == 8 * 4
@@ -861,15 +861,17 @@ def compose() -> Song:
             a.lead_line(b0, RIFF, tr)
             a.glock_line(b0, RIFF, tr)
             a.piano_8ths(b0, n, vel=.75)
-        elif name.startswith("verse"):
+        elif name.startswith("verse"):       # dance-rock groove (B); the cutting guitars join halfway
             first = name == "verse 1"
-            a.drums_8beat(b0, 8, vel=.82, fill=False, crash=True, push=False) if GROOVE["verse"] == "A" else \
-                band(a, b0, 8, GROOVE["verse"], "verse", vel=.82, fill=False)
-            if GROOVE["verse"] == "A":
-                a.bass_8ths(b0, 8, vel=.9, oct_pop=False)
-            a.arpeggio(b0, 16 if first else 8, vel=.85)
-            band(a, b0 + 32, 8, GROOVE["verse"], "verse", vel=.9, fill=next(fills), crash=True)
-            a.piano_ballad(b0 + 32, 8, vel=.8)
+            a.drums_four(b0, 8, vel=.8, fill=False)
+            a.bass_octaves(b0, 8, vel=.85)
+            if first:
+                a.arpeggio(b0, 8, vel=.85)
+            else:
+                a.gtr_cut(b0, 8, vel=.75)
+            band(a, b0 + 32, 8, GROOVE["verse"], "verse", vel=.9, fill=next(fills), crash=False)
+            a.arpeggio(b0 + 32, 8, vel=.75 if first else .85)
+            a.piano_ballad(b0 + 32, 8, vel=.7)
             a.sing(b0, VERSE_1 if first else VERSE_2, tr)
         elif name.startswith("pre"):
             a.drums_half(b0, 4, vel=.9, fill=False)
