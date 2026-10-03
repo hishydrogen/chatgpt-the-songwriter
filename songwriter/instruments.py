@@ -29,7 +29,7 @@ class Instrument:
 
     @property
     def path(self) -> Path:
-        if self.engine == "sfz":
+        if self.engine in ("sfz", "voice"):
             return config.LIB_DIR / self.source
         if self.engine == "surge":
             p = Path(self.source)
@@ -148,6 +148,25 @@ _CATALOG: list[Instrument] = [
                "MTG soprano sax.", (56, 88), tail=1.5),
     Instrument("sax.baritone", "sfz", "SoloSax/MTG Solo Saxophones/MTG Baritone Sax.sfz",
                "MTG baritone sax.", (36, 69), tail=1.5),
+]
+
+# UTAU voicebanks (Japanese), sung by songwriter.voice. Fetched into libs/voice/.
+_CATALOG += [
+    Instrument("voice.kumi", "voice", "voice/hitsuboku-kumi-ja-act4",
+               "筆墨クミ Act4 VCV (Cubialpha): clear, bright female, core A3-D5 + strong/whisper.",
+               (55, 86), tail=1.0),
+    Instrument("voice.milk", "voice", "voice/milk-ja",
+               "Milk VCV (Xepheris): soft, sweet female, F3-C5 + power C5, falsetto.",
+               (53, 84), tail=1.0),
+    Instrument("voice.hikari", "voice", "voice/hikari-one-crystal-ja",
+               "Hikari One Crystal CVVC/VCV (Kyomiii): airy young female, C4/E4/G4.",
+               (57, 84), tail=1.0),
+    Instrument("voice.viki", "voice", "voice/viki-hopper-ja",
+               "Viki Hopper CVVC (Seiun/Vixki): futuristic, synth-friendly female, G4/A4.",
+               (57, 86), tail=1.0),
+    Instrument("voice.adachi", "voice", "voice/adachi-rei/足立レイver3.5.0",
+               "足立レイ CV (みさいる): robot voice built from sine waves only. Doujin use free; "
+               "corporate commercial use needs contact.", (55, 88), tail=1.0),
 ]
 
 _BY_ID = {i.id: i for i in _CATALOG}

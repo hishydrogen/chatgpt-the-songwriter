@@ -14,6 +14,10 @@ Finished examples - read one `song.py` before writing a new song:
   key changes, fade-out. Adds a chord timeline (`FORM` -> `chord_at()`), voicing tables,
   groove engines (bounce / pushes / 16ths), humanized timing `T()` with swing, sax and
   synth phrasing, brass standing in for backing vocals.
+- `songs/neon-night/`: "ドゥームスクロール (feat. 筆墨クミ)", 2025 vocaloid-style dance pop with
+  a **sung Japanese vocal** (UTAU voicebank through `songwriter/voice.py`), self-made
+  electronic kit, house-piano riff, pumping supersaw, harmony vocals, half-step key change,
+  classic Mac OS UI cover. Before any song with lyrics read `docs/vocal-songwriting.md`.
 
 ## New song from a reference (the usual request)
 
@@ -32,9 +36,12 @@ The full user-facing prompt is `docs/prompts/new-song.md`; this is the same plan
    `/root/.claude/uploads/...`; extract audio to `refs/` (gitignored, never commit or
    sample it).
 3. **Ask** (AskUserQuestion, max 4 questions per call): length ("몇 분 정도요?"), lead
-   instrument (no vocals here: instrumental; say what each candidate can't do), sound
-   direction (era-faithful or era + modern clarity), mood and energy. Title and ending
-   (fade or full stop) can wait for the rough mix.
+   (an instrument, or a sung Japanese vocal from UTAU voicebanks - Japanese / katakana
+   English only, classic-UTAU texture, not SynthV; say what each candidate can't do),
+   lyric language and theme if sung, sound direction (era-faithful or era + modern
+   clarity), mood and energy. Title and ending (fade or full stop) can wait for the
+   rough mix. Max 4 options per question: put the timestamp and a plain description in
+   every option - never hide candidates behind "type it in Other".
 4. **Checkpoint 1 - sound palette.** One audition file: every candidate plays the same
    phrase over the same groove, candidates within +/-1 dB of each other
    (`python scripts/audition_levels.py songs/<slug>`), timestamp table. Split the
@@ -72,6 +79,11 @@ checkpoints. Long builds: run in the background and keep the user posted.
   for a "floppy" double-drum feel; tempo leaning into choruses with `Song.tempo()`.
 - Sax (MTG SFZ): CC64 legato with overlapping notes, a pitch-bend scoop into phrase
   starts, CC1 vibrato ramps on long notes, CC11 phrase swells, CC80 breath noise.
+- Sung vocals (details in `docs/vocal-songwriting.md`): one mora per note as
+  `(pitch, lyric, beats)` lists with asserted section lengths; `っ` = short rest, `ー` =
+  hold; check every sung note against the chord timeline; never let the vocal stop after
+  one call in the middle of a section (make it a sung post-chorus hook or clearly
+  instrumental); harmony a third above, capped at F5, two takes panned L/R.
 - Brass as backing vocals: sustained 4-voice pads entering just after the beat with CC11
   swells ("ooh"), stabs on separate staccato tracks.
 
@@ -83,8 +95,11 @@ CI-tested; if a step fails, fix the script and commit the fix.
 
 - `libs/` (gitignored, ~13 GB): SFZ libraries from `scripts/fetch_libraries.sh`.
   `libs/_generated/`: VSCO 2 CE mappings (`scripts/build_vsco_sfz.py`) and baked vintage
-  instruments (`scripts/build_nasty_palette.py`). Generated instruments may have a
-  `<id>.json` sidecar (desc, drum_map, range, tail).
+  instruments (`scripts/build_nasty_palette.py`), `drums.club` (`scripts/build_club_kit.py`).
+  Generated instruments may have a `<id>.json` sidecar (desc, drum_map, range, tail).
+- `libs/voice/` (~2.6 GB + ~3 GB analysis cache): UTAU voicebanks from
+  `scripts/fetch_voices.sh` (GitHub mirrors; Hugging Face and official voicebank sites
+  are blocked). `pyworld` (WORLD vocoder) does the analysis and resynthesis.
 - `sfizz_render` (built from source) renders SFZ offline. It supports `fil_type=lpf_4p`
   and `fileg_*` filter envelopes, MIDI tempo maps, and CC7/CC11 volume on every SFZ.
 - `surgepy` (Surge XT python bindings, patched with `setTempo`, see
@@ -110,8 +125,13 @@ CI-tested; if a step fails, fix the script and commit the fix.
 - `scripts/measure_ref.py refs/x.wav`: tempo and drift, swing and micro-timing per band,
   key per 8 bars (finds key changes), sections and where the song builds.
 - `scripts/audition_levels.py songs/<slug>`: candidate levels per audition segment.
-- `scripts/release.py`: ALAC files with tags and art (see Release).
-- Commit `song.py`, `out/master.mp3`, `out/midi/`, `out/report.*`, art, credits.
+- `scripts/release.py`: ALAC files with tags and art (see Release); `--lyrics "$(cat LYRICS.txt)"`.
+- `songwriter/voice.py`: UTAU-style singer on WORLD (`voice.*` instruments). Notes carry
+  `lyric` and `x` (per-note options); `track.opts` holds engine options (`voice.DEFAULTS`).
+  `voice._plan(notes, bank, voice.DEFAULTS, light=True)` shows the alias each note uses.
+  First render of a bank analyses its samples (minutes, cached in `libs/voice/_cache`,
+  ~3 GB for all banks); later renders take seconds.
+- Commit `song.py`, `out/master.mp3`, `out/midi/`, `out/report.*`, art, credits, lyrics.
 
 ## Mixing and mastering
 
@@ -177,6 +197,15 @@ CI-tested; if a step fails, fix the script and commit the fix.
 - `pkill -f <pattern>` can kill your own shell if the pattern is in the command line.
 - Long loops in generators: guard against non-advancing steps (an art stripe loop hung).
 - Blocking waits on long builds can get interrupted by the user: background them.
+- Voicebanks: oto.ini files are Shift-JIS or UTF-8 (try both); zip names from Japanese
+  Windows are cp932 behind a cp437 flag. Banks lack some spellings (Milk has no づ):
+  extend `voice.KANA_ALT` rather than changing the lyric.
+- Synthesised vocals are mid-heavy: cut ~280 and ~750 Hz, lift 3.2 kHz and air; check
+  the lead sits 4-6 dB over the loudest other track (an electronic kick easily beats it).
+- Cover art homage: don't reuse the reference's character (palette, hair, pose) - the
+  user called that plagiarism. For an OS-UI cover keep everything UI-native (documents,
+  dialogs, pixel icons, cursor), put a modal dialog at the exact screen centre, draw icons
+  as small-grid pixel art; no real system icons or logos.
 
 ## Rights (for anything that may be released)
 
@@ -188,6 +217,11 @@ jRhodes: samples BY-NC to redistribute, but music made with it is CC0 (fine).
 SM Drums, Maestro piano, Damien's guitar: no license file - avoid for releases.
 `ritchse/tidal-drum-machines` (real LinnDrum/808 etc.): no license - only rebuild such
 sounds yourself (see `drums.linn86`). Surge XT output is the user's.
+Self-made: `drums.club` (`scripts/build_club_kit.py`), `drums.linn86` rebuilds.
+Voicebanks: 筆墨クミ (`voice.kumi`) commercial use allowed without permission (keep the
+name, credit Cubialpha + link). Milk, Hikari One, Viki Hopper: commercial use needs the
+author's approval. 足立レイ: doujin use free (paid ok), corporate commercial use: contact.
+Release a sung song as "<Title> (feat. <voicebank>)" with the artist still Claude.
 
 ## Instrument choice (best available, by role)
 
@@ -212,6 +246,11 @@ sounds yourself (see `drums.linn86`). Surge XT output is the user's.
 - 80s sampler sounds: `mirage.timpani`, `mirage.metal`, `fairlight.orchhit(_m)`.
   Bake new ones with `songwriter/vintage.py` (`Bake`, `Kit`, machines MIRAGE, FAIRLIGHT,
   LINNDRUM, SP12).
+- Electronic drums: `drums.club` (self-made: house / 808 / punch kicks, clap, snare,
+  808-style hats, shaker, rim, crash, toms, `riser` = 2 bars at 132 BPM, `impact`).
+- Vocals (Japanese): `voice.kumi` (best, clear female, A3-D5 + strong `S` / whisper
+  `W` styles), `voice.milk` (soft), `voice.hikari` (airy), `voice.viki` (futuristic,
+  few samples), `voice.adachi` (sine-wave robot). Fetch with `scripts/fetch_voices.sh`.
 - Synths: Surge XT (`python -m songwriter surge-patches <filter>`). Era-named patches:
   "Brass/JX-10 Double Brass", "Brass/OB-8 Jump", "Brass/Toto Brass", "Keys/DX EP",
   "Polysynths/Jupiter-8", "Polysynths/Oberheim Dreams" (phasey), "Rozzer/Keys/DX Tonez",

@@ -67,6 +67,8 @@ class Note:
     start: float  # beats
     dur: float    # beats
     vel: int
+    lyric: str | None = None   # sung syllable (voice.* instruments)
+    x: dict | None = None      # per-note engine options (voice.* instruments)
 
 
 @dataclass
@@ -78,11 +80,28 @@ class Track:
     ccs: list[tuple[float, int, int]] = field(default_factory=list)  # (beat, cc, value)
     bends: list[tuple[float, int]] = field(default_factory=list)      # (beat, -8192..8191)
     channel: int = 0
+    opts: dict = field(default_factory=dict)  # engine options (voice.*: see songwriter.voice)
 
     # -- writing -----------------------------------------------------------
-    def note(self, pitch, beat: float, dur: float = 1.0, vel: int = 90):
-        self.notes.append(Note(note_number(pitch), beat, dur, int(max(1, min(127, vel)))))
+    def note(self, pitch, beat: float, dur: float = 1.0, vel: int = 90,
+             lyric: str | None = None, x: dict | None = None):
+        self.notes.append(Note(note_number(pitch), beat, dur, int(max(1, min(127, vel))), lyric, x))
         return self
+
+    def sing(self, pitches, lyrics, beat: float, dur=0.5, vel: int = 100, x: dict | None = None):
+        """A sung line: pitches and lyrics as space-separated strings or lists (one mora per
+        note), `dur` a number or a list of beat lengths. Returns the beat after the line."""
+        ps = pitches.split() if isinstance(pitches, str) else list(pitches)
+        ls = lyrics.split() if isinstance(lyrics, str) else list(lyrics)
+        ds = list(dur) if isinstance(dur, (list, tuple)) else [dur] * len(ps)
+        if not (len(ps) == len(ls) == len(ds)):
+            raise ValueError(f"sing: {len(ps)} pitches, {len(ls)} lyrics, {len(ds)} durations")
+        b = beat
+        for p, l, d in zip(ps, ls, ds):
+            if p not in ("r", "_"):
+                self.note(p, b, d, vel, lyric=l, x=dict(x) if x else None)
+            b += d
+        return b
 
     def notes_at(self, pitches, beat, dur=1.0, vel=90, strum=0.0):
         """Several pitches at once. strum > 0 rolls them upward (beats between notes)."""

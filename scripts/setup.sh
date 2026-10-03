@@ -61,6 +61,10 @@ if [[ "${1:-}" != "--no-libs" ]]; then
   python3 "$REPO/scripts/build_vsco_sfz.py"
   log "baked vintage instruments (LinnDrum-style kit, Mirage/Fairlight sounds)"
   python3 "$REPO/scripts/build_nasty_palette.py"
+  log "self-made electronic kit (drums.club)"
+  python3 "$REPO/scripts/build_club_kit.py"
+  log "UTAU voicebanks for songwriter/voice.py (~2.6 GB)"
+  "$REPO/scripts/fetch_voices.sh"
 fi
 
 log "check"
