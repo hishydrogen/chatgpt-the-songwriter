@@ -1,0 +1,25 @@
+{
+  "identical_candidate_note_phrases": true,
+  "mp3_decoded_duration_s": 128.581,
+  "mp3_stats": {
+    "integrated_lufs": -14.04,
+    "short_term_max_lufs": -12.22,
+    "loudness_range_lu": 2.76,
+    "true_peak_dbtp": -0.97,
+    "sample_peak_db": -0.98,
+    "plr_db": 13.07,
+    "crest_db": 15.73,
+    "stereo_correlation": 0.99,
+    "side_to_mid_db": -22.77,
+    "tonal_slope_db_per_oct": -2.25,
+    "bands_db": {
+      "sub": -26.5,
+      "bass": -17.5,
+      "low-mid": -21.1,
+      "mid": -26.5,
+      "hi-mid": -30.1,
+      "presence": -33.2,
+      "air": -39.2
+    }
+  }
+}

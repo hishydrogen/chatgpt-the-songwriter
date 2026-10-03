@@ -1,0 +1,311 @@
+{
+  "master": {
+    "integrated_lufs": -14.05,
+    "short_term_max_lufs": -12.23,
+    "loudness_range_lu": 2.75,
+    "true_peak_dbtp": -1.0,
+    "sample_peak_db": -1.01,
+    "plr_db": 13.05,
+    "crest_db": 15.7,
+    "stereo_correlation": 0.99,
+    "side_to_mid_db": -22.84,
+    "tonal_slope_db_per_oct": -2.25,
+    "bands_db": {
+      "sub": -26.5,
+      "bass": -17.5,
+      "low-mid": -21.1,
+      "mid": -26.5,
+      "hi-mid": -30.1,
+      "presence": -33.2,
+      "air": -39.2
+    }
+  },
+  "masking": [
+    "bass: bed bass, bed drums | kick within 3 dB of each other",
+    "mid: bed drums | snare, lead C: electric piano melody within 3 dB of each other",
+    "hi-mid: lead B: guitar on the amp edge, lead A: rounded clean guitar within 3 dB of each other"
+  ],
+  "master_chain": {
+    "lufs": -14.05,
+    "true_peak": -1,
+    "limiter_drive_db": 5.79
+  },
+  "sections": [
+    {
+      "label": "drums A: close and damped",
+      "start_s": 0.0,
+      "end_s": 13.95,
+      "master_lufs": -15.0,
+      "tracks": {
+        "bed bass": -25.0,
+        "bed keys": -31.9,
+        "bed guitar": -36.5,
+        "drums A: close and damped | kick": -22.5,
+        "drums A: close and damped | snare": -24.6,
+        "drums A: close and damped | hats": -41.1,
+        "drums A: close and damped | toms": -27.9,
+        "fx:tight_room": -61.7,
+        "fx:small_plate": -57.4
+      }
+    },
+    {
+      "label": "drums B: vintage mic and tape",
+      "start_s": 13.95,
+      "end_s": 27.91,
+      "master_lufs": -14.8,
+      "tracks": {
+        "bed bass": -25.0,
+        "bed keys": -31.9,
+        "bed guitar": -36.2,
+        "drums B: vintage mic and tape | kick": -23.0,
+        "drums B: vintage mic and tape | snare": -25.2,
+        "drums B: vintage mic and tape | hats": -37.7,
+        "drums B: vintage mic and tape | toms": -28.0,
+        "fx:tight_room": -55.0,
+        "fx:small_plate": -57.3
+      }
+    },
+    {
+      "label": "bass A: rounded short-scale",
+      "start_s": 27.91,
+      "end_s": 41.86,
+      "master_lufs": -15.0,
+      "tracks": {
+        "bed drums | kick": -22.9,
+        "bed drums | snare": -24.7,
+        "bed drums | hats": -41.1,
+        "bed drums | toms": -27.9,
+        "bed keys": -31.9,
+        "bed guitar": -36.0,
+        "bass A: rounded short-scale": -25.0,
+        "fx:tight_room": -61.7,
+        "fx:small_plate": -57.3
+      }
+    },
+    {
+      "label": "bass B: firm finger bass",
+      "start_s": 41.86,
+      "end_s": 55.81,
+      "master_lufs": -15.0,
+      "tracks": {
+        "bed drums | kick": -22.9,
+        "bed drums | snare": -24.7,
+        "bed drums | hats": -41.1,
+        "bed drums | toms": -27.9,
+        "bed keys": -31.9,
+        "bed guitar": -36.3,
+        "bass B: firm finger bass": -25.1,
+        "fx:tight_room": -61.7,
+        "fx:small_plate": -57.4
+      }
+    },
+    {
+      "label": "keys A: mellow Rhodes",
+      "start_s": 55.81,
+      "end_s": 69.77,
+      "master_lufs": -14.2,
+      "tracks": {
+        "bed drums | kick": -22.9,
+        "bed drums | snare": -24.7,
+        "bed drums | hats": -41.1,
+        "bed drums | toms": -27.9,
+        "bed bass": -25.0,
+        "bed guitar": -36.5,
+        "keys A: mellow Rhodes": -25.8,
+        "fx:tight_room": -61.7,
+        "fx:small_plate": -53.3
+      }
+    },
+    {
+      "label": "keys B: woody Wurlitzer",
+      "start_s": 69.77,
+      "end_s": 83.72,
+      "master_lufs": -14.2,
+      "tracks": {
+        "bed drums | kick": -22.8,
+        "bed drums | snare": -24.7,
+        "bed drums | hats": -41.1,
+        "bed drums | toms": -27.9,
+        "bed bass": -25.0,
+        "bed guitar": -36.2,
+        "keys B: woody Wurlitzer": -25.8,
+        "fx:tight_room": -61.7,
+        "fx:small_plate": -52.5
+      }
+    },
+    {
+      "label": "lead A: rounded clean guitar",
+      "start_s": 83.72,
+      "end_s": 97.67,
+      "master_lufs": -13.0,
+      "tracks": {
+        "bed drums | kick": -22.9,
+        "bed drums | snare": -24.7,
+        "bed drums | hats": -41.1,
+        "bed drums | toms": -27.9,
+        "bed bass": -25.0,
+        "bed keys": -31.9,
+        "lead A: rounded clean guitar": -22.8,
+        "fx:tight_room": -61.7,
+        "fx:small_plate": -46.5
+      }
+    },
+    {
+      "label": "lead B: guitar on the amp edge",
+      "start_s": 97.67,
+      "end_s": 111.63,
+      "master_lufs": -13.1,
+      "tracks": {
+        "bed drums | kick": -22.9,
+        "bed drums | snare": -24.7,
+        "bed drums | hats": -41.1,
+        "bed drums | toms": -27.9,
+        "bed bass": -25.0,
+        "bed keys": -31.9,
+        "lead B: guitar on the amp edge": -22.8,
+        "fx:tight_room": -61.7,
+        "fx:small_plate": -43.9
+      }
+    },
+    {
+      "label": "lead C: electric piano melody",
+      "start_s": 111.63,
+      "end_s": 125.58,
+      "master_lufs": -13.0,
+      "tracks": {
+        "bed drums | kick": -22.9,
+        "bed drums | snare": -24.7,
+        "bed drums | hats": -41.1,
+        "bed drums | toms": -28.0,
+        "bed bass": -25.0,
+        "bed keys": -31.9,
+        "lead C: electric piano melody": -22.8,
+        "fx:tight_room": -61.7,
+        "fx:small_plate": -43.7
+      }
+    }
+  ],
+  "tracks": {
+    "bed drums | kick": {
+      "lufs": -22.5,
+      "peak_db": -7.5,
+      "stereo_correlation": 1.0
+    },
+    "bed drums | snare": {
+      "lufs": -24.7,
+      "peak_db": -7.6,
+      "stereo_correlation": 1.0
+    },
+    "bed drums | hats": {
+      "lufs": -41.1,
+      "peak_db": -19.1,
+      "stereo_correlation": 1.0
+    },
+    "bed drums | toms": {
+      "lufs": -27.9,
+      "peak_db": -13.5,
+      "stereo_correlation": 1.0
+    },
+    "bed bass": {
+      "lufs": -25.0,
+      "peak_db": -11.1,
+      "stereo_correlation": 1.0
+    },
+    "bed keys": {
+      "lufs": -31.8,
+      "peak_db": -19.9,
+      "stereo_correlation": 1.0
+    },
+    "bed guitar": {
+      "lufs": -36.3,
+      "peak_db": -23.7,
+      "stereo_correlation": 1.0
+    },
+    "drums A: close and damped | kick": {
+      "lufs": -22.5,
+      "peak_db": -7.2,
+      "stereo_correlation": 1.0
+    },
+    "drums A: close and damped | snare": {
+      "lufs": -24.6,
+      "peak_db": -7.5,
+      "stereo_correlation": 1.0
+    },
+    "drums A: close and damped | hats": {
+      "lufs": -41.1,
+      "peak_db": -19.2,
+      "stereo_correlation": 1.0
+    },
+    "drums A: close and damped | toms": {
+      "lufs": -27.9,
+      "peak_db": -13.5,
+      "stereo_correlation": 1.0
+    },
+    "drums B: vintage mic and tape | kick": {
+      "lufs": -22.6,
+      "peak_db": -8.8,
+      "stereo_correlation": 1.0
+    },
+    "drums B: vintage mic and tape | snare": {
+      "lufs": -25.2,
+      "peak_db": -9.3,
+      "stereo_correlation": 1.0
+    },
+    "drums B: vintage mic and tape | hats": {
+      "lufs": -37.5,
+      "peak_db": -21.0,
+      "stereo_correlation": 1.0
+    },
+    "drums B: vintage mic and tape | toms": {
+      "lufs": -27.8,
+      "peak_db": -12.7,
+      "stereo_correlation": 1.0
+    },
+    "bass A: rounded short-scale": {
+      "lufs": -25.0,
+      "peak_db": -11.1,
+      "stereo_correlation": 1.0
+    },
+    "bass B: firm finger bass": {
+      "lufs": -25.2,
+      "peak_db": -12.5,
+      "stereo_correlation": 1.0
+    },
+    "keys A: mellow Rhodes": {
+      "lufs": -25.8,
+      "peak_db": -13.8,
+      "stereo_correlation": 1.0
+    },
+    "keys B: woody Wurlitzer": {
+      "lufs": -25.5,
+      "peak_db": -13.1,
+      "stereo_correlation": 1.0
+    },
+    "lead A: rounded clean guitar": {
+      "lufs": -22.7,
+      "peak_db": -10.3,
+      "stereo_correlation": 1.0
+    },
+    "lead B: guitar on the amp edge": {
+      "lufs": -22.9,
+      "peak_db": -6.8,
+      "stereo_correlation": 1.0
+    },
+    "lead C: electric piano melody": {
+      "lufs": -22.8,
+      "peak_db": -11.4,
+      "stereo_correlation": 1.0
+    },
+    "fx:tight_room": {
+      "lufs": -60.2,
+      "peak_db": -37.5,
+      "stereo_correlation": -0.17
+    },
+    "fx:small_plate": {
+      "lufs": -47.8,
+      "peak_db": -29.9,
+      "stereo_correlation": 0.51
+    }
+  },
+  "warnings": []
+}
