@@ -15,7 +15,7 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update -qq || true
 apt-get install -y -q --no-install-recommends \
   lsp-plugins-vst3/noble-backports lsp-plugins-r3d-glx/noble-backports \
-  dragonfly-reverb-vst3 zam-plugins dpf-plugins-vst3 \
+  dragonfly-reverb-vst3 zam-plugins dpf-plugins-vst3 guitarix-lv2 liblilv-dev lv2-dev \
   fluidsynth fluid-soundfont-gm musescore-general-soundfont sox ffmpeg \
   cmake ninja-build build-essential pkg-config git git-lfs \
   libsndfile1-dev libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxcomposite-dev \
@@ -25,6 +25,11 @@ apt-get install -y -q --no-install-recommends \
 
 log "python packages"
 python3 -m pip install -q -r "$REPO/requirements.txt"
+
+if ! command -v lv2host >/dev/null; then
+  log "build lv2host (offline LV2 host for the guitarix amp models)"
+  gcc -O2 -o /usr/local/bin/lv2host "$REPO/scripts/lv2host.c" $(pkg-config --cflags --libs lilv-0 sndfile) -lm
+fi
 
 if ! command -v sfizz_render >/dev/null; then
   log "build sfizz_render"
@@ -63,6 +68,8 @@ if [[ "${1:-}" != "--no-libs" ]]; then
   python3 "$REPO/scripts/build_nasty_palette.py"
   log "self-made electronic kit (drums.club)"
   python3 "$REPO/scripts/build_club_kit.py"
+  log "DI guitar for amp models (guitar.emily_di)"
+  python3 "$REPO/scripts/build_guitar_sfz.py"
   log "UTAU voicebanks for songwriter/voice.py (~2.6 GB)"
   "$REPO/scripts/fetch_voices.sh"
 fi

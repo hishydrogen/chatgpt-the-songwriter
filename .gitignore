@@ -8,3 +8,6 @@ songs/_*/out/
 refs/
 songs/*/release/*.m4a
 songs/*/art/cover.png
+songs/*/art/render*.png
+songs/*/art/bg.png
+songs/*/art/bg.html

@@ -36,6 +36,8 @@ def lufs(x: np.ndarray) -> float:
     global _meter
     if _meter is None:
         _meter = pyln.Meter(config.SAMPLE_RATE)
+    if x.shape[-1] <= int(0.4 * config.SAMPLE_RATE):   # shorter than one 400 ms block
+        x = np.pad(x, ((0, 0), (0, int(0.41 * config.SAMPLE_RATE) - x.shape[-1])))
     v = _meter.integrated_loudness(x.T.astype(np.float64))
     return float(v) if np.isfinite(v) else -120.0
 
@@ -71,6 +73,8 @@ def strip(x: np.ndarray, cfg: dict, song: Song, stems: dict[str, np.ndarray]) ->
         return np.zeros_like(x)
     full = x
     x = x[:, sp[0]:sp[1]]
+    if "amp" in cfg:              # guitar rig on a DI stem: [{"type": "amp", "Distortion": 60, ...}]
+        x = dsp.amp(x, cfg["amp"])
     bands = list(cfg.get("eq", []))
     if "hpf" in cfg:
         bands.insert(0, ("hpf", cfg["hpf"]))

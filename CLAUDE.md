@@ -18,6 +18,14 @@ Finished examples - read one `song.py` before writing a new song:
   a **sung Japanese vocal** (UTAU voicebank through `songwriter/voice.py`), self-made
   electronic kit, house-piano riff, pumping supersaw, harmony vocals, half-step key change,
   classic Mac OS UI cover. Before any song with lyrics read `docs/vocal-songwriting.md`.
+- `songs/ramune/`: "ラムネ (feat. 筆墨クミ)", early-2010s vocaloid rock at 170 BPM: double-tracked
+  high-gain guitars (DI samples into guitarix amps, `"amp"` strip insert), one sprint
+  four-on-the-floor groove with half-time only in pre-choruses and bridge (the user asked
+  for fewer groove types), a lead-guitar riff and solo with pitch-bend vibrato, quiet piano
+  chorus before a whole-step-up last chorus, a ringing last chord (DI samples last ~3.4 s:
+  fade them on CC11 into a long hall). Cover rendered in Blender Cycles
+  (`art/bottle_scene.py`). The user changed the voice and groove after the first rough mix:
+  `songs/ramune-samples` shows how to answer that with a sample file before redoing it.
 
 ## New song from a reference (the usual request)
 
@@ -106,6 +114,9 @@ CI-tested; if a step fails, fix the script and commit the fix.
   `scripts/surgepy-settempo.patch`) renders any of the ~3,500 Surge patches.
 - VST3 in `/usr/lib/vst3`: LSP (EQ, compressors, limiter...), Dragonfly reverbs, ZAM, DPF;
   Surge XT + Surge XT Effects in `/usr/local/lib/vst3`.
+- LV2 guitarix (`guitarix-lv2`: amp models, cabinets, TS9, pedals) run offline through
+  `lv2host` (`scripts/lv2host.c`, built by setup.sh: atom ports, synchronous worker,
+  latency trim). `lv2apply` and pedalboard can't load gx_amp. `dsp.lv2(x, uri, **ports)`.
 - Network: GitHub clone + raw.githubusercontent, PyPI, Google Fonts (also via the
   google/fonts GitHub repo) work. GitHub release assets, archive.org, sourceforge, most web
   pages (WebFetch) are blocked; WebSearch works.
@@ -136,8 +147,10 @@ CI-tested; if a step fails, fix the script and commit the fix.
 ## Mixing and mastering
 
 - Every stem is normalised to -20 LUFS before its strip, so `gain` is a true balance.
-- Strip: eq -> comp -> crush/tape/tube/saturate -> duck -> chorus -> tremolo ->
-  mono/width/pan -> gain -> sends -> bus. FX returns: `reverb` (plate/hall/room), `gated`
+- Strip: amp -> eq -> comp -> crush/tape/tube/saturate -> duck -> chorus -> tremolo ->
+  mono/width/pan -> gain -> sends -> bus. `amp`: a guitar rig on a DI stem, e.g.
+  `[{"type": "ts9", ...}, {"type": "amp", "Distortion": 75, "t_model": 9, "c_model": 13}]`
+  (guitarix port symbols; `{"chain": [...], "dry": 0.5}` blends the DI back in for bass). FX returns: `reverb` (plate/hall/room), `gated`
   (80s non-linear), `delay`.
 - Follow the genre's conventions: HPF everything but kick/bass; cut 200-500 Hz on
   keys/pads/guitars; low end mono (`mono_below`, or `mono: True` on bass); reverb/delay on
@@ -154,6 +167,10 @@ CI-tested; if a step fails, fix the script and commit the fix.
 
 - Album art: HTML/SVG -> headless Chromium at 3x -> 3000x3000 PNG -> JPG
   (`songs/*/art/make_art.py`; fonts downloaded into `art/fonts/` with their OFL text).
+  For a photoreal object (glass, metal) render it in Blender (`apt install blender`,
+  Cycles CPU; Ubuntu's build has no OIDN denoiser: adaptive sampling + ffmpeg nlmeans) in
+  front of a camera-facing backdrop of the painted sky, then lay the type on in SVG
+  (`songs/ramune/art`). The user found a hand-drawn SVG bottle "low quality".
   Make it look like a real sleeve of the era: one strong image, quiet period type, lots of
   space. No present-day "retro" signifiers (synthwave stripes, VHS noise, heavy grain,
   cassettes, polaroid frames). Look at the render and fix what you see.
@@ -161,8 +178,10 @@ CI-tested; if a step fails, fix the script and commit the fix.
   -> `release/<Title>.m4a` (24-bit/48 kHz, verified bit-exact to master.wav) and
   `<Title>_16bit.m4a` (44.1 kHz, dithered). Put the sample libraries and licenses in the
   comment and in `songs/<slug>/CREDITS.md`.
-- The app upload limit is below 45 MiB: send the 16-bit file, `git add -f` the 24-bit one
-  (GitHub warns above 50 MB, refuses above 100 MB) and give the GitHub link.
+- The app upload limit is 30 MiB: a 16-bit ALAC under that (about 3:45 or shorter) can be
+  sent; a longer one (ラムネ, 3:58, was 31.1 MiB) can't - send out/master.mp3 instead.
+  `git add -f` the ALAC files and give their GitHub links (GitHub warns above 50 MB,
+  refuses above 100 MB).
 
 ## Hard-won lessons
 
@@ -202,6 +221,17 @@ CI-tested; if a step fails, fix the script and commit the fix.
   extend `voice.KANA_ALT` rather than changing the lyric.
 - Synthesised vocals are mid-heavy: cut ~280 and ~750 Hz, lift 3.2 kHz and air; check
   the lead sits 4-6 dB over the loudest other track (an electronic kick easily beats it).
+- sfizz: `amplitude_oncc` multiplies (CC at 0 = silence) - use `volume_oncc` (dB) for a
+  per-CC level; a velocity-tracked LPF pushed near Nyquist silences notes.
+- pyloudnorm refuses signals under one 400 ms block: `mix.lufs()` pads them.
+- Hard-panned double-tracked guitars give a bus correlation near 0.1: that is width (two
+  different takes), not phase cancellation - the mono sum keeps them.
+- Voice styles (Kumi `S`) are looked up at the nearest recorded pitch before falling back
+  to the plain voice.
+- Blender: a glass sphere is a wide-angle lens - a camera-facing backdrop must extend far
+  past the frame (image extension EXTEND) or its border shows up inside the marble, and
+  the Nishita sky is black below the horizon (mix in a pale haze there).
+- MIDI meta text is latin-1: keep `Song(title)` ASCII; the release tags carry the real title.
 - Cover art homage: don't reuse the reference's character (palette, hair, pose) - the
   user called that plagiarism. For an OS-UI cover keep everything UI-native (documents,
   dialogs, pixel icons, cursor), put a modal dialog at the exact screen centre, draw icons
@@ -220,7 +250,9 @@ sounds yourself (see `drums.linn86`). Surge XT output is the user's.
 Self-made: `drums.club` (`scripts/build_club_kit.py`), `drums.linn86` rebuilds.
 Voicebanks: 筆墨クミ (`voice.kumi`) commercial use allowed without permission (keep the
 name, credit Cubialpha + link). Milk, Hikari One, Viki Hopper: commercial use needs the
-author's approval. 足立レイ: doujin use free (paid ok), corporate commercial use: contact.
+author's approval. Hikari One also: credit "Hikari One" + author "kyomiii" (or "revonni")
+exactly, no sexual/violent/political/religious content, no pitch/formant edits of the
+bank's audio (keep the engine's `formant` at 0), character art only with permission. 足立レイ: doujin use free (paid ok), corporate commercial use: contact.
 Release a sung song as "<Title> (feat. <voicebank>)" with the artist still Claude.
 
 ## Instrument choice (best available, by role)
@@ -238,7 +270,11 @@ Release a sung song as "<Title> (feat. <voicebank>)" with the artist still Claud
 - Bass: `bass.darkblack` (finger, warm), `bass.babyblue` (short-scale), `bass.upright_pizz`;
   synth bass: `surge("Basses/...")`; 8-bit: `mirage.bass_*`.
 - Guitars: `guitar.green_twang` (Gretsch, clean, bright) / `guitar.black_twang` (Hofner,
-  warmer); add `tube` for grit. Distorted rhythm guitar is a weak spot of free samples.
+  warmer); add `tube` for grit. Distorted rock guitar: `guitar.emily_di` (Karoryfer Emily,
+  recorded direct; CC70 = palm mute; `scripts/build_guitar_sfz.py`) into an `amp` rig -
+  the amp sees the whole chord like a real amp. Rigs that won the `songs/summer-palette`
+  audition are in `songs/last-summer/song.py` (Mesa high gain rhythm, AC30 edge-of-breakup
+  arpeggios, Ampeg drive bass). Double-track rhythm parts (two takes, hard L/R).
 - Brass and orchestra (VSCO 2 CE): `brass.horn_sus`, `trombone_sus`, `trumpet_sus`,
   `trumpet_harmon` (+ `_stac` versions; sustain samples are 4-25 s), `strings.*`,
   `winds.*`, `strings.harp`, `perc.*`.

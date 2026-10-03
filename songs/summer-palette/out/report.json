@@ -1,0 +1,753 @@
+{
+  "master": {
+    "integrated_lufs": -14.07,
+    "short_term_max_lufs": -12.36,
+    "loudness_range_lu": 3.38,
+    "true_peak_dbtp": -1.0,
+    "sample_peak_db": -1.19,
+    "plr_db": 13.07,
+    "crest_db": 15.94,
+    "stereo_correlation": 0.694,
+    "side_to_mid_db": -7.43,
+    "tonal_slope_db_per_oct": -1.56,
+    "bands_db": {
+      "sub": -25.6,
+      "bass": -21.4,
+      "low-mid": -23.0,
+      "mid": -22.3,
+      "hi-mid": -25.3,
+      "presence": -32.4,
+      "air": -35.7
+    }
+  },
+  "masking": [
+    "low-mid: bed snare, bed kick within 3 dB of each other",
+    "mid: voice A: Kumi, bed snare, voice B: Kumi strong, voice C: Hikari One, voice E: Viki Hopper, voice D: Milk within 3 dB of each other",
+    "hi-mid: bed guitar R, bed guitar L, voice D: Milk, voice C: Hikari One, voice E: Viki Hopper, colour C: music box (synth), voice B: Kumi strong within 3 dB of each other",
+    "presence: colour B: glockenspiel, bed snare, bed hats, bed guitar R, bed guitar L, bed cymbals, clean B: Gretsch twang within 3 dB of each other",
+    "air: bed hats, clean B: Gretsch twang within 3 dB of each other"
+  ],
+  "master_chain": {
+    "lufs": -14.07,
+    "true_peak": -1.0,
+    "limiter_drive_db": 5.51
+  },
+  "sections": [
+    {
+      "label": "voice A: Kumi",
+      "start_s": 0.0,
+      "end_s": 11.29,
+      "master_lufs": -13.2,
+      "tracks": {
+        "bed kick": -28.0,
+        "bed snare": -28.4,
+        "bed hats": -35.3,
+        "bed cymbals": -35.2,
+        "bed toms": -28.5,
+        "bed bass": -30.5,
+        "bed guitar L": -30.3,
+        "bed guitar R": -30.3,
+        "bed piano": -35.2,
+        "voice A: Kumi": -23.1,
+        "voice B: Kumi strong": -53.2,
+        "fx:plate": -34.7,
+        "fx:room": -43.7,
+        "fx:dly": -46.3
+      }
+    },
+    {
+      "label": "voice B: Kumi strong",
+      "start_s": 11.29,
+      "end_s": 22.59,
+      "master_lufs": -13.2,
+      "tracks": {
+        "bed kick": -27.9,
+        "bed snare": -28.5,
+        "bed hats": -35.3,
+        "bed cymbals": -35.4,
+        "bed toms": -29.9,
+        "bed bass": -30.4,
+        "bed guitar L": -30.3,
+        "bed guitar R": -30.3,
+        "bed piano": -35.1,
+        "voice B: Kumi strong": -23.1,
+        "voice C: Hikari One": -43.8,
+        "fx:plate": -34.8,
+        "fx:room": -43.6,
+        "fx:dly": -45.9
+      }
+    },
+    {
+      "label": "voice C: Hikari One",
+      "start_s": 22.59,
+      "end_s": 33.88,
+      "master_lufs": -13.2,
+      "tracks": {
+        "bed kick": -28.2,
+        "bed snare": -28.6,
+        "bed hats": -35.2,
+        "bed cymbals": -35.1,
+        "bed toms": -30.7,
+        "bed bass": -30.4,
+        "bed guitar L": -30.3,
+        "bed guitar R": -30.3,
+        "bed piano": -35.1,
+        "voice C: Hikari One": -22.9,
+        "voice D: Milk": -53.1,
+        "fx:plate": -35.1,
+        "fx:room": -43.6,
+        "fx:dly": -45.9
+      }
+    },
+    {
+      "label": "voice D: Milk",
+      "start_s": 33.88,
+      "end_s": 45.18,
+      "master_lufs": -13.1,
+      "tracks": {
+        "bed kick": -27.9,
+        "bed snare": -28.3,
+        "bed hats": -35.3,
+        "bed cymbals": -35.1,
+        "bed toms": -30.2,
+        "bed bass": -30.6,
+        "bed guitar L": -30.3,
+        "bed guitar R": -30.3,
+        "bed piano": -35.3,
+        "voice D: Milk": -22.7,
+        "voice E: Viki Hopper": -30.8,
+        "fx:plate": -34.7,
+        "fx:room": -43.5,
+        "fx:dly": -45.5
+      }
+    },
+    {
+      "label": "voice E: Viki Hopper",
+      "start_s": 45.18,
+      "end_s": 57.88,
+      "master_lufs": -13.3,
+      "tracks": {
+        "bed kick": -28.0,
+        "bed snare": -28.5,
+        "bed hats": -35.2,
+        "bed cymbals": -35.1,
+        "bed toms": -30.5,
+        "bed bass": -30.4,
+        "bed guitar L": -30.4,
+        "bed guitar R": -30.4,
+        "bed piano": -35.1,
+        "voice E: Viki Hopper": -22.9,
+        "fx:plate": -34.9,
+        "fx:room": -43.7,
+        "fx:dly": -46.5
+      }
+    },
+    {
+      "label": "guitar A: Marshall crunch",
+      "start_s": 57.88,
+      "end_s": 69.18,
+      "master_lufs": -13.8,
+      "tracks": {
+        "bed kick": -27.9,
+        "bed snare": -28.5,
+        "bed hats": -35.2,
+        "bed cymbals": -35.1,
+        "bed toms": -28.8,
+        "bed bass": -30.4,
+        "guitar A: Marshall crunch | L": -25.4,
+        "guitar A: Marshall crunch | R": -25.4,
+        "guitar B: Mesa high gain | L": -53.6,
+        "fx:room": -43.6
+      }
+    },
+    {
+      "label": "guitar B: Mesa high gain",
+      "start_s": 69.18,
+      "end_s": 80.47,
+      "master_lufs": -13.5,
+      "tracks": {
+        "bed kick": -28.0,
+        "bed snare": -28.4,
+        "bed hats": -35.2,
+        "bed cymbals": -35.0,
+        "bed toms": -30.0,
+        "bed bass": -30.3,
+        "guitar A: Marshall crunch | L": -34.8,
+        "guitar A: Marshall crunch | R": -34.5,
+        "guitar B: Mesa high gain | L": -25.0,
+        "guitar B: Mesa high gain | R": -25.0,
+        "fx:room": -43.6
+      }
+    },
+    {
+      "label": "guitar C: Vox crunch",
+      "start_s": 80.47,
+      "end_s": 93.18,
+      "master_lufs": -14.1,
+      "tracks": {
+        "bed kick": -28.0,
+        "bed snare": -28.5,
+        "bed hats": -35.1,
+        "bed cymbals": -35.2,
+        "bed toms": -30.8,
+        "bed bass": -30.2,
+        "guitar B: Mesa high gain | L": -34.9,
+        "guitar B: Mesa high gain | R": -34.8,
+        "guitar C: Vox crunch | L": -25.4,
+        "guitar C: Vox crunch | R": -25.4,
+        "clean A: DI into a clean amp + chorus": -47.4,
+        "fx:room": -43.8
+      }
+    },
+    {
+      "label": "clean A: DI into a clean amp + chorus",
+      "start_s": 93.18,
+      "end_s": 98.82,
+      "master_lufs": -15.3,
+      "tracks": {
+        "bed kick": -29.2,
+        "bed snare": -29.7,
+        "bed hats": -36.8,
+        "bed cymbals": -38.1,
+        "bed toms": -27.6,
+        "bed bass": -29.5,
+        "clean A: DI into a clean amp + chorus": -24.9,
+        "fx:plate": -39.1,
+        "fx:room": -44.9,
+        "fx:dly": -46.8
+      }
+    },
+    {
+      "label": "clean B: Gretsch twang",
+      "start_s": 98.82,
+      "end_s": 104.47,
+      "master_lufs": -15.5,
+      "tracks": {
+        "bed kick": -29.3,
+        "bed snare": -29.3,
+        "bed hats": -36.7,
+        "bed cymbals": -37.0,
+        "bed toms": -31.3,
+        "bed bass": -29.6,
+        "clean A: DI into a clean amp + chorus": -38.4,
+        "clean B: Gretsch twang": -25.0,
+        "fx:plate": -43.6,
+        "fx:room": -44.5,
+        "fx:dly": -52.4
+      }
+    },
+    {
+      "label": "clean C: edge-of-breakup arpeggio",
+      "start_s": 104.47,
+      "end_s": 111.53,
+      "master_lufs": -15.4,
+      "tracks": {
+        "bed kick": -29.4,
+        "bed snare": -29.7,
+        "bed hats": -36.6,
+        "bed cymbals": -38.2,
+        "bed toms": -31.2,
+        "bed bass": -29.9,
+        "bed guitar L": -61.7,
+        "clean B: Gretsch twang": -27.1,
+        "clean C: edge-of-breakup arpeggio": -25.0,
+        "fx:plate": -38.4,
+        "fx:room": -45.1,
+        "fx:dly": -47.6
+      }
+    },
+    {
+      "label": "piano A: Salamander (bright)",
+      "start_s": 111.53,
+      "end_s": 117.18,
+      "master_lufs": -14.7,
+      "tracks": {
+        "bed kick": -27.8,
+        "bed snare": -28.6,
+        "bed hats": -35.1,
+        "bed cymbals": -35.5,
+        "bed toms": -27.6,
+        "bed bass": -29.6,
+        "bed guitar L": -31.1,
+        "bed guitar R": -31.1,
+        "piano A: Salamander (bright)": -26.5,
+        "fx:plate": -43.5,
+        "fx:room": -43.7
+      }
+    },
+    {
+      "label": "piano B: Splendid (mellow)",
+      "start_s": 117.18,
+      "end_s": 122.82,
+      "master_lufs": -14.7,
+      "tracks": {
+        "bed kick": -28.0,
+        "bed snare": -28.6,
+        "bed hats": -35.3,
+        "bed cymbals": -35.7,
+        "bed toms": -30.5,
+        "bed bass": -29.6,
+        "bed guitar L": -31.2,
+        "bed guitar R": -31.1,
+        "piano A: Salamander (bright)": -43.4,
+        "piano B: Splendid (mellow)": -26.2,
+        "fx:plate": -43.3,
+        "fx:room": -43.6
+      }
+    },
+    {
+      "label": "piano C: upright (intimate)",
+      "start_s": 122.82,
+      "end_s": 129.88,
+      "master_lufs": -14.7,
+      "tracks": {
+        "bed kick": -28.0,
+        "bed snare": -28.5,
+        "bed hats": -35.1,
+        "bed cymbals": -36.1,
+        "bed toms": -31.3,
+        "bed bass": -29.8,
+        "bed guitar L": -31.3,
+        "bed guitar R": -31.2,
+        "piano B: Splendid (mellow)": -45.8,
+        "piano C: upright (intimate)": -26.2,
+        "fx:plate": -44.5,
+        "fx:room": -43.7
+      }
+    },
+    {
+      "label": "colour A: string section",
+      "start_s": 129.88,
+      "end_s": 135.53,
+      "master_lufs": -13.4,
+      "tracks": {
+        "bed kick": -27.8,
+        "bed snare": -28.7,
+        "bed hats": -35.4,
+        "bed cymbals": -35.6,
+        "bed toms": -27.7,
+        "bed bass": -29.7,
+        "bed guitar L": -29.6,
+        "bed guitar R": -29.6,
+        "bed piano": -36.9,
+        "piano C: upright (intimate)": -50.2,
+        "colour A: string section | violins": -30.4,
+        "colour A: string section | violas": -29.9,
+        "colour A: string section | celli": -30.1,
+        "fx:plate": -64.9,
+        "fx:room": -43.7,
+        "fx:hall": -29.2
+      }
+    },
+    {
+      "label": "colour B: glockenspiel",
+      "start_s": 135.53,
+      "end_s": 141.18,
+      "master_lufs": -13.7,
+      "tracks": {
+        "bed kick": -28.2,
+        "bed snare": -28.5,
+        "bed hats": -35.1,
+        "bed cymbals": -36.0,
+        "bed toms": -30.9,
+        "bed bass": -29.8,
+        "bed guitar L": -29.6,
+        "bed guitar R": -29.6,
+        "bed piano": -37.0,
+        "piano C: upright (intimate)": -65.0,
+        "colour A: string section | violins": -44.2,
+        "colour A: string section | violas": -47.1,
+        "colour A: string section | celli": -47.2,
+        "colour B: glockenspiel": -24.6,
+        "fx:plate": -36.9,
+        "fx:room": -43.5,
+        "fx:hall": -37.4,
+        "fx:dly": -45.6
+      }
+    },
+    {
+      "label": "colour C: music box (synth)",
+      "start_s": 141.18,
+      "end_s": 146.82,
+      "master_lufs": -13.4,
+      "tracks": {
+        "bed kick": -27.9,
+        "bed snare": -28.6,
+        "bed hats": -35.3,
+        "bed cymbals": -35.5,
+        "bed toms": -31.4,
+        "bed bass": -29.8,
+        "bed guitar L": -29.6,
+        "bed guitar R": -29.6,
+        "bed piano": -36.9,
+        "colour B: glockenspiel": -38.5,
+        "colour C: music box (synth)": -24.6,
+        "fx:plate": -34.4,
+        "fx:room": -43.5,
+        "fx:dly": -43.4
+      }
+    },
+    {
+      "label": "colour D: synth strings",
+      "start_s": 146.82,
+      "end_s": 153.88,
+      "master_lufs": -13.7,
+      "tracks": {
+        "bed kick": -28.0,
+        "bed snare": -28.6,
+        "bed hats": -35.2,
+        "bed cymbals": -35.7,
+        "bed toms": -31.2,
+        "bed bass": -29.7,
+        "bed guitar L": -29.7,
+        "bed guitar R": -29.7,
+        "bed piano": -36.9,
+        "colour C: music box (synth)": -35.7,
+        "colour D: synth strings": -24.6,
+        "fx:plate": -43.4,
+        "fx:room": -43.9,
+        "fx:hall": -30.5,
+        "fx:dly": -48.9
+      }
+    },
+    {
+      "label": "bass A: finger, bright",
+      "start_s": 153.88,
+      "end_s": 159.53,
+      "master_lufs": -15.8,
+      "tracks": {
+        "bed kick": -28.2,
+        "bed snare": -28.6,
+        "bed hats": -35.4,
+        "bed cymbals": -35.8,
+        "bed toms": -27.8,
+        "bed guitar L": -31.1,
+        "bed guitar R": -31.1,
+        "colour D: synth strings": -45.4,
+        "bass A: finger, bright": -25.6,
+        "fx:room": -43.7,
+        "fx:hall": -48.2
+      }
+    },
+    {
+      "label": "bass B: short-scale, warm",
+      "start_s": 159.53,
+      "end_s": 165.18,
+      "master_lufs": -14.9,
+      "tracks": {
+        "bed kick": -27.7,
+        "bed snare": -28.5,
+        "bed hats": -35.1,
+        "bed cymbals": -35.8,
+        "bed toms": -32.0,
+        "bed guitar L": -31.1,
+        "bed guitar R": -31.1,
+        "bass B: short-scale, warm": -25.6,
+        "fx:room": -43.6
+      }
+    },
+    {
+      "label": "bass C: drive bass",
+      "start_s": 165.18,
+      "end_s": 172.24,
+      "master_lufs": -16.0,
+      "tracks": {
+        "bed kick": -28.1,
+        "bed snare": -28.6,
+        "bed hats": -35.4,
+        "bed cymbals": -35.7,
+        "bed toms": -31.4,
+        "bed guitar L": -31.3,
+        "bed guitar R": -31.2,
+        "bass B: short-scale, warm": -42.1,
+        "bass C: drive bass": -25.9,
+        "fx:room": -43.8
+      }
+    },
+    {
+      "label": "drums A: DRSKit (rock)",
+      "start_s": 172.24,
+      "end_s": 177.88,
+      "master_lufs": -16.5,
+      "tracks": {
+        "bed toms": -56.6,
+        "bed bass": -29.6,
+        "bed guitar L": -31.1,
+        "bed guitar R": -31.1,
+        "drums A: DRSKit (rock) | kick": -27.9,
+        "drums A: DRSKit (rock) | snare": -28.9,
+        "drums A: DRSKit (rock) | hats": -35.3,
+        "drums A: DRSKit (rock) | cymbals": -35.8,
+        "drums A: DRSKit (rock) | toms": -27.5,
+        "fx:room": -43.9
+      }
+    },
+    {
+      "label": "drums B: Virtuosity (natural)",
+      "start_s": 177.88,
+      "end_s": 184.94,
+      "master_lufs": -16.7,
+      "tracks": {
+        "bed bass": -30.0,
+        "bed guitar L": -31.2,
+        "bed guitar R": -31.2,
+        "drums A: DRSKit (rock) | kick": -69.1,
+        "drums A: DRSKit (rock) | toms": -42.9,
+        "drums B: Virtuosity (natural) | kick": -27.8,
+        "drums B: Virtuosity (natural) | snare": -28.9,
+        "drums B: Virtuosity (natural) | hats": -34.6,
+        "drums B: Virtuosity (natural) | cymbals": -35.6,
+        "drums B: Virtuosity (natural) | toms": -29.6,
+        "fx:room": -43.3
+      }
+    }
+  ],
+  "tracks": {
+    "bed kick": {
+      "lufs": -28.1,
+      "peak_db": -8.5,
+      "stereo_correlation": 0.92
+    },
+    "bed snare": {
+      "lufs": -28.5,
+      "peak_db": -4.5,
+      "stereo_correlation": 0.69
+    },
+    "bed hats": {
+      "lufs": -35.4,
+      "peak_db": -20.7,
+      "stereo_correlation": 0.16
+    },
+    "bed cymbals": {
+      "lufs": -35.2,
+      "peak_db": -22.2,
+      "stereo_correlation": 0.34
+    },
+    "bed toms": {
+      "lufs": -29.6,
+      "peak_db": -11.4,
+      "stereo_correlation": 0.91
+    },
+    "bed bass": {
+      "lufs": -30.2,
+      "peak_db": -17.2,
+      "stereo_correlation": 1.0
+    },
+    "bed guitar L": {
+      "lufs": -30.5,
+      "peak_db": -17.1,
+      "stereo_correlation": 1.0
+    },
+    "bed guitar R": {
+      "lufs": -30.5,
+      "peak_db": -17.5,
+      "stereo_correlation": 1.0
+    },
+    "bed piano": {
+      "lufs": -35.6,
+      "peak_db": -21.6,
+      "stereo_correlation": 0.45
+    },
+    "voice A: Kumi": {
+      "lufs": -23.1,
+      "peak_db": -12.8,
+      "stereo_correlation": 1.0
+    },
+    "voice B: Kumi strong": {
+      "lufs": -23.2,
+      "peak_db": -14.0,
+      "stereo_correlation": 1.0
+    },
+    "voice C: Hikari One": {
+      "lufs": -23.0,
+      "peak_db": -12.9,
+      "stereo_correlation": 1.0
+    },
+    "voice D: Milk": {
+      "lufs": -22.8,
+      "peak_db": -13.7,
+      "stereo_correlation": 1.0
+    },
+    "voice E: Viki Hopper": {
+      "lufs": -23.0,
+      "peak_db": -10.8,
+      "stereo_correlation": 1.0
+    },
+    "guitar A: Marshall crunch | L": {
+      "lufs": -25.4,
+      "peak_db": -13.5,
+      "stereo_correlation": 1.0
+    },
+    "guitar A: Marshall crunch | R": {
+      "lufs": -25.4,
+      "peak_db": -11.8,
+      "stereo_correlation": 1.0
+    },
+    "guitar B: Mesa high gain | L": {
+      "lufs": -25.1,
+      "peak_db": -11.7,
+      "stereo_correlation": 1.0
+    },
+    "guitar B: Mesa high gain | R": {
+      "lufs": -25.1,
+      "peak_db": -12.3,
+      "stereo_correlation": 1.0
+    },
+    "guitar C: Vox crunch | L": {
+      "lufs": -25.5,
+      "peak_db": -9.6,
+      "stereo_correlation": 1.0
+    },
+    "guitar C: Vox crunch | R": {
+      "lufs": -25.4,
+      "peak_db": -10.9,
+      "stereo_correlation": 1.0
+    },
+    "clean A: DI into a clean amp + chorus": {
+      "lufs": -25.3,
+      "peak_db": -13.5,
+      "stereo_correlation": 0.73
+    },
+    "clean B: Gretsch twang": {
+      "lufs": -24.9,
+      "peak_db": -15.8,
+      "stereo_correlation": 1.0
+    },
+    "clean C: edge-of-breakup arpeggio": {
+      "lufs": -25.1,
+      "peak_db": -14.9,
+      "stereo_correlation": 1.0
+    },
+    "piano A: Salamander (bright)": {
+      "lufs": -26.8,
+      "peak_db": -13.1,
+      "stereo_correlation": 0.5
+    },
+    "piano B: Splendid (mellow)": {
+      "lufs": -26.4,
+      "peak_db": -15.1,
+      "stereo_correlation": 0.49
+    },
+    "piano C: upright (intimate)": {
+      "lufs": -26.5,
+      "peak_db": -14.0,
+      "stereo_correlation": 0.36
+    },
+    "colour A: string section | violins": {
+      "lufs": -30.6,
+      "peak_db": -20.7,
+      "stereo_correlation": 0.32
+    },
+    "colour A: string section | violas": {
+      "lufs": -30.1,
+      "peak_db": -19.4,
+      "stereo_correlation": 0.83
+    },
+    "colour A: string section | celli": {
+      "lufs": -30.2,
+      "peak_db": -18.6,
+      "stereo_correlation": 0.76
+    },
+    "colour B: glockenspiel": {
+      "lufs": -25.2,
+      "peak_db": -14.7,
+      "stereo_correlation": 0.9
+    },
+    "colour C: music box (synth)": {
+      "lufs": -25.1,
+      "peak_db": -15.7,
+      "stereo_correlation": 0.99
+    },
+    "colour D: synth strings": {
+      "lufs": -24.6,
+      "peak_db": -13.2,
+      "stereo_correlation": 0.58
+    },
+    "bass A: finger, bright": {
+      "lufs": -25.7,
+      "peak_db": -12.8,
+      "stereo_correlation": 1.0
+    },
+    "bass B: short-scale, warm": {
+      "lufs": -25.9,
+      "peak_db": -14.5,
+      "stereo_correlation": 1.0
+    },
+    "bass C: drive bass": {
+      "lufs": -25.7,
+      "peak_db": -14.1,
+      "stereo_correlation": 1.0
+    },
+    "drums A: DRSKit (rock) | kick": {
+      "lufs": -28.1,
+      "peak_db": -8.8,
+      "stereo_correlation": 0.92
+    },
+    "drums A: DRSKit (rock) | snare": {
+      "lufs": -28.5,
+      "peak_db": -4.7,
+      "stereo_correlation": 0.69
+    },
+    "drums A: DRSKit (rock) | hats": {
+      "lufs": -35.4,
+      "peak_db": -20.9,
+      "stereo_correlation": 0.16
+    },
+    "drums A: DRSKit (rock) | cymbals": {
+      "lufs": -35.1,
+      "peak_db": -22.9,
+      "stereo_correlation": 0.33
+    },
+    "drums A: DRSKit (rock) | toms": {
+      "lufs": -29.7,
+      "peak_db": -12.3,
+      "stereo_correlation": 0.9
+    },
+    "drums B: Virtuosity (natural) | kick": {
+      "lufs": -27.9,
+      "peak_db": -14.8,
+      "stereo_correlation": 1.0
+    },
+    "drums B: Virtuosity (natural) | snare": {
+      "lufs": -28.6,
+      "peak_db": -6.2,
+      "stereo_correlation": 0.88
+    },
+    "drums B: Virtuosity (natural) | hats": {
+      "lufs": -34.7,
+      "peak_db": -7.0,
+      "stereo_correlation": 0.24
+    },
+    "drums B: Virtuosity (natural) | cymbals": {
+      "lufs": -35.0,
+      "peak_db": -22.0,
+      "stereo_correlation": 0.33
+    },
+    "drums B: Virtuosity (natural) | toms": {
+      "lufs": -29.6,
+      "peak_db": -14.5,
+      "stereo_correlation": 0.95
+    },
+    "fx:plate": {
+      "lufs": -36.3,
+      "peak_db": -21.8,
+      "stereo_correlation": 0.11
+    },
+    "fx:room": {
+      "lufs": -43.7,
+      "peak_db": -25.6,
+      "stereo_correlation": -0.15
+    },
+    "fx:hall": {
+      "lufs": -30.0,
+      "peak_db": -18.3,
+      "stereo_correlation": -0.06
+    },
+    "fx:dly": {
+      "lufs": -46.2,
+      "peak_db": -30.6,
+      "stereo_correlation": 0.01
+    }
+  },
+  "warnings": []
+}
