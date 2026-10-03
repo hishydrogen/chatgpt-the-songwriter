@@ -178,8 +178,10 @@ CI-tested; if a step fails, fix the script and commit the fix.
   -> `release/<Title>.m4a` (24-bit/48 kHz, verified bit-exact to master.wav) and
   `<Title>_16bit.m4a` (44.1 kHz, dithered). Put the sample libraries and licenses in the
   comment and in `songs/<slug>/CREDITS.md`.
-- The app upload limit is below 45 MiB: send the 16-bit file, `git add -f` the 24-bit one
-  (GitHub warns above 50 MB, refuses above 100 MB) and give the GitHub link.
+- The app upload limit is 30 MiB: a 16-bit ALAC under that (about 3:45 or shorter) can be
+  sent; a longer one (ラムネ, 3:58, was 31.1 MiB) can't - send out/master.mp3 instead.
+  `git add -f` the ALAC files and give their GitHub links (GitHub warns above 50 MB,
+  refuses above 100 MB).
 
 ## Hard-won lessons
 
