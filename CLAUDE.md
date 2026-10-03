@@ -110,6 +110,10 @@ CI-tested; if a step fails, fix the script and commit the fix.
   are blocked). `pyworld` (WORLD vocoder) does the analysis and resynthesis.
 - `sfizz_render` (built from source) renders SFZ offline. It supports `fil_type=lpf_4p`
   and `fileg_*` filter envelopes, MIDI tempo maps, and CC7/CC11 volume on every SFZ.
+  Apply `scripts/sfizz-float-output.patch`: intermediate WAVs must be 32-bit float so
+  quiet parts are not quantized early and hot sums can be lowered before clipping.
+  `scripts/setup.sh` upgrades old renderers; `python scripts/check_sfizz_float.py`
+  verifies native float output. SFZ cache signatures invalidate old integer renders.
 - `surgepy` (Surge XT python bindings, patched with `setTempo`, see
   `scripts/surgepy-settempo.patch`) renders any of the ~3,500 Surge patches.
 - VST3 in `/usr/lib/vst3`: LSP (EQ, compressors, limiter...), Dragonfly reverbs, ZAM, DPF;

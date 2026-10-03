@@ -41,6 +41,9 @@ def _render_sfz(song: Song, track: Track, inst: Instrument, n: int) -> np.ndarra
         r = subprocess.run(cmd, capture_output=True, text=True)
         if r.returncode != 0 or not wav.exists():
             raise RuntimeError(f"sfizz_render failed for {track.name}: {r.stderr[-2000:]}")
+        if sf.info(wav).subtype != "FLOAT":
+            raise RuntimeError("sfizz_render must write 32-bit float WAV: rebuild it with "
+                               "scripts/sfizz-float-output.patch (scripts/setup.sh applies it).")
         audio, sr = sf.read(wav, dtype="float32", always_2d=True)
     assert sr == config.SAMPLE_RATE, sr
     return _fit(audio.T, n)
@@ -160,7 +163,9 @@ def render_stems(song: Song, out_dir: Path, only: list[str] | None = None,
         wav = out_dir / f"{name}.wav"
         sig = out_dir / f".{name}.sig"
         mf = song.track_midi(track)
-        signature = f"{track.instrument}|{n}|" + "|".join(str(m) for t in mf.tracks for m in t)
+        # Invalidate SFZ stems made by the older, integer-output renderer.
+        fmt = "float32|" if get_instrument(track.instrument).engine == "sfz" else ""
+        signature = f"{track.instrument}|{n}|{fmt}" + "|".join(str(m) for t in mf.tracks for m in t)
         if track.opts or any(x.lyric or x.x for x in track.notes):
             signature += "|" + repr(sorted(track.opts.items())) + "|" + repr(
                 [(x.lyric, sorted((x.x or {}).items())) for x in track.notes])

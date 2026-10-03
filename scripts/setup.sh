@@ -31,10 +31,15 @@ if ! command -v lv2host >/dev/null; then
   gcc -O2 -o /usr/local/bin/lv2host "$REPO/scripts/lv2host.c" $(pkg-config --cflags --libs lilv-0 sndfile) -lm
 fi
 
-if ! command -v sfizz_render >/dev/null; then
-  log "build sfizz_render"
+if ! command -v sfizz_render >/dev/null || ! sfizz_render --help 2>&1 | grep -q '32-bit float WAV'; then
+  log "build sfizz_render with float output (no early PCM quantization or clipping)"
   [ -d "$BUILD/sfizz" ] || git clone -q --recurse-submodules https://github.com/sfztools/sfizz.git "$BUILD/sfizz"
   git -C "$BUILD/sfizz" checkout -q "$SFIZZ_REV" && git -C "$BUILD/sfizz" submodule update -q --init --recursive
+  if git -C "$BUILD/sfizz" apply --check "$REPO/scripts/sfizz-float-output.patch" 2>/dev/null; then
+    git -C "$BUILD/sfizz" apply "$REPO/scripts/sfizz-float-output.patch"
+  else
+    git -C "$BUILD/sfizz" apply --reverse --check "$REPO/scripts/sfizz-float-output.patch"
+  fi
   cmake -S "$BUILD/sfizz" -B "$BUILD/sfizz/build" -G Ninja -DCMAKE_BUILD_TYPE=Release -DSFIZZ_JACK=OFF \
     -DSFIZZ_RENDER=ON -DSFIZZ_TESTS=OFF -DSFIZZ_DEMOS=OFF -DSFIZZ_BENCHMARKS=OFF -DSFIZZ_DEVTOOLS=OFF >/dev/null
   ninja -C "$BUILD/sfizz/build" -j"$JOBS" sfizz_render >/dev/null
