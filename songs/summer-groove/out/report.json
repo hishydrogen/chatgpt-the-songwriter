@@ -1,0 +1,327 @@
+{
+  "master": {
+    "integrated_lufs": -14.06,
+    "short_term_max_lufs": -13.03,
+    "loudness_range_lu": 1.75,
+    "true_peak_dbtp": -1.0,
+    "sample_peak_db": -1.65,
+    "plr_db": 13.06,
+    "crest_db": 16.01,
+    "stereo_correlation": 0.701,
+    "side_to_mid_db": -7.55,
+    "tonal_slope_db_per_oct": -0.76,
+    "bands_db": {
+      "sub": -26.3,
+      "bass": -23.1,
+      "low-mid": -25.0,
+      "mid": -21.9,
+      "hi-mid": -24.4,
+      "presence": -30.6,
+      "air": -33.2
+    }
+  },
+  "masking": [
+    "sub: kick, bass within 3 dB of each other",
+    "bass: bass, kick within 3 dB of each other",
+    "low-mid: snare, kick within 3 dB of each other",
+    "hi-mid: vocal, lead guitar within 3 dB of each other",
+    "presence: lead guitar, glockenspiel, vocal, guitar L, guitar R within 3 dB of each other"
+  ],
+  "master_chain": {
+    "lufs": -14.06,
+    "true_peak": -1.0,
+    "limiter_drive_db": 5.8
+  },
+  "sections": [
+    {
+      "label": "A 8-beat drive",
+      "start_s": 0.0,
+      "end_s": 11.29,
+      "master_lufs": -14.5,
+      "tracks": {
+        "kick": -28.4,
+        "snare": -28.5,
+        "hats": -32.4,
+        "cymbals": -32.8,
+        "toms": -26.8,
+        "bass": -26.7,
+        "guitar L": -26.8,
+        "guitar R": -26.7,
+        "lead guitar": -23.9,
+        "piano": -34.0,
+        "glockenspiel": -31.0,
+        "vocal": -41.8,
+        "bus:drums": -25.3,
+        "bus:guitars": -23.7,
+        "fx:plate": -35.8,
+        "fx:room": -42.8,
+        "fx:dly": -40.8
+      }
+    },
+    {
+      "label": "A + vocal",
+      "start_s": 11.29,
+      "end_s": 22.59,
+      "master_lufs": -13.7,
+      "tracks": {
+        "kick": -28.3,
+        "snare": -28.2,
+        "cymbals": -35.2,
+        "toms": -31.0,
+        "bass": -28.2,
+        "guitar L": -27.0,
+        "guitar R": -27.3,
+        "lead guitar": -34.3,
+        "piano": -33.8,
+        "glockenspiel": -48.5,
+        "violins": -33.1,
+        "violas": -33.5,
+        "celli": -33.7,
+        "vocal": -20.9,
+        "bus:drums": -25.5,
+        "bus:guitars": -24.1,
+        "bus:strings": -28.6,
+        "fx:plate": -31.7,
+        "fx:room": -42.5,
+        "fx:hall": -30.5,
+        "fx:dly": -42.8
+      }
+    },
+    {
+      "label": "B dance rock",
+      "start_s": 22.59,
+      "end_s": 33.88,
+      "master_lufs": -14.9,
+      "tracks": {
+        "kick": -28.0,
+        "snare": -28.2,
+        "hats": -34.5,
+        "cymbals": -33.0,
+        "toms": -43.6,
+        "bass": -28.6,
+        "guitar L": -27.4,
+        "guitar R": -27.4,
+        "arpeggio guitar": -31.8,
+        "piano": -24.8,
+        "glockenspiel": -31.1,
+        "violins": -45.2,
+        "violas": -47.4,
+        "celli": -51.1,
+        "vocal": -41.8,
+        "bus:drums": -25.2,
+        "bus:guitars": -24.4,
+        "bus:strings": -42.7,
+        "fx:plate": -37.9,
+        "fx:room": -42.7,
+        "fx:hall": -40.9,
+        "fx:dly": -49.5
+      }
+    },
+    {
+      "label": "B + vocal",
+      "start_s": 33.88,
+      "end_s": 45.18,
+      "master_lufs": -14.1,
+      "tracks": {
+        "kick": -27.9,
+        "snare": -28.7,
+        "hats": -34.4,
+        "cymbals": -32.9,
+        "toms": -26.5,
+        "bass": -29.5,
+        "guitar L": -27.5,
+        "guitar R": -27.5,
+        "arpeggio guitar": -31.8,
+        "piano": -43.3,
+        "glockenspiel": -47.1,
+        "vocal": -20.9,
+        "bus:drums": -25.2,
+        "bus:guitars": -24.5,
+        "fx:plate": -31.6,
+        "fx:room": -43.0,
+        "fx:dly": -42.5
+      }
+    },
+    {
+      "label": "C 16-beat sprint",
+      "start_s": 45.18,
+      "end_s": 56.47,
+      "master_lufs": -13.8,
+      "tracks": {
+        "kick": -27.2,
+        "snare": -28.6,
+        "hats": -30.6,
+        "cymbals": -32.7,
+        "toms": -31.4,
+        "bass": -26.4,
+        "guitar L": -27.9,
+        "guitar R": -27.7,
+        "lead guitar": -23.9,
+        "arpeggio guitar": -41.6,
+        "piano": -38.7,
+        "glockenspiel": -31.1,
+        "violins": -33.0,
+        "violas": -33.3,
+        "celli": -33.2,
+        "vocal": -41.8,
+        "bus:drums": -23.8,
+        "bus:guitars": -24.8,
+        "bus:strings": -28.4,
+        "fx:plate": -35.9,
+        "fx:room": -42.2,
+        "fx:hall": -30.0,
+        "fx:dly": -40.8
+      }
+    },
+    {
+      "label": "C + vocal",
+      "start_s": 56.47,
+      "end_s": 69.18,
+      "master_lufs": -13.5,
+      "tracks": {
+        "kick": -27.3,
+        "snare": -28.5,
+        "hats": -30.6,
+        "cymbals": -32.5,
+        "toms": -44.2,
+        "bass": -28.9,
+        "guitar L": -27.9,
+        "guitar R": -27.8,
+        "lead guitar": -31.8,
+        "piano": -38.5,
+        "glockenspiel": -47.3,
+        "violins": -33.1,
+        "violas": -33.5,
+        "celli": -33.7,
+        "vocal": -20.9,
+        "bus:drums": -24.1,
+        "bus:guitars": -24.8,
+        "bus:strings": -28.6,
+        "fx:plate": -31.8,
+        "fx:room": -42.2,
+        "fx:hall": -30.5,
+        "fx:dly": -42.9
+      }
+    }
+  ],
+  "tracks": {
+    "kick": {
+      "lufs": -27.8,
+      "peak_db": -9.2,
+      "stereo_correlation": 0.92
+    },
+    "snare": {
+      "lufs": -28.4,
+      "peak_db": -4.3,
+      "stereo_correlation": 0.69
+    },
+    "hats": {
+      "lufs": -32.2,
+      "peak_db": -17.5,
+      "stereo_correlation": 0.16
+    },
+    "cymbals": {
+      "lufs": -33.5,
+      "peak_db": -13.4,
+      "stereo_correlation": 0.33
+    },
+    "toms": {
+      "lufs": -29.8,
+      "peak_db": -10.6,
+      "stereo_correlation": 0.9
+    },
+    "bass": {
+      "lufs": -28.1,
+      "peak_db": -15.9,
+      "stereo_correlation": 1.0
+    },
+    "guitar L": {
+      "lufs": -27.4,
+      "peak_db": -13.9,
+      "stereo_correlation": 1.0
+    },
+    "guitar R": {
+      "lufs": -27.4,
+      "peak_db": -13.6,
+      "stereo_correlation": 1.0
+    },
+    "lead guitar": {
+      "lufs": -24.0,
+      "peak_db": -14.1,
+      "stereo_correlation": 1.0
+    },
+    "arpeggio guitar": {
+      "lufs": -31.8,
+      "peak_db": -17.2,
+      "stereo_correlation": 1.0
+    },
+    "piano": {
+      "lufs": -30.6,
+      "peak_db": -12.0,
+      "stereo_correlation": 0.51
+    },
+    "glockenspiel": {
+      "lufs": -31.3,
+      "peak_db": -18.8,
+      "stereo_correlation": 0.89
+    },
+    "violins": {
+      "lufs": -33.1,
+      "peak_db": -22.4,
+      "stereo_correlation": 0.34
+    },
+    "violas": {
+      "lufs": -33.5,
+      "peak_db": -22.0,
+      "stereo_correlation": 0.82
+    },
+    "celli": {
+      "lufs": -33.6,
+      "peak_db": -21.5,
+      "stereo_correlation": 0.81
+    },
+    "vocal": {
+      "lufs": -21.0,
+      "peak_db": -10.9,
+      "stereo_correlation": 1.0
+    },
+    "bus:drums": {
+      "lufs": -24.7,
+      "peak_db": -3.2,
+      "stereo_correlation": 0.8
+    },
+    "bus:guitars": {
+      "lufs": -24.4,
+      "peak_db": -13.6,
+      "stereo_correlation": 0.09
+    },
+    "bus:strings": {
+      "lufs": -28.6,
+      "peak_db": -17.6,
+      "stereo_correlation": 0.66
+    },
+    "fx:plate": {
+      "lufs": -33.5,
+      "peak_db": -20.7,
+      "stereo_correlation": 0.11
+    },
+    "fx:room": {
+      "lufs": -42.4,
+      "peak_db": -24.7,
+      "stereo_correlation": -0.16
+    },
+    "fx:hall": {
+      "lufs": -30.4,
+      "peak_db": -19.0,
+      "stereo_correlation": -0.08
+    },
+    "fx:dly": {
+      "lufs": -42.5,
+      "peak_db": -28.8,
+      "stereo_correlation": 0.01
+    }
+  },
+  "warnings": [
+    "bus:guitars: stereo correlation 0.09 - phasey, will collapse in mono (reduce width / use mono_below / check unison)"
+  ]
+}
