@@ -7,6 +7,8 @@ set -uo pipefail
 LIB_DIR="${SFZ_LIB_DIR:-$(cd "$(dirname "$0")/.." && pwd)/libs}"
 VOICE="$LIB_DIR/voice"
 mkdir -p "$VOICE"
+exec 9>"$VOICE/.fetch.lock"
+flock 9
 
 # name|git url  (unchanged mirrors by oxygen-dioxide; each repo carries its license.md)
 BANKS=(
@@ -17,6 +19,7 @@ BANKS=(
 )
 
 want=("$@")
+failed=0
 pick() { ((${#want[@]} == 0)) || [[ " ${want[*]} " == *" $1 "* ]]; }
 
 for entry in "${BANKS[@]}"; do
@@ -32,6 +35,7 @@ for entry in "${BANKS[@]}"; do
     echo "  ok $(du -sh "$dest" | cut -f1)"
   else
     echo "  FAILED $name"
+    failed=1
   fi
 done
 
@@ -62,7 +66,9 @@ EOF
       echo "  ok $(du -sh "$dest" | cut -f1)"
     else
       echo "  FAILED adachi-rei"
+      failed=1
     fi
     rm -rf "$tmp"
   fi
 fi
+exit "$failed"

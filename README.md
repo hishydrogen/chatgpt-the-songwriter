@@ -13,6 +13,20 @@ song.py (노트를 박자 단위로 작성)
 
 ## 사용법
 
+현재 Debian 클라우드 작업 공간에서는 Ubuntu 24.04 컨테이너
+`songwriter-studio`에 설치된 제작 도구를 사용해요. 프로젝트 폴더와 악기
+라이브러리는 컨테이너에 연결되어 결과 파일을 작업 공간에서 바로 열 수 있어요.
+
+```bash
+bash scripts/studio.sh instruments
+bash scripts/studio.sh surge-patches pad
+bash scripts/studio.sh build songs/<곡>
+bash scripts/studio.sh --python scripts/measure_ref.py refs/ref.wav
+bash scripts/studio.sh --python scripts/check_environment.py  # 설치 및 실제 오디오 생성 확인
+```
+
+아래 `setup.sh` 직접 실행은 관리자 권한이 있는 Ubuntu 24.04 환경용이에요.
+
 ```bash
 scripts/setup.sh                                   # 새 컨테이너에서 한 번 (20-30분)
 python -m songwriter instruments                   # 쓸 수 있는 악기 목록

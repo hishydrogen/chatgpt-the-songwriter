@@ -4,6 +4,8 @@
 set -uo pipefail
 LIB_DIR="${SFZ_LIB_DIR:-$(cd "$(dirname "$0")/.." && pwd)/libs}"
 mkdir -p "$LIB_DIR"
+exec 9>"$LIB_DIR/.fetch.lock"
+flock 9
 
 # name|git url
 LIBS=(
@@ -35,6 +37,7 @@ LIBS=(
 )
 
 want=("$@")
+failed=0
 for entry in "${LIBS[@]}"; do
   name="${entry%%|*}"; url="${entry#*|}"
   if ((${#want[@]})) && [[ ! " ${want[*]} " == *" $name "* ]]; then continue; fi
@@ -43,10 +46,16 @@ for entry in "${LIBS[@]}"; do
   rm -rf "$dest"
   echo "fetch $name"
   if GIT_LFS_SKIP_SMUDGE=0 git clone -q --depth 1 "$url" "$dest"; then
-    (cd "$dest" && git lfs pull >/dev/null 2>&1; git rev-parse HEAD > .fetched)
-    rm -rf "$dest/.git"   # halve disk usage; commit hash kept in .fetched
-    echo "  ok $(du -sh "$dest" | cut -f1)"
+    if (cd "$dest" && git lfs pull && git lfs fsck && git rev-parse HEAD > .fetched); then
+      rm -rf "$dest/.git"   # halve disk usage; commit hash kept in .fetched
+      echo "  ok $(du -sh "$dest" | cut -f1)"
+    else
+      echo "  FAILED $name (sample checkout incomplete)" >&2
+      failed=1
+    fi
   else
     echo "  FAILED $name"
+    failed=1
   fi
 done
+exit "$failed"

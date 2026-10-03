@@ -1,4 +1,5 @@
 libs/
+.venv/
 songs/*/out/stems/
 songs/*/out/*.wav
 __pycache__/

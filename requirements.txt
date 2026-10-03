@@ -9,3 +9,5 @@ matplotlib==3.11.2
 librosa==0.11.0
 mutagen==1.48.1
 pyworld==0.3.5
+# pyworld 0.3.5 imports pkg_resources, removed in setuptools 81.
+setuptools==80.9.0
