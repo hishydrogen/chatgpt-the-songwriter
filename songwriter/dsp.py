@@ -197,6 +197,69 @@ def saturate(x, drive_db=6.0, mix=1.0, asym=0.0):
     return ((1 - mix) * x + mix * y).astype(np.float32)
 
 
+GX = "http://guitarix.sourceforge.net/plugins/"
+LV2_ALIASES = {   # guitarix LV2 (apt guitarix-lv2), run offline by scripts/lv2host.c
+    "amp": GX + "gx_amp#GUITARIX",            # tube preamp/poweramp + tonestack + cabinet
+    "cab": GX + "gx_cabinet#CABINET",
+    "ts9": GX + "gxts9#ts9sim",               # Tube Screamer: tightens and pushes the amp
+    "jcm800": GX + "gx_jcm800pre_#_jcm800pre_",
+    "metal_head": GX + "gxmetal_head#metal_head",
+    "ds1": GX + "gx_bossds1_#_bossds1_",
+    "mxr": GX + "gx_mxrdist_#_mxrdist_",
+    "booster": GX + "gxbooster#booster",
+}
+
+
+def lv2(x: np.ndarray, plugin: str, **controls) -> np.ndarray:
+    """One LV2 effect over x (channels, N) through the offline host `lv2host` (handles
+    atom ports, workers and latency, which lv2apply and pedalboard can't). `plugin` is a
+    URI or a LV2_ALIASES key; controls are port symbols, e.g. Distortion=60."""
+    import subprocess
+    import tempfile
+    from pathlib import Path
+
+    import soundfile as sf
+    uri = LV2_ALIASES.get(plugin, plugin)
+    with tempfile.TemporaryDirectory() as td:
+        src, dst = Path(td) / "in.wav", Path(td) / "out.wav"
+        sf.write(src, np.ascontiguousarray(x.T), SR, subtype="FLOAT")
+        cmd = ["lv2host", uri, str(src), str(dst)] + [f"{k}={float(v)}" for k, v in controls.items()]
+        r = subprocess.run(cmd, capture_output=True, text=True)
+        if r.returncode != 0 or not dst.exists():
+            raise RuntimeError(f"lv2host {plugin} failed: {r.stderr[-1500:]}")
+        y, _ = sf.read(dst, dtype="float32", always_2d=True)
+    return np.ascontiguousarray(y.T[:, : x.shape[1]])
+
+
+def amp(x: np.ndarray, chain) -> np.ndarray:
+    """Guitar rig on a DI stem: mono sum -> each stage in order -> mono out on both sides,
+    loudness matched to the input (so the strip's gain stays a true balance).
+        [{"type": "ts9", "fslider2_": 0.12}, {"type": "amp", "Distortion": 60,
+          "model": 0, "t_model": 4, "c_model": 0}]
+    A dict {"chain": [...], "dry": 0.5} blends the DI back in (bass: keeps the low end).
+    """
+    from .mix import span_lufs
+    dry = 0.0
+    if isinstance(chain, dict):
+        dry, chain = chain.get("dry", 0.0), chain["chain"]
+    y = x.mean(axis=0, keepdims=True)
+    for stage in chain:
+        st = dict(stage)
+        y = lv2(y, st.pop("type"), **st)
+        if y.shape[0] > 1:
+            y = y.mean(axis=0, keepdims=True)
+    y = np.repeat(y[:1], 2, axis=0)
+    lin, lout = span_lufs(x), span_lufs(y)
+    if lin > -90 and lout > -90:
+        y = y * db(lin - lout)
+    if dry:
+        y = (1 - dry) * y + dry * x
+        lout = span_lufs(y)
+        if lin > -90 and lout > -90:
+            y = y * db(lin - lout)
+    return y.astype(np.float32)
+
+
 def tube(x, drive=3.0, bass=5.0, mids=5.0, treble=5.0):
     """ZamTube triode emulation (amp-like colour, good on guitars, bass, keys)."""
     p = load_plugin("/usr/lib/vst3/ZamTube.vst3", tube_drive=float(drive), bass=float(bass),

@@ -170,6 +170,12 @@ class Voicebank:
     def lookup(self, base: str, midi: int, style: str = "") -> Oto | None:
         """Alias for `base` at this pitch: prefix.map suffix first, then any pitch variant."""
         pre, suf = self.prefix.get(note_name(midi), ("", ""))
+        if style:   # a style (Kumi "S" strong) recorded at another pitch beats the plain voice
+            for _, (p, s) in [(None, (pre, suf))] + sorted(
+                    self.prefix.items(), key=lambda kv: abs(_midi(kv[0]) - midi)):
+                for cand in (f"{p}{base}{style}{s}", f"{base}{style}{s}"):
+                    if cand in self.oto:
+                        return self.oto[cand]
         for cand in (f"{pre}{base}{style}{suf}", f"{pre}{base}{suf}", f"{base}{style}{suf}",
                      f"{base}{suf}", f"{base}{style}", base):
             if cand in self.oto:
