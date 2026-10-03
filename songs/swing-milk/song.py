@@ -1,4 +1,4 @@
-"""Swing, Milk! -- checkpoint 3, a full original scat-jazz arrangement.
+"""Swing, Milk! -- the approved final original scat-jazz arrangement.
 
 The user chose A for verses and B for choruses, Milk, Splendid Steinway,
 upright bass and DRSKit, and a definite ensemble ending. The audition's
@@ -147,7 +147,7 @@ class Arrangement(groove.Sketch):
         # Preserve the chosen strips/tracks while adding a DAW conductor with
         # the section markers and the actual F-to-G key change.
         old=self.s
-        self.s=SwingSong("Swing, Milk! - rough mix",bpm=BPM,key="F")
+        self.s=SwingSong(TITLE,bpm=BPM,key="F")
         self.s.tracks=old.tracks
         for t in self.s.tracks.values():
             t.song=self.s

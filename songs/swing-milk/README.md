@@ -1,12 +1,24 @@
-# Swing, Milk! — 3단계 전체 편곡 러프 믹스
+# Swing, Milk! (feat. Milk) — 최종 완성본
 
 사용자가 선택한 Milk 보컬, Splendid Steinway, 업라이트 베이스, DRSKit으로
 만든 오리지널 스캣 재즈 곡이다. 벌스는 A의 워킹 스윙, 후렴은 B의
 싱코페이션 그루브를 사용한다. 제목과 마지막 합주로 끝내는 엔딩도
 사용자가 확정했다. 124 BPM, 60:40 스윙, 102마디, 약 3분 21초.
 
-`out/master.mp3`가 전체 러프 믹스다. 24비트 48 kHz `out/master.wav`와
-악기별 오디오 스템은 로컬에 있고 Git에서는 제외한다.
+승인한 3단계의 연주와 믹스를 최종 마스터로 확정했다. 승인한 마스터의 오디오를
+보존하고 무손실 포맷, 커버, 크레딧과 스캣 음절 메타데이터를 완성했다.
+
+- [듣기용 MP3](out/master.mp3): 320 kbps, 커버·크레딧·스캣 음절 포함
+- [24비트 / 48 kHz ALAC](release/Swing,%20Milk!%20(feat.%20Milk).m4a): 원본 WAV와 샘플 단위 일치
+- [16비트 / 44.1 kHz ALAC](release/Swing,%20Milk!%20(feat.%20Milk)_16bit.m4a): SoX 고품질 리샘플링과 디더
+- [MIDI 묶음](out/swing-milk-midi.zip): 전체·악기별·구간별 23개 MIDI와 연주 설명
+- [3000×3000 커버](art/cover.jpg), [크레딧](CREDITS.md), [스캣 음절표](LYRICS.txt)
+- [검증 결과와 SHA-256](release/manifest.json)
+
+아티스트 표기는 프로젝트의 기존 발매 규칙인 **Claude the Songwriter**, 작곡·
+편곡은 **Codex**, 합성 보컬은 **Milk**다. 이번 전달은 비상업적 공유용이다.
+Milk 음원의 상업적 이용은 저작자 Xepheris의 별도 승인이 필요하다.
+24비트 48 kHz `out/master.wav`와 악기별 오디오 스템은 로컬에 있고 Git에서는 제외한다.
 
 | 시간 | 구간 | 편곡 |
 |---|---|---|
@@ -65,7 +77,7 @@ MIDI 채널과 조표 검사의 결과다. `out/report.json`, `out/audio-check.j
 마스터 목표는 -14 LUFS, -1 dBTP, PLR 12 dB 이상이다.
 주 보컬과 가장 큰 개별 반주 트랙의 차이를 구간마다 확인한다.
 
-최종 러프 믹스는 -14.02 LUFS, -1.0 dBTP, PLR 13.02 dB이며 기술 경고가 없다.
+최종 마스터는 -14.02 LUFS, -1.0 dBTP, PLR 13.02 dB이며 기술 경고가 없다.
 주 보컬 457음을 모두 측정했고 각 구간의 음정 중앙 오차는 0.4-1.1센트,
 80센트 이상 이탈과 큰 파형 점프는 없다. 벌스와 후렴에서 주 보컬은 가장
 큰 개별 반주 트랙보다 4.1-5.7 dB 앞에 있다. 조용한 브리지는 6.8 dB,
@@ -83,9 +95,13 @@ bash scripts/studio.sh --python songs/swing-milk/check_score.py
 bash scripts/studio.sh build songs/swing-milk
 bash scripts/studio.sh --python songs/swing-milk/check_audio.py
 bash scripts/studio.sh --python songs/swing-milk/check_harmonies.py
+python songs/swing-milk/art/make_art.py
 bash scripts/studio.sh --python songs/swing-milk/export_delivery.py
+bash scripts/studio.sh --python songs/swing-milk/make_release.py
 ```
 
-이 단계는 전체 편곡을 듣고 피드백하는 러프 믹스다. 최종 발매용 무손실
-파일과 커버는 다음 체크포인트에서 만든다. Milk 상업 사용에는 저작자의
-사전 승인이 필요하며 원문과 악기 출처는 `CREDITS.md`에 기록했다.
+커버 스크립트는 호스트의 FontTools와 FFmpeg의 librsvg 렌더러를 사용한다.
+폰트와 OFL 원문은 `art/fonts/`에 있으며, 글자를 윤곽으로 변환한 `art/cover.svg`도 포함한다.
+ALAC 두 파일의 디코딩·음량·피크·커버·태그를 검사하고, 24비트 파일은 원본 WAV와
+완전히 일치하는지 검증한다. MP3는 태그 수정 전후의 디코딩 결과가 같아야 한다.
+악기 출처와 보컬 이용 조건의 원문은 `CREDITS.md`에 기록했다.

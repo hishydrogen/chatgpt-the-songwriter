@@ -1,10 +1,8 @@
-"""Package the rough mix's score, section takes, credits and scat performance."""
+"""Package the final score, section takes, credits and scat performance."""
 import copy
 import importlib.util
 import json
 from pathlib import Path
-import subprocess
-import tempfile
 import zipfile
 
 import mido
@@ -15,6 +13,7 @@ score=importlib.util.module_from_spec(spec)
 spec.loader.exec_module(score)
 song=score.compose()
 out=HERE/"out"
+song.full_midi().save(out/"midi"/"song.mid")
 sections=[]
 lyrics=[]
 lead=song.tracks[score.VOICE_LABEL]
@@ -70,12 +69,4 @@ with zipfile.ZipFile(archive,"w",zipfile.ZIP_DEFLATED) as z:
 with zipfile.ZipFile(archive) as z:
     assert z.testzip() is None
     print(len([p for p in z.namelist() if p.endswith(".mid")]),"MIDI files verified")
-with tempfile.TemporaryDirectory(prefix=".metadata-",dir=out) as td:
-    tagged=Path(td)/"master.mp3"
-    subprocess.run(["ffmpeg","-v","error","-y","-i",str(out/"master.mp3"),
-                    "-map","0:a:0","-c:a","copy","-metadata","title="+score.TITLE,
-                    "-metadata","album=Checkpoint 3 - rough mix","-metadata","genre=Jazz",
-                    "-metadata","comment=Vocal: Milk (Xepheris), rendered with WORLD. Original composition and arrangement: Codex. Commercial voicebank use requires author approval.",
-                    str(tagged)],check=True)
-    tagged.replace(out/"master.mp3")
 print("sections",len(sections),"length",round(song.seconds(song.end_beat)+4,2),"seconds")

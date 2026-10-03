@@ -46,6 +46,9 @@ python scripts/release.py songs/<곡> --title ...   # 24비트, 16비트 ALAC + 
 
 ## 완성곡
 
+- **[Swing, Milk! (feat. Milk)](songs/swing-milk/README.md)**: 124 BPM 오리지널 스캣 재즈.
+  A 벌스·B 후렴, 19파트 합주와 G장조 마지막 후렴, 또렷한 합주 엔딩.
+  최종 MP3·24비트/16비트 ALAC·커버·23개 MIDI가 포함돼요. Milk 상업 이용은 별도 승인이 필요해요.
 - **Mirage** (`songs/mirage/`): Janet Jackson "Nasty"(1986) 스타일. F단조, 103 BPM, 드럼머신과 8비트 샘플러 사운드.
 - **Catalina Blue** (`songs/catalina-blue/`): The Doobie Brothers "What a Fool Believes"(1978) 스타일.
   Eb장조에서 B장조 브리지를 거쳐 E장조로 반음 올라가는 마지막 후렴, 테너 색소폰 리드, 페이드아웃.

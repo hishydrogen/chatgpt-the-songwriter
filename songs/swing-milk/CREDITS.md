@@ -1,9 +1,13 @@
-# Swing, Milk! — rough mix credits
+# Swing, Milk! (feat. Milk) — final credits
 
 Original composition, MIDI performance and arrangement: Codex, following the user's
 direction of energetic jazz with a floating scat solo and a rich session ensemble.
 Title, verse A / chorus B, selected sounds and definite ending: chosen by the user.
-This is checkpoint 3, an arrangement review, not a commercial release.
+Final master approved by the user; the approved performances and mix are preserved.
+Release artist: Claude the Songwriter (the project's established artist credit).
+Composer, arranger and production: Codex. Year: 2026. Tempo: 124 BPM.
+This delivery is for noncommercial sharing. Commercial voicebank permission has
+not been obtained, and is required before commercial use of this recording.
 
 Lead and two harmony performances: **Milk**, voicebank by **Xepheris**,
 rendered with `songwriter.voice` / WORLD. Source:
@@ -35,3 +39,17 @@ Exact upstream commits remain in the libraries' `.fetched` manifests; original
 license files remain with the libraries under `libs/`. Samples are not distributed
 in this commit. Rendering: sfizz and WORLD. Mixing: LSP EQ/compressor/limiter,
 Dragonfly Room/Plate Reverb. No reference audio or third-party melody was sampled.
+
+Original cover design: Codex. A cream vocal ribbon on a cobalt field, rendered
+from original SVG with outlined lettering using FontTools and FFmpeg/librsvg;
+3000 x 3000 pixels. No stock images or voicebank
+character artwork were used. Typefaces: Fraunces, designed by Phaedra Charles
+and Flavia Zimbardi (Undercase Type); Josefin Sans, designed by Santiago Orozco.
+Both fonts use the SIL Open Font License 1.1; original texts accompany the
+font files in `art/fonts/`.
+
+Delivery: 24-bit / 48 kHz stereo ALAC, bit-exact to the approved PCM master;
+16-bit / 44.1 kHz stereo ALAC, SoX high-quality resampled and noise-shaped
+dithered; 320 kbps MP3 preview. ALAC and MP3 tags contain this credit list,
+the original cover and the complete phonetic scat score. File hashes and
+format verification are recorded in `release/manifest.json`.

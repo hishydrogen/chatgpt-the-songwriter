@@ -1,0 +1,93 @@
+{
+  "title": "Swing, Milk! (feat. Milk)",
+  "artist": "Claude the Songwriter",
+  "composer": "Codex",
+  "bpm": 124,
+  "status": "Final master; noncommercial sharing",
+  "approved_arrangement_commit": "a965d1b70f0b55f60b6736f9132d2bc2ba8eee6d",
+  "commercial_use": "Milk voicebank requires individual author approval (Xepheris).",
+  "master_wav_sha256": "d3ae07e235d44c159a3b864a4f941c773069f70eb448614accc5498fd43d0dfd",
+  "mp3_pcm_preserved": true,
+  "cover": {
+    "width": 3000,
+    "height": 3000,
+    "original_vector_design": true
+  },
+  "audio_checks": [
+    {
+      "file": "release/Swing, Milk! (feat. Milk).m4a",
+      "sample_rate_hz": 48000,
+      "bits": 24,
+      "channels": 2,
+      "decoded_frames": 9668129,
+      "duration_seconds": 201.41935416666666,
+      "sample_peak": 0.8469384908676147,
+      "integrated_lufs": -14.0,
+      "true_peak_dbtp": -1.0,
+      "tags_and_cover_verified": true,
+      "bit_exact_to_24bit_master": true,
+      "conversion": "ALAC, original PCM"
+    },
+    {
+      "file": "release/Swing, Milk! (feat. Milk)_16bit.m4a",
+      "sample_rate_hz": 44100,
+      "bits": 16,
+      "channels": 2,
+      "decoded_frames": 8882594,
+      "duration_seconds": 201.4193650793651,
+      "sample_peak": 0.873992919921875,
+      "integrated_lufs": -14.0,
+      "true_peak_dbtp": -1.0,
+      "tags_and_cover_verified": true,
+      "bit_exact_to_24bit_master": null,
+      "conversion": "SoX rate -v -s; noise-shaped dither -s; ALAC"
+    }
+  ],
+  "files": [
+    {
+      "path": "out/master.mp3",
+      "bytes": 8392919,
+      "sha256": "93e77374f738b85dc14f5a325548c95291f277aea29853bcc544ad97a418783f"
+    },
+    {
+      "path": "art/cover.jpg",
+      "bytes": 314035,
+      "sha256": "3a1469f9aa9dc0308f9595fdc5bb377722499b271c58cdb6436ca03079513640"
+    },
+    {
+      "path": "out/swing-milk-midi.zip",
+      "bytes": 71310,
+      "sha256": "9b8d6bd131b4a209708deea574822c31a6b1e4b6d3134bea384229fd379a9abc"
+    },
+    {
+      "path": "out/midi/song.mid",
+      "bytes": 63762,
+      "sha256": "72785b01b7aaf639158647bc0d53e0ef8db7cb8ca42424d3739356325eb4bea7"
+    },
+    {
+      "path": "CREDITS.md",
+      "bytes": 3222,
+      "sha256": "199a8c9848e4c57ce9839493c71773a11b7891c3d451f6c94b80fea356dd7c7a"
+    },
+    {
+      "path": "LYRICS.txt",
+      "bytes": 1674,
+      "sha256": "b8317193b7868153cb0bd58f2a2f000847625be5262623baf0955b29f1785fad"
+    },
+    {
+      "path": "song.py",
+      "bytes": 24194,
+      "sha256": "79fafd09db43af024a64419094bea9b80a90157676e6714115cea33ffd5559dd"
+    },
+    {
+      "path": "release/Swing, Milk! (feat. Milk).m4a",
+      "bytes": 44555656,
+      "sha256": "8ac5db04b85199e7b7c7510ceedb2194f803f2fbcada94cec7ff40b01d16f0f5"
+    },
+    {
+      "path": "release/Swing, Milk! (feat. Milk)_16bit.m4a",
+      "bytes": 24122399,
+      "sha256": "2dd2aac42e82f3b163e297291dc63392ca6b1bcff462b50260fedd3abee8197d"
+    }
+  ]
+}
