@@ -1,0 +1,79 @@
+{
+  "groups": {
+    "drums": [
+      {
+        "label": "drums A: close and damped",
+        "candidate_lufs": -19.67,
+        "master_lufs": -15.0
+      },
+      {
+        "label": "drums B: vintage mic and tape",
+        "candidate_lufs": -20.09,
+        "master_lufs": -14.8
+      }
+    ],
+    "bass": [
+      {
+        "label": "bass A: rounded short-scale",
+        "candidate_lufs": -25.0,
+        "master_lufs": -15.0
+      },
+      {
+        "label": "bass B: firm finger bass",
+        "candidate_lufs": -25.1,
+        "master_lufs": -15.0
+      }
+    ],
+    "keys": [
+      {
+        "label": "keys A: mellow Rhodes",
+        "candidate_lufs": -25.8,
+        "master_lufs": -14.2
+      },
+      {
+        "label": "keys B: woody Wurlitzer",
+        "candidate_lufs": -25.8,
+        "master_lufs": -14.2
+      }
+    ],
+    "lead": [
+      {
+        "label": "lead A: rounded clean guitar",
+        "candidate_lufs": -22.8,
+        "master_lufs": -13.0
+      },
+      {
+        "label": "lead B: guitar on the amp edge",
+        "candidate_lufs": -22.8,
+        "master_lufs": -13.1
+      },
+      {
+        "label": "lead C: electric piano melody",
+        "candidate_lufs": -22.8,
+        "master_lufs": -13.0
+      }
+    ]
+  },
+  "master": {
+    "integrated_lufs": -14.05,
+    "short_term_max_lufs": -12.23,
+    "loudness_range_lu": 2.75,
+    "true_peak_dbtp": -1.0,
+    "sample_peak_db": -1.01,
+    "plr_db": 13.05,
+    "crest_db": 15.7,
+    "stereo_correlation": 0.99,
+    "side_to_mid_db": -22.84,
+    "tonal_slope_db_per_oct": -2.25,
+    "bands_db": {
+      "sub": -26.5,
+      "bass": -17.5,
+      "low-mid": -21.1,
+      "mid": -26.5,
+      "hi-mid": -30.1,
+      "presence": -33.2,
+      "air": -39.2
+    }
+  },
+  "warnings": []
+}
