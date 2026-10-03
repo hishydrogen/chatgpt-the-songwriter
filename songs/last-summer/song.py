@@ -24,10 +24,11 @@ GTR = "guitar.emily_di"          # DI guitar into guitarix amp models (strip "am
 BASS = "bass.darkblack_bright"
 PIANO = "piano.upright"
 GLOCK = "perc.glockenspiel"
-VOX = "voice.hikari"
-# Hikari One terms: no pitch/formant edits of the bank's audio -> formant stays 0
+VOX = "voice.kumi"               # 筆墨クミ (checkpoint 3 change; Hikari One before)
 VOX_OPTS = {"vibrato_cents": 28, "port_pre": 0.03, "port_post": 0.045, "consonant": 0.85,
             "breath_gap": 0.3, "tail_gap": 0.15}
+STRONG = {"style": "S"}            # Kumi's strong voice
+HARM_CAP = "F5"                    # harmony above this goes under the melody instead
 
 TS9 = {"type": "ts9", "fslider2_": 0.12, "fslider1_": 750, "fslider0_": 2}
 RIG_RHYTHM = [TS9, {"type": "amp", "PreGain": 10, "Distortion": 75, "Drive": 0.5,       # palette B
@@ -294,6 +295,14 @@ def power(name: str, tr: int = 0, octave: bool = True) -> list[int]:
     return [r, r + 7, r + 12] if octave else [r, r + 7]
 
 
+def stab(name: str, tr: int = 0) -> list[int]:
+    """Upstroke shape on the upper strings: fifth, octave and the chord's third above."""
+    r = root_of(name, "E2", "D#3", tr, slash=False)
+    ps = pcs(name, tr)
+    top = r + 16 if (r + 4) % 12 in ps else r + 15 if (r + 3) % 12 in ps else r + 19
+    return [r + 7, r + 12, top]
+
+
 def voicing(name: str, top: int, n: int = 3, tr: int = 0) -> list[int]:
     """Top note plus the n nearest chord tones below it, no semitone between neighbours
     (the top's pitch class is doubled only when the chord has too few notes)."""
@@ -356,8 +365,10 @@ class Arranger:
         self.vox.opts.update(VOX_OPTS)
         self.harm = [s.track("harmony L", VOX), s.track("harmony R", VOX)]
         self.harm[0].opts.update({**VOX_OPTS, "vibrato_cents": 18, "breathy": 0.15, "breath_db": None})
-        self.harm[1].opts.update({**VOX_OPTS, "vibrato_cents": 22, "breathy": 0.25, "breath_db": None,
-                                  "port_pre": 0.04})
+        self.harm[1].opts.update({**VOX_OPTS, "vibrato_cents": 22, "breathy": 0.2, "formant": 0.4,
+                                  "breath_db": None, "port_pre": 0.04})
+        self.tamb = s.track("tambourine", "drums.virtuosity")
+        self.clap = s.track("clap", "drums.club")
         self.sec, self.timeline, bar = {}, [], 0
         for name, prog, tr in form:
             self.sec[name] = (bar, len(prog), tr)
@@ -485,6 +496,101 @@ class Arranger:
                 self.fill(b + 3, fill, vel, beats=1)
         if crash:
             self.hit(self.cym, "crash", b0, 104 * vel)
+
+    def drums_dance(self, b0, bars, style="tamb", vel=1.0, fill="snare", crash=True, part="chorus"):
+        """Dance rock (四つ打ち) made stronger. Common: kick on every beat, snare 2 and 4, open
+        hat on every &. style "tamb": tambourine 16ths and a snare pickup every other bar;
+        "disco": clap on the snare, 16th hats tss-ka accents; "sprint": an extra kick on the
+        a of 2, 16th hats and a 16th snare run every other bar. part "verse" plays lighter."""
+        light = part == "verse"
+        for bar in range(bars):
+            b = b0 + 4 * bar
+            last = fill and bar == bars - 1
+            kicks = [0, 1, 2, 3] + ([1.75] if style == "sprint" else [])
+            for k in kicks:
+                if not (last and k >= 2):
+                    self.hit(self.kick, "kick", b + k, (122 if k in (0, 2) else 114 if k in (1, 3) else 96) * vel)
+            for k in (1, 3):
+                if not (last and k == 3):
+                    self.hit(self.snare, "snare", b + k, (110 if light else 118) * vel)
+                    if style == "disco":
+                        self.hit(self.clap, "clap", b + k + .004, (88 if light else 100) * vel, ms=2)
+            for i in range(16):
+                p = i * .25
+                if last and p >= 2:
+                    break
+                if i % 4 == 2:
+                    self.hit(self.hats, "hh_open" if not light or i == 14 else "hh_closed", b + p, 98 * vel)
+                elif style in ("disco", "sprint") or i % 4 != 0:
+                    acc = {"disco": (78, 70, 0, 74), "sprint": (96, 62, 0, 68)}.get(style, (0, 58, 0, 64))
+                    if acc[i % 4]:
+                        self.hit(self.hats, "hh_closed", b + p, acc[i % 4] * vel, ms=3)
+                if style == "tamb" and not light:
+                    self.hit(self.tamb, "tambourine", b + p, (86, 56, 78, 58)[i % 4] * vel, ms=3)
+            if style == "tamb" and light:
+                for k in (.5, 1.5, 2.5, 3.5):
+                    if not (last and k >= 2):
+                        self.hit(self.tamb, "tambourine", b + k, 70 * vel, ms=3)
+            if not last and bar % 2 == 1:
+                if style == "tamb":
+                    self.hit(self.snare, "snare", b + 3.75, 72 * vel, ms=3)
+                elif style == "sprint":
+                    for j, p in enumerate((3.0, 3.25, 3.5, 3.75)):
+                        self.hit(self.snare, "snare", b + p, (64 + 12 * j) * vel, ms=3)
+            if last:
+                self.fill(b + 2, fill, vel)
+        if crash:
+            self.hit(self.cym, "crash", b0, 114 * vel)
+
+    def bass_dance(self, b0, bars, style="tamb", vel=1.0):
+        """Octaves with dead-note ghosts ("tamb"), a gallop of an 8th and two 16ths per beat
+        ("disco"), or octaves with a 16th pickup into each bar ("sprint")."""
+        for k in range(bars * 4):
+            beat = b0 + k
+            st, en, name, tr = self.chord_at(beat)
+            r = root_of(name, tr=tr)
+            if style == "disco":
+                for p, d, n, v in ((0, .45, r, 112), (.5, .2, r, 96), (.75, .2, r + 12, 100)):
+                    self.bass.note(n, self.T(beat + p, 5), d, self.V(v * vel))
+            else:
+                self.bass.note(r, self.T(beat, 5), .42, self.V(112 * vel))
+                self.bass.note(r + 12, self.T(beat + .5, 5), .4, self.V(100 * vel))
+                if style == "tamb":
+                    self.bass.note(r, self.T(beat + .75, 4), .1, self.V(52 * vel))
+                elif style == "sprint" and k % 4 == 3:
+                    nst, _, nname, ntr = self.chord_at(beat + 1)
+                    self.bass.note(root_of(nname, tr=ntr), self.T(beat + .75, 4), .2, self.V(98 * vel))
+
+    def gtr_dance(self, b0, bars, style="tamb", vel=1.0, part="chorus"):
+        """Two guitars that answer each other. "tamb": left cuts 16ths, right plays open
+        upstroke stabs on every & (the 裏打ち); "disco": both chug palm-muted 16ths with open
+        accents with the kick pushes; "sprint": left tremolo 16ths, right cuts.
+        part "verse": stabs and accents only, the rest muted and lighter."""
+        light = part == "verse"
+        L, Rt = self.gtr
+        rl, rr = random.Random(int(b0 * 29)), random.Random(int(b0 * 31) + 1)
+        for k in range(bars * 16):
+            p = b0 + k * .25
+            st, en, name, tr = self.chord_at(p)
+            pos = (k % 16) * .25
+            chord = power(name, tr)
+            if style == "tamb":
+                a = pos in (0, .75, 1.5, 3, 3.75)
+                self._strum(L, chord, p, .3 if a else .12, ((112 if a else 80) - (8 if light else 0)) * vel,
+                            not a or light, rl)
+                if pos % 1 == .5:
+                    self._strum(Rt, stab(name, tr), p, .22, (108 if not light else 92) * vel, light, rr)
+            elif style == "disco":
+                a = pos in (0, 1.5, 3, 3.75) if not light else pos in (0, 1.5)
+                for t, rg in ((L, rl), (Rt, rr)):
+                    self._strum(t, chord if a else chord[:2], p, .3 if a else .14,
+                                ((116 if a else 92) - (10 if light else 0)) * vel, not a, rg)
+            else:
+                on = k % 4 == 0
+                self._strum(L, power(name, tr, octave=False), p, .24, ((112 if on else 96) - (10 if light else 0)) * vel,
+                            not on or light, rl)
+                a = pos in (0, .75, 1.5, 3, 3.75)
+                self._strum(Rt, chord, p, .3 if a else .12, ((110 if a else 80) - (8 if light else 0)) * vel, not a, rr)
 
     def fill(self, at, kind, vel=1.0, beats=2):
         """Fill over the last `beats` beats before the next section; a different one each time."""
@@ -664,6 +770,19 @@ class Arranger:
                 self.piano.notes_at([r, r + 12], self.T(p, 6), .9, self.V(90 * vel))
             self.piano.notes_at(rh, self.T(p, 6), .4, self.V((88 if k % 2 == 0 else 72) * vel))
 
+    def piano_offbeat(self, b0, bars, vel=1.0):
+        """Dance-rock piano: chords on every & (against the four-on-the-floor kick), root
+        octaves on 1 and 3."""
+        for k in range(bars * 4):
+            p = b0 + k
+            st, en, name, tr = self.chord_at(p)
+            if k % 2 == 0:
+                r = root_of(name, "C2", "B2", tr)
+                self.piano.notes_at([r, r + 12], self.T(p, 6), .9, self.V(86 * vel))
+            ost, _, oname, otr = self.chord_at(p + .5)
+            self.piano.notes_at(voicing(oname, top_for(oname, otr, "E5"), 3, otr), self.T(p + .5, 6), .3,
+                                self.V(84 * vel))
+
     def piano_arp16(self, b0, bars, vel=1.0):
         """16th arpeggios up and down over two octaves, pedalled per chord."""
         for st, en, name, tr in self.timeline:
@@ -732,7 +851,7 @@ class Arranger:
                 if harmony:      # a third above, or below where that would leave the bank's range
                     ch = self.chord_at(b)[2]
                     h = harmony_note(n, ch, tr, below=harmony == "below")
-                    if h > note_number("D5"):
+                    if h > note_number(HARM_CAP):
                         h = harmony_note(n, ch, tr, below=True)
                     for i, t in enumerate(self.harm):
                         t.note(h, b + .012 * i, d, 92, lyric=lyr)
@@ -761,11 +880,17 @@ class Arranger:
                             "bus": "drums"},
                 "toms": {"gain": -9, "eq": [("hpf", 70), ("bell", 400, -2, 1.0)], "width": 0.8, "bus": "drums",
                          "sends": {"room": -10}},
+                "tambourine": {"gain": -17, "eq": [("hpf", 2000), ("hshelf", 9000, 1.5)], "pan": -0.3, "bus": "drums"},
+                "clap": {"gain": -15, "eq": [("hpf", 300), ("bell", 1200, 1.5, 1.0)], "bus": "drums",
+                         "sends": {"room": -8}},
                 "bass": {"amp": RIG_BASS, "gain": -4.5, "eq": [("hpf", 35), ("bell", 250, -1.5, 1.0),
                                                                 ("bell", 800, 1.5, 1.0)],
-                         "comp": {"threshold": -20, "ratio": 4, "attack": 6, "release": 80}, "mono": True},
-                "guitar L": {"amp": RIG_RHYTHM, "gain": -7.5, "pan": -0.95, "eq": gtr_eq, "bus": "guitars"},
-                "guitar R": {"amp": RIG_RHYTHM, "gain": -7.5, "pan": 0.95, "eq": gtr_eq, "bus": "guitars"},
+                         "comp": {"threshold": -20, "ratio": 4, "attack": 6, "release": 80}, "mono": True,
+                         "duck": {"by": "kick", "depth": 2.5, "release_ms": 110}},
+                "guitar L": {"amp": RIG_RHYTHM, "gain": -7.5, "pan": -0.95, "eq": gtr_eq, "bus": "guitars",
+                             "duck": {"by": "kick", "depth": 1.5, "release_ms": 120}},
+                "guitar R": {"amp": RIG_RHYTHM, "gain": -7.5, "pan": 0.95, "eq": gtr_eq, "bus": "guitars",
+                             "duck": {"by": "kick", "depth": 1.5, "release_ms": 120}},
                 "lead guitar": {"amp": RIG_LEAD, "gain": -4.5, "pan": 0.1,
                                 "eq": [("hpf", 150), ("bell", 300, -2, 1.0), ("bell", 1500, 1.5, 1.0), ("lpf", 8500)],
                                 "sends": {"plate": -14, "dly": -14}},
@@ -810,7 +935,10 @@ class Arranger:
 
 
 # -- arrangement ------------------------------------------------------------------------------
-GROOVE = {"riff": "A", "verse": "B", "chorus": "A", "solo": "C", "last": "A"}   # checkpoint 2 picks
+# Checkpoint 3 redo: one groove family. Dance rock (四つ打ち) everywhere, lighter in the verses;
+# half time only to gather the pre-choruses and the bridge.
+STYLE = "tamb"                   # stronger dance-rock style (samples pick)
+VOICE = {"verse": None, "pre": None, "chorus": STRONG, "bridge": None, "ochi": None, "last": STRONG}
 OUTRO_RIFF = RIFF[:-11] + [("D5", .75), ("F#5", .75), ("A5", .5), ("B5", .5), ("A5", .5), ("F#5", .5),
                            ("E5", .5), ("D5", 4.0)]
 assert sum(d for _, d in OUTRO_RIFF) == 8 * 4
@@ -826,25 +954,15 @@ def tail_from(melody, beat):
     return out
 
 
-def band(a: Arranger, b0, n, groove, part, vel=1.0, fill="toms", crash=True):
-    """Drums, bass and rhythm guitars of one groove. part: "verse" (lighter, palm-muted),
-    "chorus" (open wall) or "riff"."""
-    if groove == "A":
-        a.drums_8beat(b0, n, vel=vel, fill=fill, crash=crash, ride=part == "chorus")
-        a.bass_8ths(b0, n, vel=vel)
-        (a.gtr_chug if part == "verse" else a.gtr_wall)(b0, n, vel=vel)
-    elif groove == "B":
-        a.drums_four(b0, n, vel=vel, fill=fill, crash=crash)
-        a.bass_octaves(b0, n, vel=vel)
-        a.gtr_cut(b0, n, vel=vel * (.9 if part == "verse" else 1.0))
-    else:
-        a.drums_sprint(b0, n, vel=vel, fill=fill, crash=crash)
-        a.bass_drive16(b0, n, vel=vel)
-        (a.gtr_trem if part != "chorus" else a.gtr_wall)(b0, n, vel=vel)
+def dance(a: Arranger, b0, n, part="chorus", vel=1.0, fill="toms", crash=True, guitars=True):
+    a.drums_dance(b0, n, STYLE, vel=vel, fill=fill, crash=crash, part=part)
+    a.bass_dance(b0, n, STYLE, vel=vel)
+    if guitars:
+        a.gtr_dance(b0, n, STYLE, vel=vel, part=part)
 
 
 def compose() -> Song:
-    a = Arranger(FORM)
+    a = Arranger(FORM, title="ラムネ")
     s = a.s
     fills = iter(["snare", "toms", "flams", "toms", "snare", "flams", "toms", "toms", "flams", "snare",
                   "toms", "flams", "toms", "snare", "toms", "flams"])
@@ -857,53 +975,48 @@ def compose() -> Song:
             a.strings(b0, n, vel=.7)
             a.fill(b0 + 4 * n - 2, "snare")
         elif name in ("riff", "interlude"):
-            band(a, b0, n, GROOVE["riff"], "riff", fill=next(fills))
+            dance(a, b0, n, fill=next(fills))
             a.lead_line(b0, RIFF, tr)
             a.glock_line(b0, RIFF, tr)
-            a.piano_8ths(b0, n, vel=.75)
-        elif name.startswith("verse"):       # dance-rock groove (B); the cutting guitars join halfway
+        elif name.startswith("verse"):       # lighter dance groove; guitars join halfway in verse 1
             first = name == "verse 1"
-            a.drums_four(b0, 8, vel=.8, fill=False)
-            a.bass_octaves(b0, 8, vel=.85)
+            dance(a, b0, 8, part="verse", vel=.85, fill=False, guitars=not first)
             if first:
                 a.arpeggio(b0, 8, vel=.85)
-            else:
-                a.gtr_cut(b0, 8, vel=.75)
-            band(a, b0 + 32, 8, GROOVE["verse"], "verse", vel=.9, fill=next(fills), crash=False)
+            dance(a, b0 + 32, 8, part="verse", vel=.92, fill=next(fills), crash=False)
             a.arpeggio(b0 + 32, 8, vel=.75 if first else .85)
             a.piano_ballad(b0 + 32, 8, vel=.7)
-            a.sing(b0, VERSE_1 if first else VERSE_2, tr)
-        elif name.startswith("pre"):
+            a.sing(b0, VERSE_1 if first else VERSE_2, tr, x=VOICE["verse"])
+        elif name.startswith("pre"):         # half time, then the groove again, then one hit
             a.drums_half(b0, 4, vel=.9, fill=False)
-            a.drums_8beat(b0 + 16, 3, vel=.95, fill=False, crash=False)
+            a.drums_dance(b0 + 16, 3, STYLE, vel=.95, fill=False, crash=False)
             a.bass_long(b0, 4)
-            a.bass_8ths(b0 + 16, 3)
+            a.bass_dance(b0 + 16, 3, STYLE)
             a.gtr_hold(b0, 7, vel=.95)
             a.strings(b0, 8, vel=.9)
-            a.piano_8ths(b0, 7, vel=.75)
+            a.piano_offbeat(b0 + 16, 3, vel=.75)
             last = b0 + 28                     # bar 8: one hit, silence under "ねえ", a roll in
             a.gtr_hits([last], dur=.9)
             a.crash(last)
             a.bass.note(root_of("A", tr=tr), last, .9, 112)
             a.fill(last + 2, "snare", beats=2)
-            a.sing(b0, PRE_1 if name == "pre 1" else PRE_2, tr)
+            a.sing(b0, PRE_1 if name == "pre 1" else PRE_2, tr, x=VOICE["pre"])
         elif name.startswith("chorus"):
-            band(a, b0, n, GROOVE["chorus"], "chorus", fill=next(fills))
+            dance(a, b0, n, fill=next(fills))
             a.crash(b0 + 32)
-            a.piano_8ths(b0, n, vel=.8)
+            a.piano_offbeat(b0, n, vel=.8)
             a.strings(b0, n)
-            a.sing(b0, CHORUS_1 if name == "chorus 1" else CHORUS_2, tr, harmony="below")
+            a.sing(b0, CHORUS_1 if name == "chorus 1" else CHORUS_2, tr, x=VOICE["chorus"], harmony="below")
         elif name == "solo":
-            band(a, b0, n, GROOVE["solo"], "riff", fill=next(fills))
+            dance(a, b0, n, fill=next(fills))
             a.crash(b0 + 32)
             a.lead_line(b0, SOLO_LINE, tr, vib_cents=32)
             a.strings(b0 + 32, 8, vel=.9)
-            a.piano_arp16(b0 + 32, 8, vel=.75)
+            a.piano_offbeat(b0 + 32, 8, vel=.7)
         elif name == "bridge":
             a.drums_half(b0, 4, vel=.85, fill=False)
-            a.drums_8beat(b0 + 16, 3, vel=.95, fill="toms", crash=True)
-            a.bass_long(b0, 4)
-            a.bass_8ths(b0 + 16, 3)
+            a.drums_half(b0 + 16, 3, vel=1.0, fill="toms", crash=True)
+            a.bass_long(b0, 7)
             a.gtr_hold(b0 + 16, 3, vel=.9)
             a.piano_ballad(b0, 7)
             a.strings(b0, 8)
@@ -911,23 +1024,23 @@ def compose() -> Song:
             a.gtr_hits([stop], dur=2.5)
             a.crash(stop)
             a.bass.note(root_of("A", tr=tr), stop, 2.5, 110)
-            a.sing(b0, BRIDGE_MEL, tr)
+            a.sing(b0, BRIDGE_MEL, tr, x=VOICE["bridge"])
         elif name == "ochi":                 # quiet chorus: piano and voice, strings creep in
             a.piano_ballad(b0, n, vel=.85)
             a.strings(b0 + 16, 4, vel=.75)
             a.fill(b0 + 30, "toms", beats=2)
             a.gtr_hits([b0 + 30], dur=1.8, vel=.9)
-            a.sing(b0, OCHI_MEL, tr)
+            a.sing(b0, OCHI_MEL, tr, x=VOICE["ochi"])
         elif name == "last chorus":
-            band(a, b0, n, GROOVE["last"], "chorus", fill=next(fills))
+            dance(a, b0, n, fill=next(fills))
             for k in (32, 64):
                 a.crash(b0 + k)
-            a.piano_8ths(b0, n, vel=.85)
+            a.piano_offbeat(b0, n, vel=.85)
             a.strings(b0, n)
             a.glock_line(b0 + 64, tail_from(LAST_MEL, 64), tr, octave=1, vel=.6)
-            a.sing(b0, LAST_MEL, tr, harmony="below")
+            a.sing(b0, LAST_MEL, tr, x=VOICE["last"], harmony="below")
         elif name == "outro":
-            band(a, b0, 7, GROOVE["riff"], "riff", fill="toms")
+            dance(a, b0, 7, fill="toms")
             a.lead_line(b0, OUTRO_RIFF, tr)
             a.glock_line(b0, OUTRO_RIFF, tr)
             end = b0 + 28                      # final chord rings out
