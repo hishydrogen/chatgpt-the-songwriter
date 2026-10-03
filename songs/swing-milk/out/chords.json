@@ -1,0 +1,3101 @@
+[
+  {
+    "beat": 0,
+    "symbol": "Fmaj9",
+    "source": "Fmaj9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      60,
+      64,
+      67
+    ],
+    "pcs": [
+      0,
+      4,
+      5,
+      7,
+      9
+    ],
+    "start_s": 0.0
+  },
+  {
+    "beat": 4,
+    "symbol": "D7b9",
+    "source": "D7b9",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      54,
+      60,
+      63,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      3,
+      6,
+      9
+    ],
+    "start_s": 1.935
+  },
+  {
+    "beat": 8,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 3.871
+  },
+  {
+    "beat": 12,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 5.806
+  },
+  {
+    "beat": 16,
+    "symbol": "Fmaj9",
+    "source": "Fmaj9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      60,
+      64,
+      67
+    ],
+    "pcs": [
+      0,
+      4,
+      5,
+      7,
+      9
+    ],
+    "start_s": 7.742
+  },
+  {
+    "beat": 20,
+    "symbol": "D7b9",
+    "source": "D7b9",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      54,
+      60,
+      63,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      3,
+      6,
+      9
+    ],
+    "start_s": 9.677
+  },
+  {
+    "beat": 24,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 11.613
+  },
+  {
+    "beat": 28,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 13.548
+  },
+  {
+    "beat": 32,
+    "symbol": "Am7",
+    "source": "Am7",
+    "transpose": 0,
+    "root": 33,
+    "voicing": [
+      55,
+      60,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9
+    ],
+    "start_s": 15.484
+  },
+  {
+    "beat": 34,
+    "symbol": "D7b9",
+    "source": "D7b9",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      54,
+      60,
+      63,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      3,
+      6,
+      9
+    ],
+    "start_s": 16.452
+  },
+  {
+    "beat": 36,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 17.419
+  },
+  {
+    "beat": 38,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 18.387
+  },
+  {
+    "beat": 40,
+    "symbol": "Fmaj9",
+    "source": "Fmaj9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      60,
+      64,
+      67
+    ],
+    "pcs": [
+      0,
+      4,
+      5,
+      7,
+      9
+    ],
+    "start_s": 19.355
+  },
+  {
+    "beat": 42,
+    "symbol": "Bbm6",
+    "source": "Bbm6",
+    "transpose": 0,
+    "root": 34,
+    "voicing": [
+      61,
+      65,
+      67,
+      70
+    ],
+    "pcs": [
+      1,
+      5,
+      7,
+      10
+    ],
+    "start_s": 20.323
+  },
+  {
+    "beat": 44,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 21.29
+  },
+  {
+    "beat": 46,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 22.258
+  },
+  {
+    "beat": 47.5,
+    "symbol": "F6/9",
+    "source": "F6/9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      62,
+      67,
+      72
+    ],
+    "pcs": [
+      0,
+      2,
+      5,
+      7,
+      9
+    ],
+    "start_s": 22.984
+  },
+  {
+    "beat": 48,
+    "symbol": "Fmaj9",
+    "source": "Fmaj9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      60,
+      64,
+      67
+    ],
+    "pcs": [
+      0,
+      4,
+      5,
+      7,
+      9
+    ],
+    "start_s": 23.226
+  },
+  {
+    "beat": 52,
+    "symbol": "D7b9",
+    "source": "D7b9",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      54,
+      60,
+      63,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      3,
+      6,
+      9
+    ],
+    "start_s": 25.161
+  },
+  {
+    "beat": 56,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 27.097
+  },
+  {
+    "beat": 60,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 29.032
+  },
+  {
+    "beat": 64,
+    "symbol": "Am7",
+    "source": "Am7",
+    "transpose": 0,
+    "root": 33,
+    "voicing": [
+      55,
+      60,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9
+    ],
+    "start_s": 30.968
+  },
+  {
+    "beat": 66,
+    "symbol": "D7b9",
+    "source": "D7b9",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      54,
+      60,
+      63,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      3,
+      6,
+      9
+    ],
+    "start_s": 31.935
+  },
+  {
+    "beat": 68,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 32.903
+  },
+  {
+    "beat": 70,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 33.871
+  },
+  {
+    "beat": 72,
+    "symbol": "Fmaj9",
+    "source": "Fmaj9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      60,
+      64,
+      67
+    ],
+    "pcs": [
+      0,
+      4,
+      5,
+      7,
+      9
+    ],
+    "start_s": 34.839
+  },
+  {
+    "beat": 74,
+    "symbol": "Bbm6",
+    "source": "Bbm6",
+    "transpose": 0,
+    "root": 34,
+    "voicing": [
+      61,
+      65,
+      67,
+      70
+    ],
+    "pcs": [
+      1,
+      5,
+      7,
+      10
+    ],
+    "start_s": 35.806
+  },
+  {
+    "beat": 76,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 36.774
+  },
+  {
+    "beat": 78,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 37.742
+  },
+  {
+    "beat": 79.5,
+    "symbol": "F6/9",
+    "source": "F6/9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      62,
+      67,
+      72
+    ],
+    "pcs": [
+      0,
+      2,
+      5,
+      7,
+      9
+    ],
+    "start_s": 38.468
+  },
+  {
+    "beat": 80,
+    "symbol": "Am7",
+    "source": "Am7",
+    "transpose": 0,
+    "root": 33,
+    "voicing": [
+      55,
+      60,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9
+    ],
+    "start_s": 38.71
+  },
+  {
+    "beat": 84,
+    "symbol": "D7b9",
+    "source": "D7b9",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      54,
+      60,
+      63,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      3,
+      6,
+      9
+    ],
+    "start_s": 40.645
+  },
+  {
+    "beat": 88,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 42.581
+  },
+  {
+    "beat": 92,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 44.516
+  },
+  {
+    "beat": 96,
+    "symbol": "Fmaj9",
+    "source": "Fmaj9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      60,
+      64,
+      67
+    ],
+    "pcs": [
+      0,
+      4,
+      5,
+      7,
+      9
+    ],
+    "start_s": 46.452
+  },
+  {
+    "beat": 100,
+    "symbol": "D7b9",
+    "source": "D7b9",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      54,
+      60,
+      63,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      3,
+      6,
+      9
+    ],
+    "start_s": 48.387
+  },
+  {
+    "beat": 104,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 50.323
+  },
+  {
+    "beat": 108,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 52.258
+  },
+  {
+    "beat": 112,
+    "symbol": "Am7",
+    "source": "Am7",
+    "transpose": 0,
+    "root": 33,
+    "voicing": [
+      55,
+      60,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9
+    ],
+    "start_s": 54.194
+  },
+  {
+    "beat": 114,
+    "symbol": "D7b9",
+    "source": "D7b9",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      54,
+      60,
+      63,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      3,
+      6,
+      9
+    ],
+    "start_s": 55.161
+  },
+  {
+    "beat": 116,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 56.129
+  },
+  {
+    "beat": 118,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 57.097
+  },
+  {
+    "beat": 120,
+    "symbol": "Fmaj9",
+    "source": "Fmaj9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      60,
+      64,
+      67
+    ],
+    "pcs": [
+      0,
+      4,
+      5,
+      7,
+      9
+    ],
+    "start_s": 58.065
+  },
+  {
+    "beat": 122,
+    "symbol": "Bbm6",
+    "source": "Bbm6",
+    "transpose": 0,
+    "root": 34,
+    "voicing": [
+      61,
+      65,
+      67,
+      70
+    ],
+    "pcs": [
+      1,
+      5,
+      7,
+      10
+    ],
+    "start_s": 59.032
+  },
+  {
+    "beat": 124,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 60.0
+  },
+  {
+    "beat": 126,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 60.968
+  },
+  {
+    "beat": 127.5,
+    "symbol": "F6/9",
+    "source": "F6/9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      62,
+      67,
+      72
+    ],
+    "pcs": [
+      0,
+      2,
+      5,
+      7,
+      9
+    ],
+    "start_s": 61.694
+  },
+  {
+    "beat": 128,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 61.935
+  },
+  {
+    "beat": 132,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 63.871
+  },
+  {
+    "beat": 136,
+    "symbol": "Fmaj9",
+    "source": "Fmaj9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      60,
+      64,
+      67
+    ],
+    "pcs": [
+      0,
+      4,
+      5,
+      7,
+      9
+    ],
+    "start_s": 65.806
+  },
+  {
+    "beat": 140,
+    "symbol": "D7b9",
+    "source": "D7b9",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      54,
+      60,
+      63,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      3,
+      6,
+      9
+    ],
+    "start_s": 67.742
+  },
+  {
+    "beat": 144,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 69.677
+  },
+  {
+    "beat": 148,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 71.613
+  },
+  {
+    "beat": 152,
+    "symbol": "Am7",
+    "source": "Am7",
+    "transpose": 0,
+    "root": 33,
+    "voicing": [
+      55,
+      60,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9
+    ],
+    "start_s": 73.548
+  },
+  {
+    "beat": 154,
+    "symbol": "D7b9",
+    "source": "D7b9",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      54,
+      60,
+      63,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      3,
+      6,
+      9
+    ],
+    "start_s": 74.516
+  },
+  {
+    "beat": 156,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 75.484
+  },
+  {
+    "beat": 158,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 76.452
+  },
+  {
+    "beat": 160,
+    "symbol": "Fmaj9",
+    "source": "Fmaj9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      60,
+      64,
+      67
+    ],
+    "pcs": [
+      0,
+      4,
+      5,
+      7,
+      9
+    ],
+    "start_s": 77.419
+  },
+  {
+    "beat": 162,
+    "symbol": "Bbm6",
+    "source": "Bbm6",
+    "transpose": 0,
+    "root": 34,
+    "voicing": [
+      61,
+      65,
+      67,
+      70
+    ],
+    "pcs": [
+      1,
+      5,
+      7,
+      10
+    ],
+    "start_s": 78.387
+  },
+  {
+    "beat": 164,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 79.355
+  },
+  {
+    "beat": 166,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 80.323
+  },
+  {
+    "beat": 167.5,
+    "symbol": "F6/9",
+    "source": "F6/9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      62,
+      67,
+      72
+    ],
+    "pcs": [
+      0,
+      2,
+      5,
+      7,
+      9
+    ],
+    "start_s": 81.048
+  },
+  {
+    "beat": 168,
+    "symbol": "Fmaj9",
+    "source": "Fmaj9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      60,
+      64,
+      67
+    ],
+    "pcs": [
+      0,
+      4,
+      5,
+      7,
+      9
+    ],
+    "start_s": 81.29
+  },
+  {
+    "beat": 172,
+    "symbol": "D7b9",
+    "source": "D7b9",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      54,
+      60,
+      63,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      3,
+      6,
+      9
+    ],
+    "start_s": 83.226
+  },
+  {
+    "beat": 176,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 85.161
+  },
+  {
+    "beat": 180,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 87.097
+  },
+  {
+    "beat": 184,
+    "symbol": "Am7",
+    "source": "Am7",
+    "transpose": 0,
+    "root": 33,
+    "voicing": [
+      55,
+      60,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9
+    ],
+    "start_s": 89.032
+  },
+  {
+    "beat": 186,
+    "symbol": "D7b9",
+    "source": "D7b9",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      54,
+      60,
+      63,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      3,
+      6,
+      9
+    ],
+    "start_s": 90.0
+  },
+  {
+    "beat": 188,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 90.968
+  },
+  {
+    "beat": 190,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 91.935
+  },
+  {
+    "beat": 192,
+    "symbol": "Fmaj9",
+    "source": "Fmaj9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      60,
+      64,
+      67
+    ],
+    "pcs": [
+      0,
+      4,
+      5,
+      7,
+      9
+    ],
+    "start_s": 92.903
+  },
+  {
+    "beat": 194,
+    "symbol": "Bbm6",
+    "source": "Bbm6",
+    "transpose": 0,
+    "root": 34,
+    "voicing": [
+      61,
+      65,
+      67,
+      70
+    ],
+    "pcs": [
+      1,
+      5,
+      7,
+      10
+    ],
+    "start_s": 93.871
+  },
+  {
+    "beat": 196,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 94.839
+  },
+  {
+    "beat": 198,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 95.806
+  },
+  {
+    "beat": 199.5,
+    "symbol": "F6/9",
+    "source": "F6/9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      62,
+      67,
+      72
+    ],
+    "pcs": [
+      0,
+      2,
+      5,
+      7,
+      9
+    ],
+    "start_s": 96.532
+  },
+  {
+    "beat": 200,
+    "symbol": "Am7",
+    "source": "Am7",
+    "transpose": 0,
+    "root": 33,
+    "voicing": [
+      55,
+      60,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9
+    ],
+    "start_s": 96.774
+  },
+  {
+    "beat": 204,
+    "symbol": "D7b9",
+    "source": "D7b9",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      54,
+      60,
+      63,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      3,
+      6,
+      9
+    ],
+    "start_s": 98.71
+  },
+  {
+    "beat": 208,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 100.645
+  },
+  {
+    "beat": 212,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 102.581
+  },
+  {
+    "beat": 216,
+    "symbol": "Fmaj9",
+    "source": "Fmaj9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      60,
+      64,
+      67
+    ],
+    "pcs": [
+      0,
+      4,
+      5,
+      7,
+      9
+    ],
+    "start_s": 104.516
+  },
+  {
+    "beat": 220,
+    "symbol": "D7b9",
+    "source": "D7b9",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      54,
+      60,
+      63,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      3,
+      6,
+      9
+    ],
+    "start_s": 106.452
+  },
+  {
+    "beat": 224,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 108.387
+  },
+  {
+    "beat": 228,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 110.323
+  },
+  {
+    "beat": 232,
+    "symbol": "Am7",
+    "source": "Am7",
+    "transpose": 0,
+    "root": 33,
+    "voicing": [
+      55,
+      60,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9
+    ],
+    "start_s": 112.258
+  },
+  {
+    "beat": 234,
+    "symbol": "D7b9",
+    "source": "D7b9",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      54,
+      60,
+      63,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      3,
+      6,
+      9
+    ],
+    "start_s": 113.226
+  },
+  {
+    "beat": 236,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 114.194
+  },
+  {
+    "beat": 238,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 115.161
+  },
+  {
+    "beat": 240,
+    "symbol": "Fmaj9",
+    "source": "Fmaj9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      60,
+      64,
+      67
+    ],
+    "pcs": [
+      0,
+      4,
+      5,
+      7,
+      9
+    ],
+    "start_s": 116.129
+  },
+  {
+    "beat": 242,
+    "symbol": "Bbm6",
+    "source": "Bbm6",
+    "transpose": 0,
+    "root": 34,
+    "voicing": [
+      61,
+      65,
+      67,
+      70
+    ],
+    "pcs": [
+      1,
+      5,
+      7,
+      10
+    ],
+    "start_s": 117.097
+  },
+  {
+    "beat": 244,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 118.065
+  },
+  {
+    "beat": 246,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 119.032
+  },
+  {
+    "beat": 247.5,
+    "symbol": "F6/9",
+    "source": "F6/9",
+    "transpose": 0,
+    "root": 29,
+    "voicing": [
+      57,
+      62,
+      67,
+      72
+    ],
+    "pcs": [
+      0,
+      2,
+      5,
+      7,
+      9
+    ],
+    "start_s": 119.758
+  },
+  {
+    "beat": 248,
+    "symbol": "Dm9",
+    "source": "Dm9",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      53,
+      60,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      5,
+      9
+    ],
+    "start_s": 120.0
+  },
+  {
+    "beat": 252,
+    "symbol": "Dm9",
+    "source": "Dm9",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      53,
+      60,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      5,
+      9
+    ],
+    "start_s": 121.935
+  },
+  {
+    "beat": 256,
+    "symbol": "Gm9",
+    "source": "Gm9",
+    "transpose": 0,
+    "root": 31,
+    "voicing": [
+      58,
+      62,
+      65,
+      69
+    ],
+    "pcs": [
+      2,
+      5,
+      7,
+      9,
+      10
+    ],
+    "start_s": 123.871
+  },
+  {
+    "beat": 260,
+    "symbol": "C13",
+    "source": "C13",
+    "transpose": 0,
+    "root": 36,
+    "voicing": [
+      58,
+      62,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      7,
+      9,
+      10
+    ],
+    "start_s": 125.806
+  },
+  {
+    "beat": 264,
+    "symbol": "Bbmaj9",
+    "source": "Bbmaj9",
+    "transpose": 0,
+    "root": 34,
+    "voicing": [
+      62,
+      65,
+      69,
+      72
+    ],
+    "pcs": [
+      0,
+      2,
+      5,
+      9,
+      10
+    ],
+    "start_s": 127.742
+  },
+  {
+    "beat": 268,
+    "symbol": "Bbm6",
+    "source": "Bbm6",
+    "transpose": 0,
+    "root": 34,
+    "voicing": [
+      61,
+      65,
+      67,
+      70
+    ],
+    "pcs": [
+      1,
+      5,
+      7,
+      10
+    ],
+    "start_s": 129.677
+  },
+  {
+    "beat": 272,
+    "symbol": "Am7",
+    "source": "Am7",
+    "transpose": 0,
+    "root": 33,
+    "voicing": [
+      55,
+      60,
+      64,
+      69
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9
+    ],
+    "start_s": 131.613
+  },
+  {
+    "beat": 276,
+    "symbol": "D13",
+    "source": "D13",
+    "transpose": 0,
+    "root": 38,
+    "voicing": [
+      54,
+      60,
+      64,
+      71
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      6,
+      9,
+      11
+    ],
+    "start_s": 133.548
+  },
+  {
+    "beat": 280,
+    "symbol": "Gmaj9",
+    "source": "Fmaj9",
+    "transpose": 2,
+    "root": 31,
+    "voicing": [
+      59,
+      62,
+      66,
+      69
+    ],
+    "pcs": [
+      2,
+      6,
+      7,
+      9,
+      11
+    ],
+    "start_s": 135.484
+  },
+  {
+    "beat": 284,
+    "symbol": "E7b9",
+    "source": "D7b9",
+    "transpose": 2,
+    "root": 40,
+    "voicing": [
+      56,
+      62,
+      65,
+      71
+    ],
+    "pcs": [
+      2,
+      4,
+      5,
+      8,
+      11
+    ],
+    "start_s": 137.419
+  },
+  {
+    "beat": 288,
+    "symbol": "Am9",
+    "source": "Gm9",
+    "transpose": 2,
+    "root": 33,
+    "voicing": [
+      60,
+      64,
+      67,
+      71
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9,
+      11
+    ],
+    "start_s": 139.355
+  },
+  {
+    "beat": 292,
+    "symbol": "D13",
+    "source": "C13",
+    "transpose": 2,
+    "root": 38,
+    "voicing": [
+      60,
+      64,
+      66,
+      71
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      6,
+      9,
+      11
+    ],
+    "start_s": 141.29
+  },
+  {
+    "beat": 296,
+    "symbol": "Bm7",
+    "source": "Am7",
+    "transpose": 2,
+    "root": 35,
+    "voicing": [
+      57,
+      62,
+      66,
+      71
+    ],
+    "pcs": [
+      2,
+      6,
+      9,
+      11
+    ],
+    "start_s": 143.226
+  },
+  {
+    "beat": 298,
+    "symbol": "E7b9",
+    "source": "D7b9",
+    "transpose": 2,
+    "root": 40,
+    "voicing": [
+      56,
+      62,
+      65,
+      71
+    ],
+    "pcs": [
+      2,
+      4,
+      5,
+      8,
+      11
+    ],
+    "start_s": 144.194
+  },
+  {
+    "beat": 300,
+    "symbol": "Am9",
+    "source": "Gm9",
+    "transpose": 2,
+    "root": 33,
+    "voicing": [
+      60,
+      64,
+      67,
+      71
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9,
+      11
+    ],
+    "start_s": 145.161
+  },
+  {
+    "beat": 302,
+    "symbol": "D13",
+    "source": "C13",
+    "transpose": 2,
+    "root": 38,
+    "voicing": [
+      60,
+      64,
+      66,
+      71
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      6,
+      9,
+      11
+    ],
+    "start_s": 146.129
+  },
+  {
+    "beat": 304,
+    "symbol": "Gmaj9",
+    "source": "Fmaj9",
+    "transpose": 2,
+    "root": 31,
+    "voicing": [
+      59,
+      62,
+      66,
+      69
+    ],
+    "pcs": [
+      2,
+      6,
+      7,
+      9,
+      11
+    ],
+    "start_s": 147.097
+  },
+  {
+    "beat": 306,
+    "symbol": "Cm6",
+    "source": "Bbm6",
+    "transpose": 2,
+    "root": 36,
+    "voicing": [
+      63,
+      67,
+      69,
+      72
+    ],
+    "pcs": [
+      0,
+      3,
+      7,
+      9
+    ],
+    "start_s": 148.065
+  },
+  {
+    "beat": 308,
+    "symbol": "Am9",
+    "source": "Gm9",
+    "transpose": 2,
+    "root": 33,
+    "voicing": [
+      60,
+      64,
+      67,
+      71
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9,
+      11
+    ],
+    "start_s": 149.032
+  },
+  {
+    "beat": 310,
+    "symbol": "D13",
+    "source": "C13",
+    "transpose": 2,
+    "root": 38,
+    "voicing": [
+      60,
+      64,
+      66,
+      71
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      6,
+      9,
+      11
+    ],
+    "start_s": 150.0
+  },
+  {
+    "beat": 311.5,
+    "symbol": "G6/9",
+    "source": "F6/9",
+    "transpose": 2,
+    "root": 31,
+    "voicing": [
+      59,
+      64,
+      69,
+      74
+    ],
+    "pcs": [
+      2,
+      4,
+      7,
+      9,
+      11
+    ],
+    "start_s": 150.726
+  },
+  {
+    "beat": 312,
+    "symbol": "Gmaj9",
+    "source": "Fmaj9",
+    "transpose": 2,
+    "root": 31,
+    "voicing": [
+      59,
+      62,
+      66,
+      69
+    ],
+    "pcs": [
+      2,
+      6,
+      7,
+      9,
+      11
+    ],
+    "start_s": 150.968
+  },
+  {
+    "beat": 316,
+    "symbol": "E7b9",
+    "source": "D7b9",
+    "transpose": 2,
+    "root": 40,
+    "voicing": [
+      56,
+      62,
+      65,
+      71
+    ],
+    "pcs": [
+      2,
+      4,
+      5,
+      8,
+      11
+    ],
+    "start_s": 152.903
+  },
+  {
+    "beat": 320,
+    "symbol": "Am9",
+    "source": "Gm9",
+    "transpose": 2,
+    "root": 33,
+    "voicing": [
+      60,
+      64,
+      67,
+      71
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9,
+      11
+    ],
+    "start_s": 154.839
+  },
+  {
+    "beat": 324,
+    "symbol": "D13",
+    "source": "C13",
+    "transpose": 2,
+    "root": 38,
+    "voicing": [
+      60,
+      64,
+      66,
+      71
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      6,
+      9,
+      11
+    ],
+    "start_s": 156.774
+  },
+  {
+    "beat": 328,
+    "symbol": "Bm7",
+    "source": "Am7",
+    "transpose": 2,
+    "root": 35,
+    "voicing": [
+      57,
+      62,
+      66,
+      71
+    ],
+    "pcs": [
+      2,
+      6,
+      9,
+      11
+    ],
+    "start_s": 158.71
+  },
+  {
+    "beat": 330,
+    "symbol": "E7b9",
+    "source": "D7b9",
+    "transpose": 2,
+    "root": 40,
+    "voicing": [
+      56,
+      62,
+      65,
+      71
+    ],
+    "pcs": [
+      2,
+      4,
+      5,
+      8,
+      11
+    ],
+    "start_s": 159.677
+  },
+  {
+    "beat": 332,
+    "symbol": "Am9",
+    "source": "Gm9",
+    "transpose": 2,
+    "root": 33,
+    "voicing": [
+      60,
+      64,
+      67,
+      71
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9,
+      11
+    ],
+    "start_s": 160.645
+  },
+  {
+    "beat": 334,
+    "symbol": "D13",
+    "source": "C13",
+    "transpose": 2,
+    "root": 38,
+    "voicing": [
+      60,
+      64,
+      66,
+      71
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      6,
+      9,
+      11
+    ],
+    "start_s": 161.613
+  },
+  {
+    "beat": 336,
+    "symbol": "Gmaj9",
+    "source": "Fmaj9",
+    "transpose": 2,
+    "root": 31,
+    "voicing": [
+      59,
+      62,
+      66,
+      69
+    ],
+    "pcs": [
+      2,
+      6,
+      7,
+      9,
+      11
+    ],
+    "start_s": 162.581
+  },
+  {
+    "beat": 338,
+    "symbol": "Cm6",
+    "source": "Bbm6",
+    "transpose": 2,
+    "root": 36,
+    "voicing": [
+      63,
+      67,
+      69,
+      72
+    ],
+    "pcs": [
+      0,
+      3,
+      7,
+      9
+    ],
+    "start_s": 163.548
+  },
+  {
+    "beat": 340,
+    "symbol": "Am9",
+    "source": "Gm9",
+    "transpose": 2,
+    "root": 33,
+    "voicing": [
+      60,
+      64,
+      67,
+      71
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9,
+      11
+    ],
+    "start_s": 164.516
+  },
+  {
+    "beat": 342,
+    "symbol": "D13",
+    "source": "C13",
+    "transpose": 2,
+    "root": 38,
+    "voicing": [
+      60,
+      64,
+      66,
+      71
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      6,
+      9,
+      11
+    ],
+    "start_s": 165.484
+  },
+  {
+    "beat": 343.5,
+    "symbol": "G6/9",
+    "source": "F6/9",
+    "transpose": 2,
+    "root": 31,
+    "voicing": [
+      59,
+      64,
+      69,
+      74
+    ],
+    "pcs": [
+      2,
+      4,
+      7,
+      9,
+      11
+    ],
+    "start_s": 166.21
+  },
+  {
+    "beat": 344,
+    "symbol": "Gmaj9",
+    "source": "Fmaj9",
+    "transpose": 2,
+    "root": 31,
+    "voicing": [
+      59,
+      62,
+      66,
+      69
+    ],
+    "pcs": [
+      2,
+      6,
+      7,
+      9,
+      11
+    ],
+    "start_s": 166.452
+  },
+  {
+    "beat": 348,
+    "symbol": "E7b9",
+    "source": "D7b9",
+    "transpose": 2,
+    "root": 40,
+    "voicing": [
+      56,
+      62,
+      65,
+      71
+    ],
+    "pcs": [
+      2,
+      4,
+      5,
+      8,
+      11
+    ],
+    "start_s": 168.387
+  },
+  {
+    "beat": 352,
+    "symbol": "Am9",
+    "source": "Gm9",
+    "transpose": 2,
+    "root": 33,
+    "voicing": [
+      60,
+      64,
+      67,
+      71
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9,
+      11
+    ],
+    "start_s": 170.323
+  },
+  {
+    "beat": 356,
+    "symbol": "D13",
+    "source": "C13",
+    "transpose": 2,
+    "root": 38,
+    "voicing": [
+      60,
+      64,
+      66,
+      71
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      6,
+      9,
+      11
+    ],
+    "start_s": 172.258
+  },
+  {
+    "beat": 360,
+    "symbol": "Bm7",
+    "source": "Am7",
+    "transpose": 2,
+    "root": 35,
+    "voicing": [
+      57,
+      62,
+      66,
+      71
+    ],
+    "pcs": [
+      2,
+      6,
+      9,
+      11
+    ],
+    "start_s": 174.194
+  },
+  {
+    "beat": 362,
+    "symbol": "E7b9",
+    "source": "D7b9",
+    "transpose": 2,
+    "root": 40,
+    "voicing": [
+      56,
+      62,
+      65,
+      71
+    ],
+    "pcs": [
+      2,
+      4,
+      5,
+      8,
+      11
+    ],
+    "start_s": 175.161
+  },
+  {
+    "beat": 364,
+    "symbol": "Am9",
+    "source": "Gm9",
+    "transpose": 2,
+    "root": 33,
+    "voicing": [
+      60,
+      64,
+      67,
+      71
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9,
+      11
+    ],
+    "start_s": 176.129
+  },
+  {
+    "beat": 366,
+    "symbol": "D13",
+    "source": "C13",
+    "transpose": 2,
+    "root": 38,
+    "voicing": [
+      60,
+      64,
+      66,
+      71
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      6,
+      9,
+      11
+    ],
+    "start_s": 177.097
+  },
+  {
+    "beat": 368,
+    "symbol": "Gmaj9",
+    "source": "Fmaj9",
+    "transpose": 2,
+    "root": 31,
+    "voicing": [
+      59,
+      62,
+      66,
+      69
+    ],
+    "pcs": [
+      2,
+      6,
+      7,
+      9,
+      11
+    ],
+    "start_s": 178.065
+  },
+  {
+    "beat": 370,
+    "symbol": "Cm6",
+    "source": "Bbm6",
+    "transpose": 2,
+    "root": 36,
+    "voicing": [
+      63,
+      67,
+      69,
+      72
+    ],
+    "pcs": [
+      0,
+      3,
+      7,
+      9
+    ],
+    "start_s": 179.032
+  },
+  {
+    "beat": 372,
+    "symbol": "Am9",
+    "source": "Gm9",
+    "transpose": 2,
+    "root": 33,
+    "voicing": [
+      60,
+      64,
+      67,
+      71
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9,
+      11
+    ],
+    "start_s": 180.0
+  },
+  {
+    "beat": 374,
+    "symbol": "D13",
+    "source": "C13",
+    "transpose": 2,
+    "root": 38,
+    "voicing": [
+      60,
+      64,
+      66,
+      71
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      6,
+      9,
+      11
+    ],
+    "start_s": 180.968
+  },
+  {
+    "beat": 375.5,
+    "symbol": "G6/9",
+    "source": "F6/9",
+    "transpose": 2,
+    "root": 31,
+    "voicing": [
+      59,
+      64,
+      69,
+      74
+    ],
+    "pcs": [
+      2,
+      4,
+      7,
+      9,
+      11
+    ],
+    "start_s": 181.694
+  },
+  {
+    "beat": 376,
+    "symbol": "Am9",
+    "source": "Gm9",
+    "transpose": 2,
+    "root": 33,
+    "voicing": [
+      60,
+      64,
+      67,
+      71
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9,
+      11
+    ],
+    "start_s": 181.935
+  },
+  {
+    "beat": 380,
+    "symbol": "D13",
+    "source": "C13",
+    "transpose": 2,
+    "root": 38,
+    "voicing": [
+      60,
+      64,
+      66,
+      71
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      6,
+      9,
+      11
+    ],
+    "start_s": 183.871
+  },
+  {
+    "beat": 384,
+    "symbol": "Gmaj9",
+    "source": "Fmaj9",
+    "transpose": 2,
+    "root": 31,
+    "voicing": [
+      59,
+      62,
+      66,
+      69
+    ],
+    "pcs": [
+      2,
+      6,
+      7,
+      9,
+      11
+    ],
+    "start_s": 185.806
+  },
+  {
+    "beat": 388,
+    "symbol": "Cm6",
+    "source": "Bbm6",
+    "transpose": 2,
+    "root": 36,
+    "voicing": [
+      63,
+      67,
+      69,
+      72
+    ],
+    "pcs": [
+      0,
+      3,
+      7,
+      9
+    ],
+    "start_s": 187.742
+  },
+  {
+    "beat": 392,
+    "symbol": "Am9",
+    "source": "Gm9",
+    "transpose": 2,
+    "root": 33,
+    "voicing": [
+      60,
+      64,
+      67,
+      71
+    ],
+    "pcs": [
+      0,
+      4,
+      7,
+      9,
+      11
+    ],
+    "start_s": 189.677
+  },
+  {
+    "beat": 396,
+    "symbol": "D13",
+    "source": "C13",
+    "transpose": 2,
+    "root": 38,
+    "voicing": [
+      60,
+      64,
+      66,
+      71
+    ],
+    "pcs": [
+      0,
+      2,
+      4,
+      6,
+      9,
+      11
+    ],
+    "start_s": 191.613
+  },
+  {
+    "beat": 400,
+    "symbol": "G6/9",
+    "source": "F6/9",
+    "transpose": 2,
+    "root": 31,
+    "voicing": [
+      59,
+      64,
+      69,
+      74
+    ],
+    "pcs": [
+      2,
+      4,
+      7,
+      9,
+      11
+    ],
+    "start_s": 193.548
+  },
+  {
+    "beat": 404,
+    "symbol": "G6/9",
+    "source": "F6/9",
+    "transpose": 2,
+    "root": 31,
+    "voicing": [
+      59,
+      64,
+      69,
+      74
+    ],
+    "pcs": [
+      2,
+      4,
+      7,
+      9,
+      11
+    ],
+    "start_s": 195.484
+  }
+]

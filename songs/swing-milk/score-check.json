@@ -1,0 +1,207 @@
+{
+  "status": "passed",
+  "title": "Swing, Milk!",
+  "selected_instruments": {
+    "voice": "voice.milk",
+    "keys": "piano.splendid",
+    "bass": "bass.upright_pizz",
+    "drums": "drums.drskit"
+  },
+  "bpm": 124,
+  "swing": 0.6,
+  "bars": 102,
+  "tracks": 19,
+  "notes": 5741,
+  "midi_lyrics": 593,
+  "voices": {
+    "scat - Milk": {
+      "notes": 457,
+      "aliases": 40,
+      "lowest_midi": 60,
+      "highest_midi": 72
+    },
+    "Milk harmony left": {
+      "notes": 68,
+      "aliases": 22,
+      "lowest_midi": 57,
+      "highest_midi": 69
+    },
+    "Milk harmony right": {
+      "notes": 68,
+      "aliases": 22,
+      "lowest_midi": 57,
+      "highest_midi": 69
+    }
+  },
+  "sections": [
+    {
+      "label": "intro",
+      "beat": 0,
+      "bars": 4,
+      "role": "intro",
+      "name": "intro",
+      "kind": "intro",
+      "groove": "A",
+      "transpose": 0,
+      "energy": 0.76,
+      "start_s": 0.0,
+      "end_s": 7.74
+    },
+    {
+      "label": "verse 1",
+      "beat": 16,
+      "bars": 16,
+      "role": "verse",
+      "name": "verse 1",
+      "kind": "verse",
+      "groove": "A",
+      "transpose": 0,
+      "energy": 0.85,
+      "start_s": 7.74,
+      "end_s": 38.71
+    },
+    {
+      "label": "lift 1",
+      "beat": 80,
+      "bars": 4,
+      "role": "lift",
+      "name": "lift 1",
+      "kind": "lift",
+      "groove": "A",
+      "transpose": 0,
+      "energy": 0.94,
+      "start_s": 38.71,
+      "end_s": 46.45
+    },
+    {
+      "label": "chorus 1",
+      "beat": 96,
+      "bars": 8,
+      "role": "chorus",
+      "name": "chorus 1",
+      "kind": "chorus",
+      "groove": "B",
+      "transpose": 0,
+      "energy": 1.0,
+      "start_s": 46.45,
+      "end_s": 61.94
+    },
+    {
+      "label": "turnaround",
+      "beat": 128,
+      "bars": 2,
+      "role": "turn",
+      "name": "turnaround",
+      "kind": "turn",
+      "groove": "A",
+      "transpose": 0,
+      "energy": 0.78,
+      "start_s": 61.94,
+      "end_s": 65.81
+    },
+    {
+      "label": "verse 2",
+      "beat": 136,
+      "bars": 16,
+      "role": "verse",
+      "name": "verse 2",
+      "kind": "verse",
+      "groove": "A",
+      "transpose": 0,
+      "energy": 0.94,
+      "start_s": 65.81,
+      "end_s": 96.77
+    },
+    {
+      "label": "lift 2",
+      "beat": 200,
+      "bars": 4,
+      "role": "lift",
+      "name": "lift 2",
+      "kind": "lift",
+      "groove": "A",
+      "transpose": 0,
+      "energy": 1.0,
+      "start_s": 96.77,
+      "end_s": 104.52
+    },
+    {
+      "label": "chorus 2",
+      "beat": 216,
+      "bars": 8,
+      "role": "chorus",
+      "name": "chorus 2",
+      "kind": "chorus",
+      "groove": "B",
+      "transpose": 0,
+      "energy": 1.03,
+      "start_s": 104.52,
+      "end_s": 120.0
+    },
+    {
+      "label": "bridge",
+      "beat": 248,
+      "bars": 8,
+      "role": "bridge",
+      "name": "bridge",
+      "kind": "bridge",
+      "groove": "A",
+      "transpose": 0,
+      "energy": 0.79,
+      "start_s": 120.0,
+      "end_s": 135.48
+    },
+    {
+      "label": "scat and tenor trading",
+      "beat": 280,
+      "bars": 8,
+      "role": "trading",
+      "name": "scat and tenor trading",
+      "kind": "trading",
+      "groove": "A",
+      "transpose": 2,
+      "energy": 0.96,
+      "start_s": 135.48,
+      "end_s": 150.97
+    },
+    {
+      "label": "final chorus",
+      "beat": 312,
+      "bars": 16,
+      "role": "chorus",
+      "name": "final chorus",
+      "kind": "chorus",
+      "groove": "B",
+      "transpose": 2,
+      "energy": 1.06,
+      "start_s": 150.97,
+      "end_s": 181.94
+    },
+    {
+      "label": "scat tag",
+      "beat": 376,
+      "bars": 4,
+      "role": "tag",
+      "name": "scat tag",
+      "kind": "tag",
+      "groove": "B",
+      "transpose": 2,
+      "energy": 0.99,
+      "start_s": 181.94,
+      "end_s": 189.68
+    },
+    {
+      "label": "ensemble ending",
+      "beat": 392,
+      "bars": 4,
+      "role": "ending",
+      "name": "ensemble ending",
+      "kind": "ending",
+      "groove": "B",
+      "transpose": 2,
+      "energy": 0.92,
+      "start_s": 189.68,
+      "end_s": 197.42
+    }
+  ]
+}

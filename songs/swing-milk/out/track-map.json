@@ -1,0 +1,97 @@
+[
+  {
+    "name": "Steinway comp",
+    "instrument": "piano.splendid",
+    "channel_zero_based": 0
+  },
+  {
+    "name": "Steinway answering riff",
+    "instrument": "piano.splendid",
+    "channel_zero_based": 8
+  },
+  {
+    "name": "upright bass",
+    "instrument": "bass.upright_pizz",
+    "channel_zero_based": 1
+  },
+  {
+    "name": "muted guitar",
+    "instrument": "guitar.green_stac",
+    "channel_zero_based": 2
+  },
+  {
+    "name": "trombone punctuation",
+    "instrument": "brass.trombone_stac",
+    "channel_zero_based": 3
+  },
+  {
+    "name": "French horn inner voice",
+    "instrument": "brass.horn_stac",
+    "channel_zero_based": 4
+  },
+  {
+    "name": "muted trumpet answers",
+    "instrument": "brass.trumpet_harmon",
+    "channel_zero_based": 5
+  },
+  {
+    "name": "tenor replies",
+    "instrument": "sax.tenor",
+    "channel_zero_based": 6
+  },
+  {
+    "name": "DRSKit kick",
+    "instrument": "drums.drskit",
+    "channel_zero_based": 9
+  },
+  {
+    "name": "DRSKit snare",
+    "instrument": "drums.drskit",
+    "channel_zero_based": 9
+  },
+  {
+    "name": "DRSKit ride",
+    "instrument": "drums.drskit",
+    "channel_zero_based": 9
+  },
+  {
+    "name": "DRSKit hats",
+    "instrument": "drums.drskit",
+    "channel_zero_based": 9
+  },
+  {
+    "name": "DRSKit toms",
+    "instrument": "drums.drskit",
+    "channel_zero_based": 9
+  },
+  {
+    "name": "DRSKit cymbals",
+    "instrument": "drums.drskit",
+    "channel_zero_based": 9
+  },
+  {
+    "name": "shaker",
+    "instrument": "drums.virtuosity",
+    "channel_zero_based": 9
+  },
+  {
+    "name": "bongo conversation",
+    "instrument": "drums.virtuosity",
+    "channel_zero_based": 9
+  },
+  {
+    "name": "scat - Milk",
+    "instrument": "voice.milk",
+    "channel_zero_based": 10
+  },
+  {
+    "name": "Milk harmony left",
+    "instrument": "voice.milk",
+    "channel_zero_based": 11
+  },
+  {
+    "name": "Milk harmony right",
+    "instrument": "voice.milk",
+    "channel_zero_based": 12
+  }
+]

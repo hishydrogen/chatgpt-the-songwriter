@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "harmonies": {
+    "Milk harmony left": {
+      "written_notes": 68,
+      "measured_notes": 68,
+      "median_absolute_error_cents": 0.8,
+      "maximum_absolute_error_cents": 6.9
+    },
+    "Milk harmony right": {
+      "written_notes": 68,
+      "measured_notes": 68,
+      "median_absolute_error_cents": 0.8,
+      "maximum_absolute_error_cents": 6.7
+    }
+  }
+}

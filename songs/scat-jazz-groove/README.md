@@ -67,3 +67,6 @@ bash scripts/studio.sh --python songs/scat-jazz-groove/export_choices.py
 1단계 `songs/scat-jazz-palette/song.py`가 원본 화성, 스캣과 MIDI 내보내기
 설정을 제공한다. 샘플과 음성 합성 캐시는 `libs/`에 있다.
 상업 발매 시 Milk 저작자의 사전 승인이 필요하며 자세한 출처는 `CREDITS.md`에 있다.
+
+사용자는 벌스 A, 후렴 B를 선택했다. 제목 `Swing, Milk!`와 합주 엔딩으로
+완성한 3단계 전체 편곡은 `songs/swing-milk/`에 있다.

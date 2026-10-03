@@ -1,0 +1,219 @@
+{
+  "status": "passed",
+  "master": {
+    "integrated_lufs": -14.02,
+    "short_term_max_lufs": -11.74,
+    "loudness_range_lu": 4.2,
+    "true_peak_dbtp": -1.0,
+    "sample_peak_db": -1.44,
+    "plr_db": 13.02,
+    "crest_db": 15.29,
+    "stereo_correlation": 0.877,
+    "side_to_mid_db": -11.83,
+    "tonal_slope_db_per_oct": -2.22,
+    "bands_db": {
+      "sub": -27.5,
+      "bass": -23.1,
+      "low-mid": -20.6,
+      "mid": -19.2,
+      "hi-mid": -27.2,
+      "presence": -34.6,
+      "air": -37.1
+    }
+  },
+  "balances": [
+    {
+      "section": "verse 1",
+      "lead_lufs": -27.5,
+      "loudest_instrument": "upright bass",
+      "loudest_instrument_lufs": -32.0,
+      "lead_margin_db": 4.5
+    },
+    {
+      "section": "lift 1",
+      "lead_lufs": -25.9,
+      "loudest_instrument": "Steinway comp",
+      "loudest_instrument_lufs": -31.6,
+      "lead_margin_db": 5.7
+    },
+    {
+      "section": "chorus 1",
+      "lead_lufs": -25.6,
+      "loudest_instrument": "DRSKit kick",
+      "loudest_instrument_lufs": -30.9,
+      "lead_margin_db": 5.3
+    },
+    {
+      "section": "verse 2",
+      "lead_lufs": -26.3,
+      "loudest_instrument": "upright bass",
+      "loudest_instrument_lufs": -30.4,
+      "lead_margin_db": 4.1
+    },
+    {
+      "section": "lift 2",
+      "lead_lufs": -25.9,
+      "loudest_instrument": "Steinway comp",
+      "loudest_instrument_lufs": -30.4,
+      "lead_margin_db": 4.5
+    },
+    {
+      "section": "chorus 2",
+      "lead_lufs": -25.6,
+      "loudest_instrument": "DRSKit kick",
+      "loudest_instrument_lufs": -30.5,
+      "lead_margin_db": 4.9
+    },
+    {
+      "section": "bridge",
+      "lead_lufs": -27.6,
+      "loudest_instrument": "upright bass",
+      "loudest_instrument_lufs": -34.4,
+      "lead_margin_db": 6.8
+    },
+    {
+      "section": "final chorus",
+      "lead_lufs": -25.0,
+      "loudest_instrument": "upright bass",
+      "loudest_instrument_lufs": -30.0,
+      "lead_margin_db": 5.0
+    },
+    {
+      "section": "scat tag",
+      "lead_lufs": -24.6,
+      "loudest_instrument": "upright bass",
+      "loudest_instrument_lufs": -30.1,
+      "lead_margin_db": 5.5
+    },
+    {
+      "section": "ensemble ending",
+      "lead_lufs": -24.8,
+      "loudest_instrument": "Steinway comp",
+      "loudest_instrument_lufs": -30.9,
+      "lead_margin_db": 6.1
+    }
+  ],
+  "lead_pitch": [
+    {
+      "section": "verse 1",
+      "written_notes": 72,
+      "measured_notes": 72,
+      "median_absolute_error_cents": 0.7,
+      "p90_absolute_error_cents": 5.2,
+      "outliers_over_80_cents": [],
+      "large_sample_jumps": 0,
+      "jump_times_within_section_s": [],
+      "unexplained_jumps": []
+    },
+    {
+      "section": "lift 1",
+      "written_notes": 20,
+      "measured_notes": 20,
+      "median_absolute_error_cents": 0.8,
+      "p90_absolute_error_cents": 2.6,
+      "outliers_over_80_cents": [],
+      "large_sample_jumps": 0,
+      "jump_times_within_section_s": [],
+      "unexplained_jumps": []
+    },
+    {
+      "section": "chorus 1",
+      "written_notes": 49,
+      "measured_notes": 49,
+      "median_absolute_error_cents": 1.1,
+      "p90_absolute_error_cents": 4.7,
+      "outliers_over_80_cents": [],
+      "large_sample_jumps": 0,
+      "jump_times_within_section_s": [],
+      "unexplained_jumps": []
+    },
+    {
+      "section": "verse 2",
+      "written_notes": 72,
+      "measured_notes": 72,
+      "median_absolute_error_cents": 0.7,
+      "p90_absolute_error_cents": 5.1,
+      "outliers_over_80_cents": [],
+      "large_sample_jumps": 0,
+      "jump_times_within_section_s": [],
+      "unexplained_jumps": []
+    },
+    {
+      "section": "lift 2",
+      "written_notes": 20,
+      "measured_notes": 20,
+      "median_absolute_error_cents": 0.6,
+      "p90_absolute_error_cents": 2.8,
+      "outliers_over_80_cents": [],
+      "large_sample_jumps": 0,
+      "jump_times_within_section_s": [],
+      "unexplained_jumps": []
+    },
+    {
+      "section": "chorus 2",
+      "written_notes": 49,
+      "measured_notes": 49,
+      "median_absolute_error_cents": 1.0,
+      "p90_absolute_error_cents": 5.5,
+      "outliers_over_80_cents": [],
+      "large_sample_jumps": 0,
+      "jump_times_within_section_s": [],
+      "unexplained_jumps": []
+    },
+    {
+      "section": "bridge",
+      "written_notes": 29,
+      "measured_notes": 29,
+      "median_absolute_error_cents": 0.4,
+      "p90_absolute_error_cents": 1.7,
+      "outliers_over_80_cents": [],
+      "large_sample_jumps": 0,
+      "jump_times_within_section_s": [],
+      "unexplained_jumps": []
+    },
+    {
+      "section": "scat and tenor trading",
+      "written_notes": 25,
+      "measured_notes": 25,
+      "median_absolute_error_cents": 1.1,
+      "p90_absolute_error_cents": 6.2,
+      "outliers_over_80_cents": [],
+      "large_sample_jumps": 0,
+      "jump_times_within_section_s": [],
+      "unexplained_jumps": []
+    },
+    {
+      "section": "final chorus",
+      "written_notes": 97,
+      "measured_notes": 97,
+      "median_absolute_error_cents": 0.9,
+      "p90_absolute_error_cents": 5.3,
+      "outliers_over_80_cents": [],
+      "large_sample_jumps": 0,
+      "jump_times_within_section_s": [],
+      "unexplained_jumps": []
+    },
+    {
+      "section": "scat tag",
+      "written_notes": 17,
+      "measured_notes": 17,
+      "median_absolute_error_cents": 0.6,
+      "p90_absolute_error_cents": 3.0,
+      "outliers_over_80_cents": [],
+      "large_sample_jumps": 0,
+      "jump_times_within_section_s": [],
+      "unexplained_jumps": []
+    },
+    {
+      "section": "ensemble ending",
+      "written_notes": 7,
+      "measured_notes": 7,
+      "median_absolute_error_cents": 0.5,
+      "p90_absolute_error_cents": 0.9,
+      "outliers_over_80_cents": [],
+      "large_sample_jumps": 0,
+      "jump_times_within_section_s": [],
+      "unexplained_jumps": []
+    }
+  ]
+}
