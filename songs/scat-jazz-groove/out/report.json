@@ -1,0 +1,363 @@
+{
+  "master": {
+    "integrated_lufs": -14.01,
+    "short_term_max_lufs": -11.71,
+    "loudness_range_lu": 4.08,
+    "true_peak_dbtp": -1.0,
+    "sample_peak_db": -1.69,
+    "plr_db": 13.01,
+    "crest_db": 15.17,
+    "stereo_correlation": 0.859,
+    "side_to_mid_db": -11.21,
+    "tonal_slope_db_per_oct": -2.38,
+    "bands_db": {
+      "sub": -27.4,
+      "bass": -22.4,
+      "low-mid": -20.3,
+      "mid": -20.1,
+      "hi-mid": -28.5,
+      "presence": -34.4,
+      "air": -37.2
+    }
+  },
+  "masking": [
+    "bass: upright bass, DRSKit kick within 3 dB of each other",
+    "low-mid: upright bass, Steinway comp within 3 dB of each other",
+    "air: DRSKit ride, DRSKit hats within 3 dB of each other"
+  ],
+  "master_chain": {
+    "lufs": -14.01,
+    "true_peak": -1,
+    "limiter_drive_db": 5.83
+  },
+  "sections": [
+    {
+      "label": "A - Airborne swing - band",
+      "start_s": 0.0,
+      "end_s": 15.48,
+      "master_lufs": -16.2,
+      "tracks": {
+        "Steinway comp": -31.4,
+        "Steinway answering riff": -34.7,
+        "upright bass": -30.6,
+        "muted guitar": -44.8,
+        "trombone punctuation": -40.5,
+        "French horn inner voice": -48.3,
+        "muted trumpet answers": -41.4,
+        "tenor replies": -38.2,
+        "DRSKit kick": -35.7,
+        "DRSKit snare": -33.2,
+        "DRSKit ride": -38.0,
+        "DRSKit hats": -62.6,
+        "DRSKit toms": -37.1,
+        "shaker": -45.1,
+        "bongo conversation": -45.3,
+        "scat - Milk": -69.7,
+        "fx:room": -51.0,
+        "fx:plate": -57.7
+      }
+    },
+    {
+      "label": "A - Airborne swing - vocal",
+      "start_s": 15.48,
+      "end_s": 30.97,
+      "master_lufs": -13.1,
+      "tracks": {
+        "Steinway comp": -31.4,
+        "Steinway answering riff": -34.7,
+        "upright bass": -30.6,
+        "muted guitar": -44.8,
+        "trombone punctuation": -40.4,
+        "French horn inner voice": -48.8,
+        "muted trumpet answers": -41.1,
+        "tenor replies": -38.7,
+        "DRSKit kick": -35.7,
+        "DRSKit snare": -33.2,
+        "DRSKit ride": -38.0,
+        "DRSKit hats": -62.6,
+        "DRSKit toms": -38.0,
+        "shaker": -45.1,
+        "bongo conversation": -44.7,
+        "scat - Milk": -25.7,
+        "fx:room": -51.0,
+        "fx:plate": -41.3,
+        "fx:slap": -52.3
+      }
+    },
+    {
+      "label": "A - release",
+      "start_s": 30.97,
+      "end_s": 32.9,
+      "master_lufs": -29.2,
+      "tracks": {
+        "Steinway comp": -48.5,
+        "upright bass": -45.5,
+        "trombone punctuation": -62.2,
+        "French horn inner voice": -44.7,
+        "muted trumpet answers": -38.7,
+        "DRSKit ride": -47.5,
+        "DRSKit toms": -48.7,
+        "shaker": -69.5,
+        "bongo conversation": -68.3,
+        "scat - Milk": -35.9,
+        "fx:room": -53.3,
+        "fx:plate": -48.2,
+        "fx:slap": -61.1
+      }
+    },
+    {
+      "label": "B - Syncopated pocket - band",
+      "start_s": 32.9,
+      "end_s": 48.39,
+      "master_lufs": -15.8,
+      "tracks": {
+        "Steinway comp": -32.6,
+        "Steinway answering riff": -36.4,
+        "upright bass": -31.7,
+        "muted guitar": -42.7,
+        "trombone punctuation": -40.1,
+        "French horn inner voice": -45.1,
+        "muted trumpet answers": -42.5,
+        "tenor replies": -38.5,
+        "DRSKit kick": -32.2,
+        "DRSKit snare": -32.3,
+        "DRSKit ride": -60.4,
+        "DRSKit hats": -36.9,
+        "DRSKit toms": -36.4,
+        "shaker": -44.0,
+        "bongo conversation": -45.0,
+        "scat - Milk": -69.7,
+        "fx:room": -50.6,
+        "fx:plate": -57.6
+      }
+    },
+    {
+      "label": "B - Syncopated pocket - vocal",
+      "start_s": 48.39,
+      "end_s": 63.87,
+      "master_lufs": -12.9,
+      "tracks": {
+        "Steinway comp": -32.6,
+        "Steinway answering riff": -36.4,
+        "upright bass": -31.8,
+        "muted guitar": -42.7,
+        "trombone punctuation": -39.9,
+        "French horn inner voice": -45.1,
+        "muted trumpet answers": -42.6,
+        "tenor replies": -38.2,
+        "DRSKit kick": -32.2,
+        "DRSKit snare": -31.7,
+        "DRSKit hats": -36.8,
+        "DRSKit toms": -37.6,
+        "shaker": -44.0,
+        "bongo conversation": -45.0,
+        "scat - Milk": -25.7,
+        "fx:room": -50.5,
+        "fx:plate": -41.3,
+        "fx:slap": -52.3
+      }
+    },
+    {
+      "label": "B - release",
+      "start_s": 63.87,
+      "end_s": 65.81,
+      "master_lufs": -28.3,
+      "tracks": {
+        "Steinway comp": -52.7,
+        "upright bass": -43.4,
+        "trombone punctuation": -62.2,
+        "French horn inner voice": -44.7,
+        "muted trumpet answers": -38.7,
+        "DRSKit kick": -59.4,
+        "DRSKit snare": -58.6,
+        "DRSKit hats": -62.3,
+        "DRSKit toms": -48.1,
+        "shaker": -69.2,
+        "scat - Milk": -35.9,
+        "fx:room": -54.2,
+        "fx:plate": -48.2,
+        "fx:slap": -61.1
+      }
+    },
+    {
+      "label": "C - Brass conversation - band",
+      "start_s": 65.81,
+      "end_s": 81.29,
+      "master_lufs": -14.7,
+      "tracks": {
+        "Steinway comp": -30.1,
+        "Steinway answering riff": -34.9,
+        "upright bass": -30.5,
+        "muted guitar": -41.5,
+        "trombone punctuation": -39.6,
+        "French horn inner voice": -41.5,
+        "muted trumpet answers": -42.6,
+        "tenor replies": -37.5,
+        "DRSKit kick": -32.1,
+        "DRSKit snare": -31.4,
+        "DRSKit ride": -34.0,
+        "DRSKit hats": -62.6,
+        "DRSKit toms": -34.8,
+        "DRSKit cymbals": -44.7,
+        "shaker": -45.1,
+        "bongo conversation": -45.7,
+        "scat - Milk": -69.7,
+        "fx:room": -48.5,
+        "fx:plate": -57.7
+      }
+    },
+    {
+      "label": "C - Brass conversation - vocal",
+      "start_s": 81.29,
+      "end_s": 96.77,
+      "master_lufs": -12.5,
+      "tracks": {
+        "Steinway comp": -30.2,
+        "Steinway answering riff": -34.9,
+        "upright bass": -30.7,
+        "muted guitar": -41.5,
+        "trombone punctuation": -39.5,
+        "French horn inner voice": -40.9,
+        "muted trumpet answers": -42.4,
+        "tenor replies": -38.3,
+        "DRSKit kick": -32.1,
+        "DRSKit snare": -31.9,
+        "DRSKit ride": -34.0,
+        "DRSKit hats": -62.6,
+        "DRSKit toms": -35.8,
+        "DRSKit cymbals": -44.7,
+        "shaker": -45.1,
+        "bongo conversation": -44.1,
+        "scat - Milk": -25.7,
+        "fx:room": -48.5,
+        "fx:plate": -41.3,
+        "fx:slap": -52.3
+      }
+    },
+    {
+      "label": "C - release",
+      "start_s": 96.77,
+      "end_s": 98.71,
+      "master_lufs": -29.2,
+      "tracks": {
+        "Steinway comp": -49.7,
+        "upright bass": -43.4,
+        "trombone punctuation": -61.1,
+        "French horn inner voice": -41.4,
+        "muted trumpet answers": -40.7,
+        "DRSKit kick": -57.7,
+        "DRSKit ride": -45.2,
+        "DRSKit toms": -48.0,
+        "shaker": -69.1,
+        "bongo conversation": -69.5,
+        "scat - Milk": -35.9,
+        "fx:room": -54.6,
+        "fx:plate": -48.2,
+        "fx:slap": -61.1
+      }
+    }
+  ],
+  "tracks": {
+    "Steinway comp": {
+      "lufs": -31.3,
+      "peak_db": -15.1,
+      "stereo_correlation": 0.6
+    },
+    "Steinway answering riff": {
+      "lufs": -35.3,
+      "peak_db": -23.5,
+      "stereo_correlation": 0.72
+    },
+    "upright bass": {
+      "lufs": -31.0,
+      "peak_db": -15.3,
+      "stereo_correlation": 1.0
+    },
+    "muted guitar": {
+      "lufs": -42.7,
+      "peak_db": -23.0,
+      "stereo_correlation": 1.0
+    },
+    "trombone punctuation": {
+      "lufs": -39.7,
+      "peak_db": -18.8,
+      "stereo_correlation": 0.47
+    },
+    "French horn inner voice": {
+      "lufs": -41.3,
+      "peak_db": -22.2,
+      "stereo_correlation": 0.67
+    },
+    "muted trumpet answers": {
+      "lufs": -39.9,
+      "peak_db": -22.6,
+      "stereo_correlation": 0.96
+    },
+    "tenor replies": {
+      "lufs": -38.0,
+      "peak_db": -24.7,
+      "stereo_correlation": 1.0
+    },
+    "DRSKit kick": {
+      "lufs": -33.1,
+      "peak_db": -14.3,
+      "stereo_correlation": 0.91
+    },
+    "DRSKit snare": {
+      "lufs": -32.2,
+      "peak_db": -10.0,
+      "stereo_correlation": 0.66
+    },
+    "DRSKit ride": {
+      "lufs": -35.6,
+      "peak_db": -8.4,
+      "stereo_correlation": 0.71
+    },
+    "DRSKit hats": {
+      "lufs": -36.9,
+      "peak_db": -22.3,
+      "stereo_correlation": 0.18
+    },
+    "DRSKit toms": {
+      "lufs": -36.6,
+      "peak_db": -17.6,
+      "stereo_correlation": 0.82
+    },
+    "DRSKit cymbals": {
+      "lufs": -44.9,
+      "peak_db": -19.2,
+      "stereo_correlation": 0.6
+    },
+    "shaker": {
+      "lufs": -44.6,
+      "peak_db": -29.6,
+      "stereo_correlation": 0.34
+    },
+    "bongo conversation": {
+      "lufs": -44.9,
+      "peak_db": -21.8,
+      "stereo_correlation": 0.97
+    },
+    "scat - Milk": {
+      "lufs": -25.8,
+      "peak_db": -12.1,
+      "stereo_correlation": 1.0
+    },
+    "fx:room": {
+      "lufs": -49.7,
+      "peak_db": -33.1,
+      "stereo_correlation": -0.21
+    },
+    "fx:plate": {
+      "lufs": -41.5,
+      "peak_db": -28.0,
+      "stereo_correlation": 0.27
+    },
+    "fx:slap": {
+      "lufs": -52.5,
+      "peak_db": -37.1,
+      "stereo_correlation": 0.03
+    }
+  },
+  "warnings": []
+}

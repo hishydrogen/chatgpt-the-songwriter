@@ -1,0 +1,26 @@
+[
+  {
+    "version": "A",
+    "title": "Airborne swing",
+    "file": "groove-A.mp3",
+    "source_start_s": 0.0,
+    "source_end_s": 32.9,
+    "vocal_enters_s": 15.48
+  },
+  {
+    "version": "B",
+    "title": "Syncopated pocket",
+    "file": "groove-B.mp3",
+    "source_start_s": 32.9,
+    "source_end_s": 65.81,
+    "vocal_enters_s": 15.48
+  },
+  {
+    "version": "C",
+    "title": "Brass conversation",
+    "file": "groove-C.mp3",
+    "source_start_s": 65.81,
+    "source_end_s": 98.71,
+    "vocal_enters_s": 15.48
+  }
+]

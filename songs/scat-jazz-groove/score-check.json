@@ -1,0 +1,72 @@
+{
+  "status": "passed",
+  "selected_instruments": {
+    "voice": "voice.milk",
+    "keys": "piano.splendid",
+    "bass": "bass.upright_pizz",
+    "drums": "drums.drskit"
+  },
+  "bpm": 124,
+  "swing": 0.6,
+  "tracks": 17,
+  "notes": 2705,
+  "midi_lyrics": 147,
+  "identical_instrumental_repeats": true,
+  "identical_vocal_performances": true,
+  "sections": [
+    {
+      "label": "A - Airborne swing - band",
+      "beat": 0,
+      "bars": 8,
+      "role": "band",
+      "version": "A",
+      "start_s": 0.0,
+      "end_s": 15.48
+    },
+    {
+      "label": "A - Airborne swing - vocal",
+      "beat": 32,
+      "bars": 8,
+      "role": "vocal",
+      "version": "A",
+      "start_s": 15.48,
+      "end_s": 30.97
+    },
+    {
+      "label": "B - Syncopated pocket - band",
+      "beat": 68,
+      "bars": 8,
+      "role": "band",
+      "version": "B",
+      "start_s": 32.9,
+      "end_s": 48.39
+    },
+    {
+      "label": "B - Syncopated pocket - vocal",
+      "beat": 100,
+      "bars": 8,
+      "role": "vocal",
+      "version": "B",
+      "start_s": 48.39,
+      "end_s": 63.87
+    },
+    {
+      "label": "C - Brass conversation - band",
+      "beat": 136,
+      "bars": 8,
+      "role": "band",
+      "version": "C",
+      "start_s": 65.81,
+      "end_s": 81.29
+    },
+    {
+      "label": "C - Brass conversation - vocal",
+      "beat": 168,
+      "bars": 8,
+      "role": "vocal",
+      "version": "C",
+      "start_s": 81.29,
+      "end_s": 96.77
+    }
+  ]
+}

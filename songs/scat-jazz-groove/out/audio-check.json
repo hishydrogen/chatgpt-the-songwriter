@@ -1,0 +1,83 @@
+{
+  "status": "passed",
+  "master": {
+    "integrated_lufs": -14.01,
+    "short_term_max_lufs": -11.71,
+    "loudness_range_lu": 4.08,
+    "true_peak_dbtp": -1.0,
+    "sample_peak_db": -1.69,
+    "plr_db": 13.01,
+    "crest_db": 15.17,
+    "stereo_correlation": 0.859,
+    "side_to_mid_db": -11.21,
+    "tonal_slope_db_per_oct": -2.38,
+    "bands_db": {
+      "sub": -27.4,
+      "bass": -22.4,
+      "low-mid": -20.3,
+      "mid": -20.1,
+      "hi-mid": -28.5,
+      "presence": -34.4,
+      "air": -37.2
+    }
+  },
+  "vocal_balance": [
+    {
+      "label": "A - Airborne swing - vocal",
+      "master_lufs": -13.1,
+      "lead_lufs": -25.7,
+      "loudest_band_track_lufs": -30.6,
+      "lead_margin_db": 4.9
+    },
+    {
+      "label": "B - Syncopated pocket - vocal",
+      "master_lufs": -12.9,
+      "lead_lufs": -25.7,
+      "loudest_band_track_lufs": -31.7,
+      "lead_margin_db": 6.0
+    },
+    {
+      "label": "C - Brass conversation - vocal",
+      "master_lufs": -12.5,
+      "lead_lufs": -25.7,
+      "loudest_band_track_lufs": -30.2,
+      "lead_margin_db": 4.5
+    }
+  ],
+  "vocal_candidate_level_deviations_lu": [
+    -0.2,
+    0.0,
+    0.4
+  ],
+  "band_candidate_level_deviations_lu": [
+    -0.8,
+    -0.4,
+    0.8
+  ],
+  "pitch": [
+    {
+      "version": "A",
+      "measured_notes": 49,
+      "median_absolute_error_cents": 0.9,
+      "p90_absolute_error_cents": 4.4,
+      "maximum_absolute_error_cents": 6.8,
+      "large_sample_jumps": 0
+    },
+    {
+      "version": "B",
+      "measured_notes": 49,
+      "median_absolute_error_cents": 0.9,
+      "p90_absolute_error_cents": 4.4,
+      "maximum_absolute_error_cents": 6.8,
+      "large_sample_jumps": 0
+    },
+    {
+      "version": "C",
+      "measured_notes": 49,
+      "median_absolute_error_cents": 0.9,
+      "p90_absolute_error_cents": 4.4,
+      "maximum_absolute_error_cents": 6.8,
+      "large_sample_jumps": 0
+    }
+  ]
+}

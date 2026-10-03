@@ -61,4 +61,5 @@ bash scripts/studio.sh --python scripts/audition_levels.py songs/scat-jazz-palet
 bash scripts/studio.sh --python songs/scat-jazz-palette/check_pitch.py
 ```
 
-후속 단계에서는 보컬과 반주 음색을 선택한 뒤 같은 훅으로 그루브 스케치를 만든다.
+사용자는 보컬 C(Milk), 건반 B(Steinway), 베이스 A(업라이트), 드럼 B(DRSKit)를
+선택했다. 같은 훅으로 만든 2단계 비교는 `songs/scat-jazz-groove/`에 있다.
